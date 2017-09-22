@@ -159,6 +159,11 @@ public class memberLogInPage extends javax.swing.JFrame {
         txtPhoneNumber.setText("Phone Number:");
 
         buttonJoin.setText("Join");
+        buttonJoin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJoinActionPerformed(evt);
+            }
+        });
 
         txtFirstName.setText("First Name:");
 
@@ -326,7 +331,7 @@ public class memberLogInPage extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonJOBActionPerformed
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
-        // TODO add your handling code here:
+new roomBookingPage().setVisible(true);        // TODO add your handling code here:
         
     }//GEN-LAST:event_buttonLogInActionPerformed
 
@@ -334,6 +339,10 @@ public class memberLogInPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_buttonBackActionPerformed
+
+    private void buttonJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJoinActionPerformed
+new roomBookingPage().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonJoinActionPerformed
 
     /**
      * @param args the command line arguments
