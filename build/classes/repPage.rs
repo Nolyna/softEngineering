@@ -1,0 +1,10 @@
+hotelGUI.repPage$5
+hotelGUI.repPage$6
+hotelGUI.repPage$3
+hotelGUI.repPage$4
+hotelGUI.repPage$1
+hotelGUI.repPage
+hotelGUI.repPage$2
+hotelGUI.repPage$9
+hotelGUI.repPage$7
+hotelGUI.repPage$8

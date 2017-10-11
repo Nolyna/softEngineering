@@ -1,0 +1,9 @@
+hotelGUI.mainMenuPage$6
+hotelGUI.mainMenuPage$7
+hotelGUI.mainMenuPage$8
+hotelGUI.mainMenuPage$1
+hotelGUI.mainMenuPage$2
+hotelGUI.mainMenuPage
+hotelGUI.mainMenuPage$3
+hotelGUI.mainMenuPage$4
+hotelGUI.mainMenuPage$5
