@@ -1,14 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HSMmodel;
 
 /**
  *
- * @author soumb
+ * @author soumbou
  */
-public class employee {
+public class Employee extends person{   
+    String bdate;
+    String gender;
+    
+    /**
+     * Constructor for employee
+     */
+    public Employee(){}
+    public Employee( String fname, String lname){
+        this.firstname = fname;
+        this.lastname = lname;
+    }
+    
+    
+    /* get Employee date of birth
+     * @return Employee date of birth
+    */
+    public String getBirthday(){
+        String full = this.firstname + " " + this.lastname;
+        return full;
+    }
+    
     
 }

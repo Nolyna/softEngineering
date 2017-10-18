@@ -28,21 +28,6 @@ public class kitchenPage extends javax.swing.JFrame {
     private void initComponents() {
 
         tabReceptionist = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        txtClockIn = new javax.swing.JLabel();
-        txtBreakS = new javax.swing.JLabel();
-        txtBreakE = new javax.swing.JLabel();
-        txtClockOut = new javax.swing.JLabel();
-        fieldClockIn = new javax.swing.JTextField();
-        fieldBreakS = new javax.swing.JTextField();
-        fieldBreakE = new javax.swing.JTextField();
-        fieldClockOut = new javax.swing.JTextField();
-        buttonClockIn = new javax.swing.JButton();
-        buttonSBreak = new javax.swing.JButton();
-        buttonEBreak = new javax.swing.JButton();
-        buttonClockOut = new javax.swing.JButton();
-        txtTime = new javax.swing.JLabel();
-        fieldTime = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableHoursWorked = new javax.swing.JTable();
@@ -58,102 +43,26 @@ public class kitchenPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableStock = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        txtClockIn = new javax.swing.JLabel();
+        txtBreakS = new javax.swing.JLabel();
+        txtBreakE = new javax.swing.JLabel();
+        txtClockOut = new javax.swing.JLabel();
+        fieldClockIn = new javax.swing.JTextField();
+        fieldBreakS = new javax.swing.JTextField();
+        fieldBreakE = new javax.swing.JTextField();
+        fieldClockOut = new javax.swing.JTextField();
+        buttonClockIn = new javax.swing.JButton();
+        buttonSBreak = new javax.swing.JButton();
+        buttonEBreak = new javax.swing.JButton();
+        buttonClockOut = new javax.swing.JButton();
+        txtTime = new javax.swing.JLabel();
+        fieldTime = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         buttonStock = new javax.swing.JButton();
         buttonLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtClockIn.setText("Clock-In Time");
-
-        txtBreakS.setText("Break Started ");
-
-        txtBreakE.setText("Break Ended");
-
-        txtClockOut.setText("Clock-Out Time");
-
-        fieldClockIn.setFocusable(false);
-
-        fieldBreakS.setFocusable(false);
-
-        fieldBreakE.setFocusable(false);
-
-        fieldClockOut.setFocusable(false);
-
-        buttonClockIn.setText("Clock-In");
-
-        buttonSBreak.setText("Start Break");
-
-        buttonEBreak.setText("End Break");
-
-        buttonClockOut.setText("Clock-Out");
-
-        txtTime.setText("Time:");
-
-        fieldTime.setFocusable(false);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtTime)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtClockIn)
-                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonClockIn))
-                .addGap(74, 74, 74)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBreakS)
-                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSBreak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBreakE)
-                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEBreak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtClockOut)
-                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonClockOut))
-                .addGap(172, 172, 172))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTime))
-                .addGap(82, 82, 82)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtClockOut)
-                    .addComponent(txtBreakE)
-                    .addComponent(txtBreakS)
-                    .addComponent(txtClockIn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonClockIn)
-                    .addComponent(buttonSBreak)
-                    .addComponent(buttonEBreak)
-                    .addComponent(buttonClockOut))
-                .addContainerGap(401, Short.MAX_VALUE))
-        );
-
-        tabReceptionist.addTab("Clock-In/Out", jPanel4);
 
         tableHoursWorked.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -326,6 +235,97 @@ public class kitchenPage extends javax.swing.JFrame {
         );
 
         tabReceptionist.addTab("Stock", jPanel1);
+
+        txtClockIn.setText("Clock-In Time");
+
+        txtBreakS.setText("Break Started ");
+
+        txtBreakE.setText("Break Ended");
+
+        txtClockOut.setText("Clock-Out Time");
+
+        fieldClockIn.setFocusable(false);
+
+        fieldBreakS.setFocusable(false);
+
+        fieldBreakE.setFocusable(false);
+
+        fieldClockOut.setFocusable(false);
+
+        buttonClockIn.setText("Clock-In");
+
+        buttonSBreak.setText("Start Break");
+
+        buttonEBreak.setText("End Break");
+
+        buttonClockOut.setText("Clock-Out");
+
+        txtTime.setText("Time:");
+
+        fieldTime.setFocusable(false);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTime)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtClockIn)
+                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonClockIn))
+                .addGap(74, 74, 74)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBreakS)
+                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSBreak))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBreakE)
+                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEBreak))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtClockOut)
+                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonClockOut))
+                .addGap(172, 172, 172))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTime))
+                .addGap(82, 82, 82)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtClockOut)
+                    .addComponent(txtBreakE)
+                    .addComponent(txtBreakS)
+                    .addComponent(txtClockIn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonClockIn)
+                    .addComponent(buttonSBreak)
+                    .addComponent(buttonEBreak)
+                    .addComponent(buttonClockOut))
+                .addContainerGap(401, Short.MAX_VALUE))
+        );
+
+        tabReceptionist.addTab("Clock-In/Out", jPanel4);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Kitchen");

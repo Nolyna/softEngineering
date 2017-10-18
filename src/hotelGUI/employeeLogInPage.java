@@ -256,7 +256,7 @@ public class employeeLogInPage extends javax.swing.JFrame {
 
     private void buttonManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManagerActionPerformed
         // TODO add your handling code here:
-        managerPage obj = new managerPage();
+        managerPg obj = new managerPg();
         obj.setVisible(true);
     }//GEN-LAST:event_buttonManagerActionPerformed
 

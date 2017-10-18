@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dbConnexion;
  
 import java.sql.Connection;
@@ -14,17 +9,18 @@ import java.sql.SQLException;
  * @author soumb
  */
 public class SQLiteJDBConnection {
+    
+    final private String url = "jdbc:sqlite:hotelmanagement.db";
     /**
      * Connect to database
      */
-    public static void connect() {
+    public SQLiteJDBConnection(){}
+    
+    public static void connexion() {
+        String url = "jdbc:sqlite:hotelmanagement.db";
         Connection conn = null;
-        try {
-            // db parameters
-            String url = "jdbc:sqlite:hotelmanagement.db";
-            // create a connection to the database
-            conn = DriverManager.getConnection(url);
-            
+        try {           
+            conn = DriverManager.getConnection(url);            
             System.out.println("Connection to SQLite has been established.");
             
         } catch (SQLException e) {
@@ -39,10 +35,19 @@ public class SQLiteJDBConnection {
             }
         }
     }
+    
     /**
-     * @param args the command line arguments
+     * Connect to the HSM database
+     * @return the Connection object
      */
-    public static void main(String[] args) {
-        connect();
+    public Connection connect() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
     }
+    
 }
