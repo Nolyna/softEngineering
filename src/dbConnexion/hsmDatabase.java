@@ -5,6 +5,9 @@
  */
 package dbConnexion;
 
+import HSMcontrollers.departmentController;
+import HSMcontrollers.employeeController;
+import HSMcontrollers.roomController;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,12 +19,12 @@ import java.sql.Statement;
  * @author Noria soumbou
  */
 public class hsmDatabase {
+    // SQLite connection string
+    final private static String URL = "jdbc:sqlite:C://sqlite/db/hotelmanagement.db";
     
     public static void hsmDbInit() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:C://sqlite/db/hotelmanagement.db";
-        
-        // SQL statement for creating a new table
+                
+        // SQL statement for creating a new table hotel
         String sql = "CREATE TABLE IF NOT EXISTS hotel ( "
                 +"idHotel int(11) NOT NULL AUTO_INCREMENT, "
                 +"name varchar(50) NOT NULL,"
@@ -341,7 +344,7 @@ public class hsmDatabase {
        
                 // SQL statement for creating a new table  rooms	
         String sql24 = "CREATE TABLE IF NOT EXISTS rooms (\n"
-            +"idRoom int(11) NOT NULL,\n"
+            +"idRoom int(11) NOT NULL AUTO_INCREMENT,\n"
             +"description` text,\n"
             +"location text NOT NULL,\n"
             +"idRoomType int(11) NOT NULL,\n"
@@ -368,9 +371,9 @@ public class hsmDatabase {
 
                 // SQL statement for creating a new table room_type
         String sql25 = "CREATE TABLE IF NOT EXISTS room_type ( \n"
-            +" `idRoomType` int(11) NOT NULL,"
+            +" `idRoomType` int(11) NOT NULL AUTO_INCREMENT,"
             +" `nameType` varchar(15) NOT NULL,"
-            +" `pricePerNight` varchar(10) NOT NULL,\n"
+            +" `pricePerNight` int(11) NOT NULL,\n"
             +" `beds` int(11) NOT NULL,\n"
             +" PRIMARY KEY (`idRoomType`),\n"
             +" UNIQUE KEY `idRoomType_2` (`idRoomType`),\n"
@@ -431,7 +434,7 @@ public class hsmDatabase {
             +" CONSTRAINT `workfor_ibfk_2` FOREIGN KEY (`idDepartment`) REFERENCES `department` (`idDepartment`) ON DELETE CASCADE ON UPDATE CASCADE \n"
             +") ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
         
-        try (Connection conn = DriverManager.getConnection(url);
+        try (Connection conn = DriverManager.getConnection(URL);
                 Statement stmt = conn.createStatement()) {
             stmt.execute(sql1);stmt.execute(sql2);stmt.execute(sql3);stmt.execute(sql4);
             stmt.execute(sql5);stmt.execute(sql6);stmt.execute(sql7);stmt.execute(sql8);
@@ -444,16 +447,27 @@ public class hsmDatabase {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
-        // create Main admistration department
-        String sql00 = "INSERT INTO department(nameDepartment) VALUES(?)";
-        
-        try (Connection conn = DriverManager.getConnection(url);
-                PreparedStatement pstmt = conn.prepareStatement(sql00)) {
-            pstmt.setString(1, "Administration");
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
     }
+    
+    public void initContent(){        
+        roomController initroom =  new roomController();
+        roomController initroomtype =  new roomController();
+        departmentController initdepartment = new departmentController();
+        employeeController initemployee =  new employeeController();
+        //initemployee.insertEmployee(x);
+        initdepartment.insertDepartment("Administration");
+        
+        initroomtype.roomNewType("King Suite",150,1);
+        initroomtype.roomNewType("Double King Suite",130,2);
+        initroomtype.roomNewType("Queen Suite",140,1);
+        initroomtype.roomNewType("Double Queen Suite",120,2);
+        
+        initroom.newroom("king bed room", "2nd floor", 2);
+        initroom.newroom("king bed room", "2nd floor", 2);
+        initroom.newroom("king bed room", "2nd floor", 2);
+        initroom.newroom("king bed room", "2nd floor", 2);
+        initroom.newroom("king bed room", "2nd floor", 2);
+    }
+    
 }
+  

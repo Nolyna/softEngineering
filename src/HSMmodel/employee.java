@@ -15,8 +15,7 @@ public class Employee extends person{
     public Employee( String fname, String lname){
         this.firstname = fname;
         this.lastname = lname;
-    }
-    
+    }    
     
     /* get Employee date of birth
      * @return Employee date of birth
