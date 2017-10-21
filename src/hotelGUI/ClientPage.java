@@ -5,6 +5,7 @@
  */
 package hotelGUI;
 
+import hotelGUI.clientGUI.AmenityPanel;
 import hotelGUI.clientGUI.MaintenancePanel;
 import hotelGUI.clientGUI.TransportPanel;
 import hotelGUI.clientGUI.WakePanel;
@@ -21,6 +22,7 @@ public class ClientPage extends javax.swing.JFrame {
     final MaintenancePanel MaintenanceView; 
     final TransportPanel  transportView;
     final WakePanel  wakeView;
+    final AmenityPanel  amenityView;
 
     /**
      * Creates new form mainMenuPage
@@ -30,6 +32,7 @@ public class ClientPage extends javax.swing.JFrame {
         MaintenanceView =  new MaintenancePanel();
         transportView = new TransportPanel();
         wakeView = new WakePanel();
+        amenityView = new AmenityPanel();
         contentPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
@@ -37,13 +40,16 @@ public class ClientPage extends javax.swing.JFrame {
         contentPanel.add(transportView,c);
         transportView.setVisible(false);
         
-        c.gridx = 0; c.gridy = 0;        
+        //c.gridx = 0; c.gridy = 0;        
         contentPanel.add(MaintenanceView,c);
         MaintenanceView.setVisible(false);
         
-        c.gridx = 0; c.gridy = 0;        
+        //c.gridx = 0; c.gridy = 0;        
         contentPanel.add(wakeView,c);
         wakeView.setVisible(false);
+        
+        contentPanel.add(amenityView,c);
+        amenityView.setVisible(false);
     }
 
     /**
@@ -57,8 +63,7 @@ public class ClientPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
-        content = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        menuPanel = new javax.swing.JPanel();
         tourButton = new javax.swing.JButton();
         orderButton = new javax.swing.JButton();
         TransportButton = new javax.swing.JButton();
@@ -67,6 +72,7 @@ public class ClientPage extends javax.swing.JFrame {
         amenitiesButton = new javax.swing.JButton();
         eventButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
+        hoteName = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,8 +86,9 @@ public class ClientPage extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel2.setText("AllSuites Main Terminal");
+        contentPanel.setBackground(new java.awt.Color(204, 204, 255));
 
         tourButton.setText("Tours");
         tourButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,48 +139,40 @@ public class ClientPage extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(TransportButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(amenitiesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(maintenanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(wakeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(eventButton, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tourButton, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addGap(115, 115, 115))))
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TransportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wakeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maintenanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amenitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(160, 160, 160))
         );
-
-        contentLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {TransportButton, amenitiesButton, eventButton, maintenanceButton, orderButton, tourButton, wakeButton});
-
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(53, 53, 53)
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(orderButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TransportButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(wakeButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(maintenanceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(amenitiesButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(eventButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tourButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(tourButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         logoutButton.setText("Log Out");
@@ -183,75 +182,111 @@ public class ClientPage extends javax.swing.JFrame {
             }
         });
 
+        hoteName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        hoteName.setText("AllSuites Hotel");
+
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(contentPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE)
+                .addComponent(hoteName)
+                .addGap(76, 76, 76)
+                .addComponent(logoutButton)
+                .addContainerGap())
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logoutButton)
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contentPanelLayout.createSequentialGroup()
+                        .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(3, 3, 3))
+                    .addComponent(hoteName))
+                .addGap(43, 43, 43)
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(389, 367));
+        setSize(new java.awt.Dimension(526, 464));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void eventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventButtonActionPerformed
-        new eventsPage().setVisible(true);        // TODO add your handling code here:
+        new eventsPage().setVisible(true);  
+        menuPanel.setVisible(false);
+        amenityView.setVisible(false);
+        MaintenanceView.setVisible(false);
+        wakeView.setVisible(false);
+        transportView.setVisible(false);
     }//GEN-LAST:event_eventButtonActionPerformed
 
     private void amenitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amenitiesButtonActionPerformed
-        new amenitiesPage().setVisible(true);        // TODO add your handling code here:
+        amenityView.setVisible(true); 
+        menuPanel.setVisible(false);
+        MaintenanceView.setVisible(false);
+        transportView.setVisible(false);
+        wakeView.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_amenitiesButtonActionPerformed
 
     private void maintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceButtonActionPerformed
-        MaintenanceView.setVisible(true);        // TODO add your handling code here:
+        MaintenanceView.setVisible(true); 
+        menuPanel.setVisible(false);
+        transportView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false);
     }//GEN-LAST:event_maintenanceButtonActionPerformed
 
     private void wakeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wakeButtonActionPerformed
         wakeView.setVisible(true);
-        content.setVisible(false);// TODO add your handling code here:
+        menuPanel.setVisible(false);
+        MaintenanceView.setVisible(false);
+        transportView.setVisible(false);
+        menuPanel.setVisible(false);
+        amenityView.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_wakeButtonActionPerformed
 
     private void TransportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransportButtonActionPerformed
-        transportView.setVisible(true);    // TODO add your handling code here:
+        transportView.setVisible(true);
+        menuPanel.setVisible(false);
+        MaintenanceView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false);
     }//GEN-LAST:event_TransportButtonActionPerformed
 
     private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed
-        new foodOrderPage().setVisible(true);       // TODO add your handling code here:
+        new foodOrderPage().setVisible(true); 
+        menuPanel.setVisible(false);
+        transportView.setVisible(false);
+        MaintenanceView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_orderButtonActionPerformed
 
     private void tourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tourButtonActionPerformed
-        new toursPage().setVisible(true);        // TODO add your handling code here:
+        new toursPage().setVisible(true);  
+        menuPanel.setVisible(false);
+        MaintenanceView.setVisible(false);
+        transportView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_tourButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -299,13 +334,13 @@ public class ClientPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton TransportButton;
     private javax.swing.JButton amenitiesButton;
-    private javax.swing.JPanel content;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JButton eventButton;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel hoteName;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton maintenanceButton;
+    private javax.swing.JPanel menuPanel;
     private javax.swing.JButton orderButton;
     private javax.swing.JButton tourButton;
     private javax.swing.JButton wakeButton;
