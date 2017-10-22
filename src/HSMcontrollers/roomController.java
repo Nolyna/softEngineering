@@ -14,9 +14,9 @@ public class roomController {
     
     /**
      * Add a new room in the database
-     * @param desc
-     * @param locate
-     * @param roomType 
+     * @param desc description of the room
+     * @param locate floor where is located the room
+     * @param roomType id of the room type
      */
     public void newroom(String desc, String locate, int roomType){
          String sql = "INSERT INTO rooms(description,location,idRoomType) VALUES(?,?,?)";

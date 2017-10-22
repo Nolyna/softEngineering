@@ -462,11 +462,12 @@ public class hsmDatabase {
         initroomtype.roomNewType("Queen Suite",140,1);
         initroomtype.roomNewType("Double Queen Suite",120,2);
         
-        initroom.newroom("king bed room", "2nd floor", 2);
-        initroom.newroom("king bed room", "2nd floor", 2);
-        initroom.newroom("king bed room", "2nd floor", 2);
-        initroom.newroom("king bed room", "2nd floor", 2);
-        initroom.newroom("king bed room", "2nd floor", 2);
+        initroom.newroom("king one bed room", "2nd floor", 1);
+        initroom.newroom("king one bed room", "2nd floor", 1);
+        initroom.newroom("king two beds room", "3nd floor", 2);
+        initroom.newroom("Queen two beds room", "3nd floor", 4);
+        initroom.newroom("Queen one bed room", "1nd floor", 3);
+        initroom.newroom("Queen one room", "1nd floor", 3);
     }
     
 }
