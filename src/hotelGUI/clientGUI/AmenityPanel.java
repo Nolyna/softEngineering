@@ -28,6 +28,8 @@ public class AmenityPanel extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         reserveBallroomButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -42,6 +44,10 @@ public class AmenityPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
+        conferenceTab.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
         reserveBallroomButton.setText("Reserve");
         reserveBallroomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,12 +57,17 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         jLabel8.setText("To reserve the ballroom");
 
+        jTextPane1.setEditable(false);
+        jScrollPane1.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addGap(174, 174, 174))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -69,9 +80,14 @@ public class AmenityPanel extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel17))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reserveBallroomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -79,6 +95,8 @@ public class AmenityPanel extends javax.swing.JPanel {
         );
 
         conferenceTab.addTab("Ballroom", jPanel4);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setText("To reserve the Pool");
 
@@ -119,6 +137,7 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         conferenceTab.addTab("Pool", jPanel2);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
 
         jLabel1.setText("To reserve the Game Room");
@@ -160,9 +179,10 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         conferenceTab.addTab("Game Room", jPanel1);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(545, 550));
 
-        jLabel4.setText("To make a reseration");
+        jLabel4.setText("To make a reservation");
 
         reserveConfButton.setText("Reserve");
         reserveConfButton.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +203,7 @@ public class AmenityPanel extends javax.swing.JPanel {
                         .addComponent(jLabel4)))
                 .addGap(50, 50, 50)
                 .addComponent(reserveConfButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(jLabel13))
         );
         jPanel3Layout.setVerticalGroup(
@@ -266,6 +286,8 @@ public class AmenityPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton reserveBallroomButton;
     private javax.swing.JButton reserveConfButton;
     private javax.swing.JButton reserveGameButton;

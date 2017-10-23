@@ -1,20 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotelGUI;
 
 import hotelGUI.clientGUI.AmenityPanel;
+import hotelGUI.clientGUI.EventPanel;
 import hotelGUI.clientGUI.MaintenancePanel;
+import hotelGUI.clientGUI.TourPanel;
 import hotelGUI.clientGUI.TransportPanel;
 import hotelGUI.clientGUI.WakePanel;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
- *
- * @author Jermaine
+ *  Main page for the residents of the hotel
+ *  They can access all functions offer by the hotel using this screen
+ * @author Jermaine, Noria Soumbou
  */
 public class ClientPage extends javax.swing.JFrame {
     
@@ -23,6 +24,8 @@ public class ClientPage extends javax.swing.JFrame {
     final TransportPanel  transportView;
     final WakePanel  wakeView;
     final AmenityPanel  amenityView;
+    final TourPanel  tourView;
+    final EventPanel  eventView;
 
     /**
      * Creates new form mainMenuPage
@@ -33,25 +36,51 @@ public class ClientPage extends javax.swing.JFrame {
         transportView = new TransportPanel();
         wakeView = new WakePanel();
         amenityView = new AmenityPanel();
+        tourView = new TourPanel();
+        eventView = new EventPanel();
         contentPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
         c.gridx = 0; c.gridy = 0;        
         contentPanel.add(transportView,c);
-        transportView.setVisible(false);
+        hide_panel(transportView);
         
         //c.gridx = 0; c.gridy = 0;        
         contentPanel.add(MaintenanceView,c);
-        MaintenanceView.setVisible(false);
+        hide_panel(MaintenanceView);
         
         //c.gridx = 0; c.gridy = 0;        
         contentPanel.add(wakeView,c);
-        wakeView.setVisible(false);
+        hide_panel(wakeView);
         
         contentPanel.add(amenityView,c);
-        amenityView.setVisible(false);
+        hide_panel(amenityView);
+        
+        contentPanel.add(eventView,c);
+        hide_panel(eventView);
+        
+        contentPanel.add(tourView,c);
+        hide_panel(tourView);
     }
-
+    
+    private void click_bg_button(JLabel lbl){
+        lbl.setBackground(new Color(22,42,57));
+        lbl.setOpaque(true);
+    }
+    
+    private void reset_bg_button( JLabel lbl){
+        lbl.setBackground(new Color(23,63,86));
+        lbl.setOpaque(false);
+    }
+    
+    
+    private void hide_panel(JPanel pnl){
+        pnl.setVisible(false);
+    }
+    
+    private void show_panel(JPanel pnl){
+        pnl.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,16 +92,19 @@ public class ClientPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
-        menuPanel = new javax.swing.JPanel();
-        tourButton = new javax.swing.JButton();
-        orderButton = new javax.swing.JButton();
-        TransportButton = new javax.swing.JButton();
-        wakeButton = new javax.swing.JButton();
-        maintenanceButton = new javax.swing.JButton();
-        amenitiesButton = new javax.swing.JButton();
-        eventButton = new javax.swing.JButton();
-        logoutButton = new javax.swing.JButton();
+        foodLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         hoteName = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JButton();
+        menuPanel = new javax.swing.JPanel();
+        maitenanceLabel = new javax.swing.JLabel();
+        foodLabel = new javax.swing.JLabel();
+        tourLabel = new javax.swing.JLabel();
+        eventLabel = new javax.swing.JLabel();
+        wakeLabel = new javax.swing.JLabel();
+        amenityLabel = new javax.swing.JLabel();
+        transportLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,92 +120,38 @@ public class ClientPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
 
-        contentPanel.setBackground(new java.awt.Color(204, 204, 255));
+        contentPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        tourButton.setText("Tours");
-        tourButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tourButtonActionPerformed(evt);
+        foodLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        foodLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        foodLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foodLabel1.setText("Order Food");
+        foodLabel1.setToolTipText("");
+        foodLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                foodLabel1MouseClicked(evt);
             }
         });
 
-        orderButton.setText("Order Food");
-        orderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderButtonActionPerformed(evt);
-            }
-        });
-
-        TransportButton.setText("Transportation Services");
-        TransportButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TransportButtonActionPerformed(evt);
-            }
-        });
-
-        wakeButton.setText("Arrange A Wake Up Call");
-        wakeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wakeButtonActionPerformed(evt);
-            }
-        });
-
-        maintenanceButton.setText("Call Maintenance");
-        maintenanceButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maintenanceButtonActionPerformed(evt);
-            }
-        });
-
-        amenitiesButton.setText("Amenities / Requests");
-        amenitiesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amenitiesButtonActionPerformed(evt);
-            }
-        });
-
-        eventButton.setText("Events");
-        eventButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
-        menuPanel.setLayout(menuPanelLayout);
-        menuPanelLayout.setHorizontalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TransportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wakeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maintenanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amenitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(160, 160, 160))
-        );
-        menuPanelLayout.setVerticalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(orderButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TransportButton)
-                .addGap(18, 18, 18)
-                .addComponent(wakeButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(maintenanceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(amenitiesButton)
-                .addGap(18, 18, 18)
-                .addComponent(eventButton)
-                .addGap(18, 18, 18)
-                .addComponent(tourButton)
+        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
+        contentPanel.setLayout(contentPanelLayout);
+        contentPanelLayout.setHorizontalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(foodLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        contentPanelLayout.setVerticalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addGap(175, 175, 175)
+                .addComponent(foodLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        hoteName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        hoteName.setText("AllSuites Hotel");
 
         logoutButton.setText("Log Out");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -182,112 +160,189 @@ public class ClientPage extends javax.swing.JFrame {
             }
         });
 
-        hoteName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        hoteName.setText("AllSuites Hotel");
-
-        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
-        contentPanel.setLayout(contentPanelLayout);
-        contentPanelLayout.setHorizontalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(189, Short.MAX_VALUE)
                 .addComponent(hoteName)
-                .addGap(76, 76, 76)
+                .addGap(134, 134, 134)
                 .addComponent(logoutButton)
                 .addContainerGap())
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hoteName)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        contentPanelLayout.setVerticalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentPanelLayout.createSequentialGroup()
-                        .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(3, 3, 3))
-                    .addComponent(hoteName))
-                .addGap(43, 43, 43)
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+
+        menuPanel.setBackground(new java.awt.Color(23, 63, 86));
+
+        maitenanceLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        maitenanceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        maitenanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        maitenanceLabel.setText(" Maintenance Request");
+        maitenanceLabel.setToolTipText("");
+        maitenanceLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                maitenanceLabelMouseClicked(evt);
+            }
+        });
+
+        foodLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        foodLabel.setForeground(new java.awt.Color(255, 255, 255));
+        foodLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foodLabel.setText("Order Food");
+        foodLabel.setToolTipText("");
+        foodLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                foodLabelMouseClicked(evt);
+            }
+        });
+
+        tourLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        tourLabel.setForeground(new java.awt.Color(255, 255, 255));
+        tourLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tourLabel.setText("Tours");
+        tourLabel.setToolTipText("");
+        tourLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tourLabelMouseClicked(evt);
+            }
+        });
+
+        eventLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        eventLabel.setForeground(new java.awt.Color(255, 255, 255));
+        eventLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eventLabel.setText("Events");
+        eventLabel.setToolTipText("");
+        eventLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eventLabelMouseClicked(evt);
+            }
+        });
+
+        wakeLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        wakeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        wakeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        wakeLabel.setText("Arrange A Wake Up Call");
+        wakeLabel.setToolTipText("");
+        wakeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wakeLabelMouseClicked(evt);
+            }
+        });
+
+        amenityLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        amenityLabel.setForeground(new java.awt.Color(255, 255, 255));
+        amenityLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amenityLabel.setText("Amenities / Requests");
+        amenityLabel.setToolTipText("");
+        amenityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                amenityLabelMouseClicked(evt);
+            }
+        });
+
+        transportLabel.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        transportLabel.setForeground(new java.awt.Color(255, 255, 255));
+        transportLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        transportLabel.setText("Transportation Services");
+        transportLabel.setToolTipText("");
+        transportLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transportLabelMouseClicked(evt);
+            }
+        });
+
+        usernameLabel.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(102, 153, 0));
+        usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        usernameLabel.setText("Username");
+
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(foodLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(amenityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(wakeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(eventLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(maitenanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(transportLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(amenityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(wakeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eventLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(maitenanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(foodLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(transportLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(526, 464));
+        setSize(new java.awt.Dimension(839, 498));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void eventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventButtonActionPerformed
-        new eventsPage().setVisible(true);  
-        menuPanel.setVisible(false);
-        amenityView.setVisible(false);
-        MaintenanceView.setVisible(false);
-        wakeView.setVisible(false);
-        transportView.setVisible(false);
-    }//GEN-LAST:event_eventButtonActionPerformed
-
-    private void amenitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amenitiesButtonActionPerformed
-        amenityView.setVisible(true); 
-        menuPanel.setVisible(false);
-        MaintenanceView.setVisible(false);
-        transportView.setVisible(false);
-        wakeView.setVisible(false);// TODO add your handling code here:
-    }//GEN-LAST:event_amenitiesButtonActionPerformed
-
-    private void maintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceButtonActionPerformed
-        MaintenanceView.setVisible(true); 
-        menuPanel.setVisible(false);
-        transportView.setVisible(false);
-        amenityView.setVisible(false);
-        wakeView.setVisible(false);
-    }//GEN-LAST:event_maintenanceButtonActionPerformed
-
-    private void wakeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wakeButtonActionPerformed
-        wakeView.setVisible(true);
-        menuPanel.setVisible(false);
-        MaintenanceView.setVisible(false);
-        transportView.setVisible(false);
-        menuPanel.setVisible(false);
-        amenityView.setVisible(false);// TODO add your handling code here:
-    }//GEN-LAST:event_wakeButtonActionPerformed
-
-    private void TransportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransportButtonActionPerformed
-        transportView.setVisible(true);
-        menuPanel.setVisible(false);
-        MaintenanceView.setVisible(false);
-        amenityView.setVisible(false);
-        wakeView.setVisible(false);
-    }//GEN-LAST:event_TransportButtonActionPerformed
-
-    private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed
-        new foodOrderPage().setVisible(true); 
-        menuPanel.setVisible(false);
-        transportView.setVisible(false);
-        MaintenanceView.setVisible(false);
-        amenityView.setVisible(false);
-        wakeView.setVisible(false);// TODO add your handling code here:
-    }//GEN-LAST:event_orderButtonActionPerformed
-
-    private void tourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tourButtonActionPerformed
-        new toursPage().setVisible(true);  
-        menuPanel.setVisible(false);
-        MaintenanceView.setVisible(false);
-        transportView.setVisible(false);
-        amenityView.setVisible(false);
-        wakeView.setVisible(false); // TODO add your handling code here:
-    }//GEN-LAST:event_tourButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
@@ -295,15 +350,145 @@ public class ClientPage extends javax.swing.JFrame {
         new welcomePage().setVisible(true);  
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void maitenanceLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maitenanceLabelMouseClicked
+        // button:
+        click_bg_button(maitenanceLabel); 
+        reset_bg_button(foodLabel);
+        reset_bg_button(eventLabel);
+        reset_bg_button(wakeLabel);
+        reset_bg_button(amenityLabel);
+        reset_bg_button(transportLabel);
+        reset_bg_button(tourLabel);
+        
+        //panels:       
+        MaintenanceView.setVisible(true); 
+        transportView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false);
+        eventView.setVisible(false);
+        tourView.setVisible(false);
+    }//GEN-LAST:event_maitenanceLabelMouseClicked
+
+    private void foodLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foodLabel1MouseClicked
+
+    private void foodLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodLabelMouseClicked
+        // button:
+        click_bg_button(foodLabel);
+        reset_bg_button(tourLabel);
+        reset_bg_button(eventLabel);
+        reset_bg_button(wakeLabel);
+        reset_bg_button(maitenanceLabel);
+        reset_bg_button(amenityLabel);
+        reset_bg_button(transportLabel);
+        
+        //panels:
+        new foodOrderPage().setVisible(true); 
+        tourView.setVisible(false);
+        transportView.setVisible(false);
+        eventView.setVisible(false);
+        MaintenanceView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false);
+    }//GEN-LAST:event_foodLabelMouseClicked
+
+    private void tourLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tourLabelMouseClicked
+        // button:
+        click_bg_button(tourLabel);
+        reset_bg_button(foodLabel);
+        reset_bg_button(eventLabel);
+        reset_bg_button(wakeLabel);
+        reset_bg_button(maitenanceLabel);
+        reset_bg_button(amenityLabel);
+        reset_bg_button(transportLabel);
+        
+        //panels:
+        tourView.setVisible(true);  
+        MaintenanceView.setVisible(false);
+        eventView.setVisible(false);
+        transportView.setVisible(false);
+        amenityView.setVisible(false);
+        wakeView.setVisible(false);
+    }//GEN-LAST:event_tourLabelMouseClicked
+
+    private void eventLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventLabelMouseClicked
+        // button:
+        click_bg_button(eventLabel);
+        reset_bg_button(foodLabel);
+        reset_bg_button(wakeLabel);
+        reset_bg_button(maitenanceLabel);
+        reset_bg_button(amenityLabel);
+        reset_bg_button(transportLabel);
+        reset_bg_button(tourLabel);
+        //panels:
+        eventView.setVisible(true);  
+        amenityView.setVisible(false);
+        MaintenanceView.setVisible(false);
+        wakeView.setVisible(false);
+        transportView.setVisible(false);
+        tourView.setVisible(false);
+    }//GEN-LAST:event_eventLabelMouseClicked
+
+    private void wakeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wakeLabelMouseClicked
+        // button:
+        click_bg_button(wakeLabel);
+        reset_bg_button(foodLabel);
+        reset_bg_button(maitenanceLabel);
+        reset_bg_button(amenityLabel);
+        reset_bg_button(tourLabel);
+        reset_bg_button(eventLabel);
+        reset_bg_button(transportLabel);
+        //panels:
+        wakeView.setVisible(true);
+        eventView.setVisible(false);
+        MaintenanceView.setVisible(false);
+        transportView.setVisible(false);
+        tourView.setVisible(false);
+        amenityView.setVisible(false);
+    }//GEN-LAST:event_wakeLabelMouseClicked
+
+    private void amenityLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amenityLabelMouseClicked
+        // buttons:
+        click_bg_button(amenityLabel);
+        reset_bg_button(foodLabel);
+        reset_bg_button(maitenanceLabel);
+        reset_bg_button(wakeLabel);
+        reset_bg_button(tourLabel);
+        reset_bg_button(eventLabel);
+        reset_bg_button(transportLabel);
+        //panels:
+        amenityView.setVisible(true);        
+        MaintenanceView.setVisible(false);
+        transportView.setVisible(false);
+        wakeView.setVisible(false);// TODO add your handling code here:
+        eventView.setVisible(false);
+        tourView.setVisible(false);
+    }//GEN-LAST:event_amenityLabelMouseClicked
+
+    private void transportLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transportLabelMouseClicked
+        // buttons:
+        click_bg_button(transportLabel);
+        reset_bg_button(amenityLabel);
+        reset_bg_button(foodLabel);
+        reset_bg_button(maitenanceLabel);
+        reset_bg_button(wakeLabel);
+        reset_bg_button(tourLabel);
+        reset_bg_button(eventLabel);
+        
+        //panels:
+        transportView.setVisible(true);
+        MaintenanceView.setVisible(false);
+        amenityView.setVisible(false);
+        tourView.setVisible(false);
+        wakeView.setVisible(false);
+    }//GEN-LAST:event_transportLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -311,18 +496,9 @@ public class ClientPage extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -332,17 +508,20 @@ public class ClientPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton TransportButton;
-    private javax.swing.JButton amenitiesButton;
+    private javax.swing.JLabel amenityLabel;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JButton eventButton;
+    private javax.swing.JLabel eventLabel;
+    private javax.swing.JLabel foodLabel;
+    private javax.swing.JLabel foodLabel1;
     private javax.swing.JLabel hoteName;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JButton maintenanceButton;
+    private javax.swing.JLabel maitenanceLabel;
     private javax.swing.JPanel menuPanel;
-    private javax.swing.JButton orderButton;
-    private javax.swing.JButton tourButton;
-    private javax.swing.JButton wakeButton;
+    private javax.swing.JLabel tourLabel;
+    private javax.swing.JLabel transportLabel;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel wakeLabel;
     // End of variables declaration//GEN-END:variables
 }

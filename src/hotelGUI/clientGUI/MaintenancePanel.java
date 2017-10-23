@@ -34,6 +34,7 @@ public class MaintenancePanel extends javax.swing.JPanel {
         jButton7 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
+        sidebar.setBackground(new java.awt.Color(97, 167, 106));
         sidebar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton4.setText("Lighting");
@@ -90,6 +91,8 @@ public class MaintenancePanel extends javax.swing.JPanel {
                 .addComponent(jButton7)
                 .addContainerGap(126, Short.MAX_VALUE))
         );
+
+        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

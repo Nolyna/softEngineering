@@ -1,5 +1,7 @@
 package hotelGUI.clientGUI;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 /**
  * Form to make the reservation for amenities
@@ -46,7 +48,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
 
         setBackground(new java.awt.Color(255, 243, 173));
 
-        jPanel3.setBackground(new java.awt.Color(240, 223, 146));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(545, 550));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
@@ -58,6 +60,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
 
         jLabel6.setText("End Time");
 
+        reserveButton.setBackground(new java.awt.Color(145, 149, 166));
         reserveButton.setText("Reserve");
         reserveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +82,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
         estimateText.setEditable(false);
         jScrollPane1.setViewportView(estimateText);
 
+        cancelButton.setBackground(new java.awt.Color(145, 149, 166));
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,8 +169,8 @@ public class AmenityReserveForm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -195,6 +199,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
         // new amenities().jFrame1.setVisible(true);        // TODO add your handling code here:
+        showMessageDialog(null, "Reservation Succesful");
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void estimateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estimateButtonActionPerformed

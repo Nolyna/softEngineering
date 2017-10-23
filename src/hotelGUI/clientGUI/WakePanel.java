@@ -5,6 +5,8 @@
  */
 package hotelGUI.clientGUI;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author Noria Soumbou
@@ -117,6 +119,7 @@ public class WakePanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code heresave in database
+       showMessageDialog(null, "Request Saved");
        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

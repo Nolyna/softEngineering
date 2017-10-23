@@ -5,6 +5,8 @@
  */
 package hotelGUI.clientGUI;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author Noria Soumbou
@@ -34,12 +36,15 @@ public class TaxiFormPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("What time would you call your Taxi ?");
 
         timeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "12:00 AM (Midnight)", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM", "07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selete Date", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
 
+        okButton.setBackground(new java.awt.Color(145, 149, 166));
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +53,7 @@ public class TaxiFormPanel extends javax.swing.JPanel {
         });
 
         jTextPane1.setEditable(false);
+        jTextPane1.setBackground(new java.awt.Color(150, 85, 84));
         jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -88,6 +94,7 @@ public class TaxiFormPanel extends javax.swing.JPanel {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         //super.dispose();       // TODO add your handling code here:
+        showMessageDialog(null, "Request Saved");
     }//GEN-LAST:event_okButtonActionPerformed
 
 

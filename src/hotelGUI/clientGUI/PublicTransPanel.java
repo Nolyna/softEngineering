@@ -31,7 +31,10 @@ public class PublicTransPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(150, 85, 84));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("For more information,\nPlease visit https://www.itsmarta.com");
@@ -70,7 +73,7 @@ public class PublicTransPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
