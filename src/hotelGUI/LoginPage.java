@@ -5,6 +5,15 @@
  */
 package hotelGUI;
 
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 
 /**
  *
@@ -12,11 +21,73 @@ package hotelGUI;
  */
 public class LoginPage extends javax.swing.JFrame {
     
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
+    }
+    
+    public boolean clientLogin(JTextField email, JPasswordField psd  ){
+        boolean found = false;
+        String sql = "SELECT idClient FROM client where email = ? AND password = ?";
+        System.out.println(email.getText());
+        System.out.println( new String(psd.getPassword()));        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email.getText());
+            pstmt.setString(2, new String(psd.getPassword()));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                System.out.println("1:"+rs.getInt(1));
+                if(rs.next()) {
+                    found = true;
+                    System.out.println("2:"+rs.getInt(1));
+                }
+                System.out.println("3:"+rs.getInt(1));
+            }catch(SQLException e){ System.out.println("result"+e.getMessage()); }
+            //pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("select"+e.getMessage());
+        }        
+        return found;
+    }
+    
+    public int employeeLogin(JTextField email, JPasswordField psd  ){
+        int found = 0;
+        String sql1 = "SELECT idClient FROM client where email = ? AND password = ?";
+        String sql2 = "SELECT idManager FROM department where idManager = ?";
+        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)) {
+            pstmt.setString(1, email.getText());
+            pstmt.setString(2, new String(psd.getPassword()));
+            pstmt.executeUpdate();
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    //check if manager
+                    try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)){
+                        pstmt2.setString(1, rs.getNString(1));
+                        pstmt2.executeUpdate();
+                        try (ResultSet rs2 = pstmt.executeQuery()) {
+                            if(rs2.next()) {
+                                found = 2;
+                            }else{
+                                found = 1;
+                            }
+                        }
+                    }
+                }
+            }
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }        
+        return found;
     }
 
     /**
@@ -30,10 +101,10 @@ public class LoginPage extends javax.swing.JFrame {
 
         contentPanel = new javax.swing.JPanel();
         txtManager = new javax.swing.JLabel();
-        fieldID = new javax.swing.JTextField();
+        emailfield = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        fieldPasswordManager = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         buttonLogIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,10 +116,10 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        fieldPasswordManager.setText("jPrdField1");
-        fieldPasswordManager.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.setText("jPrdField1");
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldPasswordManagerActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -70,7 +141,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(32, 32, 32)
-                            .addComponent(fieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emailfield, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                             .addComponent(txtManager)
                             .addGap(109, 109, 109)))
@@ -79,7 +150,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGroup(contentPanelLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(fieldPasswordManager, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         contentPanelLayout.setVerticalGroup(
@@ -89,12 +160,12 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(txtManager)
                 .addGap(42, 42, 42)
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(fieldPasswordManager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogIn)
                 .addContainerGap(80, Short.MAX_VALUE))
@@ -116,12 +187,28 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fieldPasswordManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPasswordManagerActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldPasswordManagerActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
         // TODO add your handling code here:
+        if(passwordField.getPassword().equals(" ") && emailfield.getText().equals(" ")){
+            JOptionPane.showMessageDialog(null, "Please enter email and password");
+        }else{
+            if(clientLogin(emailfield,passwordField)){
+                this.dispose();
+                new ClientPage().setVisible(true);
+            }else if(employeeLogin(emailfield,passwordField) == 2){
+                this.dispose();
+                new ManagerPage().setVisible(true);
+            }else if(employeeLogin(emailfield,passwordField) == 1){
+                this.dispose();
+                new EmployeePage().setVisible(true);
+            }else{
+                    JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
+            }
+        }
     }//GEN-LAST:event_buttonLogInActionPerformed
 
     /**
@@ -162,10 +249,10 @@ public class LoginPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogIn;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JTextField fieldID;
-    private javax.swing.JPasswordField fieldPasswordManager;
+    private javax.swing.JTextField emailfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel txtManager;
     // End of variables declaration//GEN-END:variables
 }

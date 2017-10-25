@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * @author Noria Soumbou
  */
 public class roomController {
-    final private static String URL = "jdbc:sqlite:C://sqlite/db/hotelmanagement.db";
+    final private static String URL = "jdbc:sqlite:hotelmanagement.db";
     
     /**
      * Add a new room in the database
@@ -68,24 +68,7 @@ public class roomController {
             System.out.println(e.getMessage());
         }
     }
-    
-                // SQL statement for creating a new table room_reserve	
-        String sql27 = "CREATE TABLE IF NOT EXISTS room_reserve (\n"
-            +" idResevation int(11) NOT NULL AUTO_INCREMENT,\n"
-            +" idRoom int(11) NOT NULL,\n"
-            +" idClient int(11) NOT NULL,\n"
-            +" dateReservation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, \n"
-            +" dateIn date NOT NULL,\n"
-            +" dateOut date NOT NULL,\n"
-            +" status text,\n"
-            +" PRIMARY KEY (`IdResevation`),\n"
-            +" KEY `idRoom` (`idRoom`,`idClient`),\n"
-            +" KEY `idClient` (`idClient`),\n"
-            +" CONSTRAINT `room_reserve_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`) ON DELETE CASCADE ON UPDATE CASCADE, \n"
-            +" CONSTRAINT `room_reserve_ibfk_2` FOREIGN KEY (`idRoom`) REFERENCES `rooms` (`idRoom`) ON DELETE CASCADE ON UPDATE CASCADE \n"
-            +") ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
-
-    
+        
     public void roomNewType(String a, int b, int c){
          String sql = "INSERT INTO room_type(nameType,pricePerNight,beds) VALUES(?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL);

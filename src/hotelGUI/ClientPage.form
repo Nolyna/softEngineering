@@ -17,6 +17,52 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace pref="189" max="32767" attributes="0"/>
+                  <Component id="hoteName" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                  <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="hoteName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="logoutButton" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="hoteName">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="24" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="AllSuites Hotel"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="logoutButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Log Out"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -48,18 +94,14 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="menuPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Component id="contentPanel" max="32767" attributes="0"/>
-              </Group>
+              <Component id="contentPanel" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="jPanel2" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               <Component id="contentPanel" max="32767" attributes="0"/>
           </Group>
           <Component id="menuPanel" max="32767" attributes="0"/>
@@ -113,52 +155,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="189" max="32767" attributes="0"/>
-                  <Component id="hoteName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
-                  <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="hoteName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="logoutButton" alignment="3" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="hoteName">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="AllSuites Hotel"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="logoutButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Log Out"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="menuPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -170,35 +166,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="foodLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="amenityLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="wakeLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="eventLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="maitenanceLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tourLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="transportLabel" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="foodLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                      <Component id="amenityLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                      <Component id="wakeLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                      <Component id="eventLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                      <Component id="maitenanceLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                      <Component id="tourLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                      <Component id="transportLabel" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="24" max="32767" attributes="0"/>
               </Group>

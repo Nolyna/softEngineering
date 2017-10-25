@@ -32,6 +32,21 @@ public class employeeController {
         }
     }
     
+    public void insertEmployee(String fname,String lname, String email, String pass) {
+        String sql = "INSERT INTO employee(firstName,lastName, email, password) VALUES(?,?,?,?)";
+        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, fname);
+            pstmt.setString(2, lname);
+            pstmt.setString(3, email);
+            pstmt.setString(4, pass);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public void clockin(int id) {
         String sql = "INSERT INTO in_out(idEmployee,checkin,dates) VALUES(?,?,?)";
         
