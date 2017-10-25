@@ -144,13 +144,14 @@
                                       <Component id="txtUsername" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="fieldUsername" min="-2" pref="244" max="-2" attributes="0"/>
-                                      <Component id="fieldPassword" min="-2" pref="244" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="fieldUsername" pref="244" max="32767" attributes="0"/>
+                                      <Component id="fieldPassword" pref="244" max="32767" attributes="0"/>
+                                      <Component id="errorMess" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="530" max="32767" attributes="0"/>
+                          <EmptySpace pref="536" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -171,7 +172,9 @@
                           <Component id="buttonLogIn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="344" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="errorMess" min="-2" pref="21" max="-2" attributes="0"/>
+                          <EmptySpace pref="352" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -209,6 +212,13 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBackActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="errorMess">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

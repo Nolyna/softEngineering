@@ -53,6 +53,7 @@ public class memberLogInPage extends javax.swing.JFrame {
         fieldPassword = new javax.swing.JPasswordField();
         buttonLogIn = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
+        errorMess = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -118,6 +119,8 @@ public class memberLogInPage extends javax.swing.JFrame {
             }
         });
 
+        errorMess.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -132,10 +135,11 @@ public class memberLogInPage extends javax.swing.JFrame {
                             .addComponent(txtPassword)
                             .addComponent(txtUsername))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(530, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(fieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(errorMess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(536, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +156,9 @@ public class memberLogInPage extends javax.swing.JFrame {
                 .addComponent(buttonLogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonBack)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(errorMess, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         tabTableLogInType.addTab("Log In", jPanel4);
@@ -337,7 +343,7 @@ char[] right = {'a', 'b', 'c'};
 if (Arrays.equals(a, right)){
     this.dispose();
     new ClientPage().setVisible(true);
-}
+}else{errorMess.setText("Incorrect password, Please Try Again.");}
     }//GEN-LAST:event_buttonLogInActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
@@ -389,6 +395,7 @@ new roomBookingPage().setVisible(true);        // TODO add your handling code he
     private javax.swing.JButton buttonJOB;
     private javax.swing.JButton buttonJoin;
     private javax.swing.JButton buttonLogIn;
+    private javax.swing.JLabel errorMess;
     private javax.swing.JTextField fieldBirthdayDay;
     private javax.swing.JTextField fieldBirthdayMonth;
     private javax.swing.JTextField fieldBirthdayYear;
