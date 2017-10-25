@@ -42,7 +42,7 @@ public class foodOrderPage extends javax.swing.JFrame {
         jList8 = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Order Food");
 
         jList5.setModel(new javax.swing.AbstractListModel<String>() {

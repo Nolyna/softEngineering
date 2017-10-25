@@ -34,7 +34,7 @@ public class MaintenancePanel extends javax.swing.JPanel {
         jButton7 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
-        sidebar.setBackground(new java.awt.Color(97, 167, 106));
+        sidebar.setBackground(new java.awt.Color(204, 204, 255));
         sidebar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton4.setText("Lighting");

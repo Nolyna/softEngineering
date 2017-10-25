@@ -45,7 +45,7 @@ public class SQLiteJDBConnection {
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Connexion error: "+e.getMessage());
         }
         return conn;
     }

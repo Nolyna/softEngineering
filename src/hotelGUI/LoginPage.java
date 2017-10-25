@@ -33,8 +33,6 @@ public class LoginPage extends javax.swing.JFrame {
     public boolean clientLogin(JTextField email, JPasswordField psd  ){
         boolean found = false;
         String sql = "SELECT idClient FROM client where email = ? AND password = ?";
-        System.out.println(email.getText());
-        System.out.println( new String(psd.getPassword()));        
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, email.getText());
@@ -46,9 +44,10 @@ public class LoginPage extends javax.swing.JFrame {
                     System.out.println("2:"+rs.getInt(1));
                 }
                 System.out.println("3:"+rs.getInt(1));
-            }catch(SQLException e){ System.out.println("result"+e.getMessage()); }
-            //pstmt.close();
-            //conn.close();
+                rs.close();
+            }catch(SQLException e){ System.out.println("client check result: "+e.getMessage()); }            
+            pstmt.close();
+            conn.close();
         } catch (SQLException e) {
             System.out.println("select"+e.getMessage());
         }        
@@ -64,13 +63,13 @@ public class LoginPage extends javax.swing.JFrame {
                 PreparedStatement pstmt = conn.prepareStatement(sql1)) {
             pstmt.setString(1, email.getText());
             pstmt.setString(2, new String(psd.getPassword()));
-            pstmt.executeUpdate();
             
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()) {
                     //check if manager
+                    System.out.println("1:"+rs.getInt(1));
                     try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)){
-                        pstmt2.setString(1, rs.getNString(1));
+                        pstmt2.setInt(1, rs.getInt(1));
                         pstmt2.executeUpdate();
                         try (ResultSet rs2 = pstmt.executeQuery()) {
                             if(rs2.next()) {
@@ -79,14 +78,17 @@ public class LoginPage extends javax.swing.JFrame {
                                 found = 1;
                             }
                         }
-                    }
+                    }catch (SQLException e) {
+                        System.out.println(" manger error "+e.getMessage());
+                    }  
                 }
             }
             pstmt.close();
             conn.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(" error "+e.getMessage());
         }        
+        System.out.println("aexist "+ found);
         return found;
     }
 
@@ -116,7 +118,6 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        passwordField.setText("jPrdField1");
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
@@ -193,21 +194,29 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
         // TODO add your handling code here:
-        if(passwordField.getPassword().equals(" ") && emailfield.getText().equals(" ")){
-            JOptionPane.showMessageDialog(null, "Please enter email and password");
+        if(passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter email and/or password");
         }else{
             if(clientLogin(emailfield,passwordField)){
                 this.dispose();
                 new ClientPage().setVisible(true);
-            }else if(employeeLogin(emailfield,passwordField) == 2){
-                this.dispose();
-                new ManagerPage().setVisible(true);
-            }else if(employeeLogin(emailfield,passwordField) == 1){
-                this.dispose();
-                new EmployeePage().setVisible(true);
             }else{
-                    JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
-            }
+                int x = employeeLogin(emailfield,passwordField);
+                switch (x) {
+                    case 2:
+                        this.dispose();
+                        new ManagerPage().setVisible(true);
+                        break;
+                    case 1:
+                        this.dispose();
+                        new EmployeePage().setVisible(true);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
+                        break;
+                }
+            }        
+                
         }
     }//GEN-LAST:event_buttonLogInActionPerformed
 

@@ -122,7 +122,7 @@ public class welcomePage extends javax.swing.JFrame {
                 new welcomePage().setVisible(true);
                 hsmDatabase database = new hsmDatabase();
                 hsmDatabase.DbInit();
-                //database.initContent();
+               // database.initContent();
             }
         });
     }
