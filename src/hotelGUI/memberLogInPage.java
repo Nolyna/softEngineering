@@ -9,6 +9,7 @@ package hotelGUI;
 import java.awt.event.*;
 import java.awt.*;
 import java.sql.*;
+import java.util.Arrays;
 import javax.swing.*;
 
 
@@ -331,8 +332,12 @@ public class memberLogInPage extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonJOBActionPerformed
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
-new roomBookingPage().setVisible(true);        // TODO add your handling code here:
-        
+char[] a = fieldPassword.getPassword();
+char[] right = {'a', 'b', 'c'};
+if (Arrays.equals(a, right)){
+    this.dispose();
+    new ClientPage().setVisible(true);
+}
     }//GEN-LAST:event_buttonLogInActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
