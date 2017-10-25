@@ -626,8 +626,7 @@ public class managerPg extends javax.swing.JFrame {
 
     private void buttonLogOutManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOutManagerActionPerformed
         // TODO add your handling code here:
-        memberLogInPage obj = new memberLogInPage();
-        obj.setVisible(true);
+        
     }//GEN-LAST:event_buttonLogOutManagerActionPerformed
 
     /**

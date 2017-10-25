@@ -833,8 +833,8 @@ public class repPage extends javax.swing.JFrame {
 
     private void buttonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOutActionPerformed
         // TODO add your handling code here:
-        memberLogInPage obj = new memberLogInPage();
-        obj.setVisible(true);
+       // memberLogInPage obj = new memberLogInPage();
+        //obj.setVisible(true);
     }//GEN-LAST:event_buttonLogOutActionPerformed
 
     /**

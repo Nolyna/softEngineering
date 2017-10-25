@@ -35,6 +35,8 @@ public class EventPanel extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         registerButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -64,7 +66,7 @@ public class EventPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 204, 204));
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 255));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);

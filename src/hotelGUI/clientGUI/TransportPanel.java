@@ -54,7 +54,7 @@ public class TransportPanel extends javax.swing.JPanel {
         rentalButton = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
 
-        sidebarPanel.setBackground(new java.awt.Color(97, 167, 106));
+        sidebarPanel.setBackground(new java.awt.Color(204, 204, 255));
         sidebarPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         trainButton.setText("Public transportation");
