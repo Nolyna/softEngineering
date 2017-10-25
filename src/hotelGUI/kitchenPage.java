@@ -201,6 +201,8 @@ public class kitchenPage extends javax.swing.JFrame {
                 {null, null},
                 {null, null},
                 {null, null},
+                {null, null},
+                {null, null},
                 {null, null}
             },
             new String [] {
@@ -331,6 +333,11 @@ public class kitchenPage extends javax.swing.JFrame {
         jLabel1.setText("Kitchen");
 
         buttonStock.setText("Edit Stock");
+        buttonStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonStockActionPerformed(evt);
+            }
+        });
 
         buttonLogOut.setText("Log-Out");
         buttonLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -388,6 +395,10 @@ public class kitchenPage extends javax.swing.JFrame {
         memberLogInPage obj = new memberLogInPage();
         obj.setVisible(true);
     }//GEN-LAST:event_buttonLogOutActionPerformed
+
+    private void buttonStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonStockActionPerformed
 
     /**
      * @param args the command line arguments
