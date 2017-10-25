@@ -332,8 +332,8 @@ public class memberLogInPage extends javax.swing.JFrame {
 
     private void buttonJOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJOBActionPerformed
         // TODO add your handling code here:
-        employeeLogInPage obj = new employeeLogInPage();
-        obj.setVisible(true);
+        
+        new EmployeePage().setVisible(true);
         close ();
     }//GEN-LAST:event_buttonJOBActionPerformed
 
