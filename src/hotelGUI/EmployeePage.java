@@ -111,7 +111,7 @@ public class EmployeePage extends javax.swing.JFrame {
             }
         });
 
-        clockMenu.setText("clock in / clock out");
+        clockMenu.setText("Clock-In / Clock-Out");
         clockMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clockMenuActionPerformed(evt);
@@ -119,7 +119,7 @@ public class EmployeePage extends javax.swing.JFrame {
         });
         jMenu3.add(clockMenu);
 
-        hoursMenu.setText("hours summary");
+        hoursMenu.setText("Hours Summary");
         hoursMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hoursMenuActionPerformed(evt);

@@ -47,7 +47,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="clockMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="clock in / clock out"/>
+                <Property name="text" type="java.lang.String" value="Clock-In / Clock-Out"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockMenuActionPerformed"/>
@@ -55,7 +55,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="hoursMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="hours summary"/>
+                <Property name="text" type="java.lang.String" value="Hours Summary"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hoursMenuActionPerformed"/>
