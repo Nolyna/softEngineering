@@ -95,7 +95,6 @@ public class ClientPage extends javax.swing.JFrame {
         hoteName = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
-        foodLabel1 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         maitenanceLabel = new javax.swing.JLabel();
         foodLabel = new javax.swing.JLabel();
@@ -156,32 +155,15 @@ public class ClientPage extends javax.swing.JFrame {
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        foodLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        foodLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        foodLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        foodLabel1.setText("Order Food");
-        foodLabel1.setToolTipText("");
-        foodLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                foodLabel1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(foodLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 639, Short.MAX_VALUE)
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(foodLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 391, Short.MAX_VALUE)
         );
 
         menuPanel.setBackground(new java.awt.Color(23, 63, 86));
@@ -394,10 +376,6 @@ public class ClientPage extends javax.swing.JFrame {
         tourView.setVisible(false);
     }//GEN-LAST:event_maitenanceLabelMouseClicked
 
-    private void foodLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodLabel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foodLabel1MouseClicked
-
     private void foodLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodLabelMouseClicked
         // button:
         click_bg_button(foodLabel);
@@ -543,7 +521,6 @@ public class ClientPage extends javax.swing.JFrame {
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel eventLabel;
     private javax.swing.JLabel foodLabel;
-    private javax.swing.JLabel foodLabel1;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel hoteName;
     private javax.swing.JButton jButton1;

@@ -74,12 +74,12 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="addEmployeeMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="new employee"/>
+                <Property name="text" type="java.lang.String" value="Add Employee"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="viewEmployeeMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="view employees"/>
+                <Property name="text" type="java.lang.String" value="View Employees"/>
               </Properties>
             </MenuItem>
           </SubComponents>

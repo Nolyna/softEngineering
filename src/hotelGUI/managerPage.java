@@ -124,10 +124,10 @@ public class ManagerPage extends javax.swing.JFrame {
 
         jMenu4.setText("Employees");
 
-        addEmployeeMenu.setText("new employee");
+        addEmployeeMenu.setText("Add Employee");
         jMenu4.add(addEmployeeMenu);
 
-        viewEmployeeMenu.setText("view employees");
+        viewEmployeeMenu.setText("View Employees");
         jMenu4.add(viewEmployeeMenu);
 
         jMenuBar2.add(jMenu4);
