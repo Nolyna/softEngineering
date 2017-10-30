@@ -2,10 +2,7 @@ package hotelGUI;
 
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
-import hotelGUI.managerGUI.RoomPanel;
-import hotelGUI.managerGUI.EventPanel;
-import hotelGUI.managerGUI.TourPanel;
-import hotelGUI.managerGUI.amenty;
+import hotelGUI.managerGUI.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -23,6 +20,7 @@ public class ManagerPage extends javax.swing.JFrame {
     final EventPanel eventView;
     final TourPanel tourView;
     final amenty amenitiesView;
+    final manageEmployees employeeView;
 
     /**
      * Creates new form managerPage2
@@ -35,6 +33,7 @@ public class ManagerPage extends javax.swing.JFrame {
         eventView = new EventPanel();
         tourView = new TourPanel();
         amenitiesView = new amenty();
+        employeeView = new manageEmployees();
 
         dynamicPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
@@ -68,6 +67,11 @@ public class ManagerPage extends javax.swing.JFrame {
         c.gridy = 0;
         dynamicPanel.add(amenitiesView, c);
         amenitiesView.setVisible(false);
+        
+                c.gridx = 0;
+        c.gridy = 0;
+        dynamicPanel.add(employeeView, c);
+        employeeView.setVisible(false);
     }
 
     /**
@@ -79,9 +83,6 @@ public class ManagerPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         dynamicPanel = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -93,17 +94,10 @@ public class ManagerPage extends javax.swing.JFrame {
         settingMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         addEmployeeMenu = new javax.swing.JMenuItem();
-        viewEmployeeMenu = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         clockMenu = new javax.swing.JMenuItem();
         hoursMenu = new javax.swing.JMenuItem();
         quitMenu = new javax.swing.JMenuItem();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,11 +157,13 @@ public class ManagerPage extends javax.swing.JFrame {
 
         jMenu4.setText("Employees");
 
-        addEmployeeMenu.setText("Add Employee");
+        addEmployeeMenu.setText("Manage Employees");
+        addEmployeeMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmployeeMenuActionPerformed(evt);
+            }
+        });
         jMenu4.add(addEmployeeMenu);
-
-        viewEmployeeMenu.setText("View Employees");
-        jMenu4.add(viewEmployeeMenu);
 
         jMenuBar2.add(jMenu4);
 
@@ -179,11 +175,6 @@ public class ManagerPage extends javax.swing.JFrame {
         });
 
         clockMenu.setText("Clock-In / Clock-Out");
-        clockMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clockMenuMouseClicked(evt);
-            }
-        });
         clockMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clockMenuActionPerformed(evt);
@@ -234,11 +225,8 @@ public class ManagerPage extends javax.swing.JFrame {
         amenitiesView.setVisible(true);
         tourView.setVisible(false);
         eventView.setVisible(false);
+        employeeView.setVisible(false);
     }//GEN-LAST:event_amenityMenuActionPerformed
-
-    private void clockMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clockMenuMouseClicked
-        // TODO add your handling code here:       
-    }//GEN-LAST:event_clockMenuMouseClicked
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
         // TODO add your handling code here:
@@ -253,6 +241,7 @@ public class ManagerPage extends javax.swing.JFrame {
         amenitiesView.setVisible(false);
         tourView.setVisible(false);
         eventView.setVisible(false);
+        employeeView.setVisible(false);
     }//GEN-LAST:event_clockMenuActionPerformed
 
     private void roomMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomMenuActionPerformed
@@ -263,6 +252,7 @@ public class ManagerPage extends javax.swing.JFrame {
         amenitiesView.setVisible(false);
         tourView.setVisible(false);
         eventView.setVisible(false);
+        employeeView.setVisible(false);
     }//GEN-LAST:event_roomMenuActionPerformed
 
     private void hoursMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursMenuActionPerformed
@@ -274,6 +264,7 @@ public class ManagerPage extends javax.swing.JFrame {
         amenitiesView.setVisible(false);
         tourView.setVisible(false);
         eventView.setVisible(false);
+        employeeView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
 
     private void quitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitMenuActionPerformed
@@ -291,6 +282,7 @@ public class ManagerPage extends javax.swing.JFrame {
         amenitiesView.setVisible(false);
         tourView.setVisible(false);
         eventView.setVisible(true);
+        employeeView.setVisible(false);
     }//GEN-LAST:event_eventMenuActionPerformed
 
     private void tourMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tourMenuActionPerformed
@@ -302,7 +294,20 @@ public class ManagerPage extends javax.swing.JFrame {
         amenitiesView.setVisible(false);
         tourView.setVisible(true);
         eventView.setVisible(false);
+        employeeView.setVisible(false);
     }//GEN-LAST:event_tourMenuActionPerformed
+
+    private void addEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeMenuActionPerformed
+        // TODO add your handling code here:
+                hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        amenitiesView.setVisible(false);
+        tourView.setVisible(false);
+        eventView.setVisible(false);
+        employeeView.setVisible(true);
+    }//GEN-LAST:event_addEmployeeMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,17 +353,13 @@ public class ManagerPage extends javax.swing.JFrame {
     private javax.swing.JPanel dynamicPanel;
     private javax.swing.JMenuItem eventMenu;
     private javax.swing.JMenuItem hoursMenu;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem quitMenu;
     private javax.swing.JMenuItem roomMenu;
     private javax.swing.JMenuItem settingMenu;
     private javax.swing.JMenuItem tourMenu;
-    private javax.swing.JMenuItem viewEmployeeMenu;
     // End of variables declaration//GEN-END:variables
 }

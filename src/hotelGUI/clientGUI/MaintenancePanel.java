@@ -5,6 +5,8 @@
  */
 package hotelGUI.clientGUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Noria Soumbou
@@ -134,7 +136,8 @@ public class MaintenancePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // new maintenance().jDialog1.setVisible(true);          // TODO add your handling code here:
+
+        JOptionPane.showInputDialog("What is your specific issue?");
     }//GEN-LAST:event_jButton7ActionPerformed
 
 

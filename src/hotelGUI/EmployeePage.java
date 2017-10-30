@@ -248,6 +248,7 @@ public class EmployeePage extends javax.swing.JFrame {
         repMenu = new javax.swing.JMenuItem();
 
         kitchenView.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        kitchenView.setSize(new java.awt.Dimension(1350, 750));
 
         tableHoursWorked.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1904,7 +1905,7 @@ public class EmployeePage extends javax.swing.JFrame {
 
     private void kitchenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kitchenMenuActionPerformed
         // TODO add your handling code here:
-        maintenenceView.setVisible(true);
+        kitchenView.setVisible(true);
     }//GEN-LAST:event_kitchenMenuActionPerformed
 
     private void buttonStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStockActionPerformed
