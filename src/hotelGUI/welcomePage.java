@@ -86,7 +86,7 @@ public class welcomePage extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new memberLogInPage().setVisible(true);
+        new LoginPage().setVisible(true);
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**

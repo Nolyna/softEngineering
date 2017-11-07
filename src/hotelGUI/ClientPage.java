@@ -6,6 +6,7 @@ import hotelGUI.clientGUI.MaintenancePanel;
 import hotelGUI.clientGUI.TourPanel;
 import hotelGUI.clientGUI.TransportPanel;
 import hotelGUI.clientGUI.WakePanel;
+import hotelGUI.clientGUI.foodPanel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,6 +27,7 @@ public class ClientPage extends javax.swing.JFrame {
     final AmenityPanel  amenityView;
     final TourPanel  tourView;
     final EventPanel  eventView;
+    final foodPanel  foodView;
 
     /**
      * Creates new form mainMenuPage
@@ -38,6 +40,8 @@ public class ClientPage extends javax.swing.JFrame {
         amenityView = new AmenityPanel();
         tourView = new TourPanel();
         eventView = new EventPanel();
+        foodView = new foodPanel();
+       
         contentPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
@@ -61,6 +65,10 @@ public class ClientPage extends javax.swing.JFrame {
         
         contentPanel.add(tourView,c);
         hide_panel(tourView);
+        
+        contentPanel.add(foodView,c);
+        hide_panel(foodView);
+        
     }
     
     private void click_bg_button(JLabel lbl){
@@ -95,7 +103,6 @@ public class ClientPage extends javax.swing.JFrame {
         hoteName = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
-        foodLabel1 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         maitenanceLabel = new javax.swing.JLabel();
         foodLabel = new javax.swing.JLabel();
@@ -155,33 +162,17 @@ public class ClientPage extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        foodLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        foodLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        foodLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        foodLabel1.setText("Order Food");
-        foodLabel1.setToolTipText("");
-        foodLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                foodLabel1MouseClicked(evt);
-            }
-        });
+        contentPanel.setAutoscrolls(true);
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(foodLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 639, Short.MAX_VALUE)
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(foodLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 391, Short.MAX_VALUE)
         );
 
         menuPanel.setBackground(new java.awt.Color(23, 63, 86));
@@ -385,7 +376,8 @@ public class ClientPage extends javax.swing.JFrame {
         reset_bg_button(transportLabel);
         reset_bg_button(tourLabel);
         
-        //panels:       
+        //panels:
+        foodView.setVisible(false);
         MaintenanceView.setVisible(true); 
         transportView.setVisible(false);
         amenityView.setVisible(false);
@@ -393,10 +385,6 @@ public class ClientPage extends javax.swing.JFrame {
         eventView.setVisible(false);
         tourView.setVisible(false);
     }//GEN-LAST:event_maitenanceLabelMouseClicked
-
-    private void foodLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodLabel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foodLabel1MouseClicked
 
     private void foodLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodLabelMouseClicked
         // button:
@@ -409,7 +397,7 @@ public class ClientPage extends javax.swing.JFrame {
         reset_bg_button(transportLabel);
         
         //panels:
-        new foodOrderPage().setVisible(true); 
+        foodView.setVisible(true); 
         tourView.setVisible(false);
         transportView.setVisible(false);
         eventView.setVisible(false);
@@ -420,6 +408,7 @@ public class ClientPage extends javax.swing.JFrame {
 
     private void tourLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tourLabelMouseClicked
         // button:
+        foodView.setVisible(false);
         click_bg_button(tourLabel);
         reset_bg_button(foodLabel);
         reset_bg_button(eventLabel);
@@ -447,6 +436,7 @@ public class ClientPage extends javax.swing.JFrame {
         reset_bg_button(transportLabel);
         reset_bg_button(tourLabel);
         //panels:
+        foodView.setVisible(false);
         eventView.setVisible(true);  
         amenityView.setVisible(false);
         MaintenanceView.setVisible(false);
@@ -465,6 +455,7 @@ public class ClientPage extends javax.swing.JFrame {
         reset_bg_button(eventLabel);
         reset_bg_button(transportLabel);
         //panels:
+        foodView.setVisible(false);
         wakeView.setVisible(true);
         eventView.setVisible(false);
         MaintenanceView.setVisible(false);
@@ -483,6 +474,7 @@ public class ClientPage extends javax.swing.JFrame {
         reset_bg_button(eventLabel);
         reset_bg_button(transportLabel);
         //panels:
+        foodView.setVisible(false);
         amenityView.setVisible(true);        
         MaintenanceView.setVisible(false);
         transportView.setVisible(false);
@@ -502,6 +494,7 @@ public class ClientPage extends javax.swing.JFrame {
         reset_bg_button(eventLabel);
         
         //panels:
+        foodView.setVisible(false);
         transportView.setVisible(true);
         MaintenanceView.setVisible(false);
         amenityView.setVisible(false);
@@ -543,7 +536,6 @@ public class ClientPage extends javax.swing.JFrame {
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel eventLabel;
     private javax.swing.JLabel foodLabel;
-    private javax.swing.JLabel foodLabel1;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel hoteName;
     private javax.swing.JButton jButton1;

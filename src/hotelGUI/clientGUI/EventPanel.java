@@ -111,7 +111,7 @@ public class EventPanel extends javax.swing.JPanel {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
-        showMessageDialog(null, "Registration succesful");
+        showMessageDialog(null, "Registration Successful");
     }//GEN-LAST:event_registerButtonActionPerformed
 
 

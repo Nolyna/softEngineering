@@ -50,9 +50,9 @@ public class hotelsetup extends javax.swing.JFrame {
 
         jLabel1.setText("Hotel Name");
 
-        jLabel2.setText("Adress");
+        jLabel2.setText("Address");
 
-        jLabel3.setText("Email");
+        jLabel3.setText("E-mail");
 
         adressField.setColumns(20);
         adressField.setRows(5);
@@ -60,9 +60,9 @@ public class hotelsetup extends javax.swing.JFrame {
 
         jLabel4.setText("Contact");
 
-        jLabel5.setText("( phone numer)");
+        jLabel5.setText("( Phone Number)");
 
-        jLabel6.setText("Hotol details");
+        jLabel6.setText("Hotel Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,7 +85,7 @@ public class hotelsetup extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(hotelNameField)
-                                        .addGap(156, 156, 156))))
+                                        .addGap(148, 148, 148))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,10 +100,10 @@ public class hotelsetup extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(206, 206, 206))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

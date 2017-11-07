@@ -14,23 +14,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
 /**
  *
  * @author Noria Soumbou
+ * @author Chemllei Joseph
  */
 public class LoginPage extends javax.swing.JFrame {
-    
+
     final private SQLiteJDBConnection db = new SQLiteJDBConnection();
-    
+
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
     }
-    
-    public boolean clientLogin(JTextField email, JPasswordField psd  ){
+
+    public boolean clientLogin(JTextField email, JPasswordField psd) {
         boolean found = false;
         String sql = "SELECT idClient FROM client where email = ? AND password = ?";
         try (Connection conn = db.connect();
@@ -38,57 +38,59 @@ public class LoginPage extends javax.swing.JFrame {
             pstmt.setString(1, email.getText());
             pstmt.setString(2, new String(psd.getPassword()));
             try (ResultSet rs = pstmt.executeQuery()) {
-                System.out.println("1:"+rs.getInt(1));
-                if(rs.next()) {
+                System.out.println("1:" + rs.getInt(1));
+                if (rs.next()) {
                     found = true;
-                    System.out.println("2:"+rs.getInt(1));
+                    System.out.println("2:" + rs.getInt(1));
                 }
-                System.out.println("3:"+rs.getInt(1));
+                System.out.println("3:" + rs.getInt(1));
                 rs.close();
-            }catch(SQLException e){ System.out.println("client check result: "+e.getMessage()); }            
+            } catch (SQLException e) {
+                System.out.println("client check result: " + e.getMessage());
+            }
             pstmt.close();
             conn.close();
         } catch (SQLException e) {
-            System.out.println("select"+e.getMessage());
-        }        
+            System.out.println("select" + e.getMessage());
+        }
         return found;
     }
-    
-    public int employeeLogin(JTextField email, JPasswordField psd  ){
+
+    public int employeeLogin(JTextField email, JPasswordField psd) {
         int found = 0;
         String sql1 = "SELECT idClient FROM client where email = ? AND password = ?";
         String sql2 = "SELECT idManager FROM department where idManager = ?";
-        
+
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql1)) {
             pstmt.setString(1, email.getText());
             pstmt.setString(2, new String(psd.getPassword()));
-            
+
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                if (rs.next()) {
                     //check if manager
-                    System.out.println("1:"+rs.getInt(1));
-                    try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)){
+                    System.out.println("1:" + rs.getInt(1));
+                    try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
                         pstmt2.setInt(1, rs.getInt(1));
                         pstmt2.executeUpdate();
                         try (ResultSet rs2 = pstmt.executeQuery()) {
-                            if(rs2.next()) {
+                            if (rs2.next()) {
                                 found = 2;
-                            }else{
+                            } else {
                                 found = 1;
                             }
                         }
-                    }catch (SQLException e) {
-                        System.out.println(" manger error "+e.getMessage());
-                    }  
+                    } catch (SQLException e) {
+                        System.out.println(" manger error " + e.getMessage());
+                    }
                 }
             }
             pstmt.close();
             conn.close();
         } catch (SQLException e) {
-            System.out.println(" error "+e.getMessage());
-        }        
-        System.out.println("aexist "+ found);
+            System.out.println(" error " + e.getMessage());
+        }
+        System.out.println("aexist " + found);
         return found;
     }
 
@@ -169,7 +171,7 @@ public class LoginPage extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogIn)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,30 +184,27 @@ public class LoginPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
-        // TODO add your handling code here:
-        if(passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()){
+//        Log in if user presses enter on textbox
+        if (passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter email and/or password");
-        }else{
-            if(clientLogin(emailfield,passwordField)){
+        } else {
+            if (clientLogin(emailfield, passwordField)) {
                 this.dispose();
                 new ClientPage().setVisible(true);
-            }else{
-                int x = employeeLogin(emailfield,passwordField);
+            } else {
+                int x = employeeLogin(emailfield, passwordField);
                 switch (x) {
                     case 2:
                         this.dispose();
-                        new ManagerPage().setVisible(true);
+                        new managerPg().setVisible(true);
                         break;
                     case 1:
                         this.dispose();
@@ -215,8 +214,37 @@ public class LoginPage extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
                         break;
                 }
-            }        
-                
+            }
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
+        // TODO add your handling code here:
+        if (passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter email and/or password");
+        } else {
+            if (clientLogin(emailfield, passwordField)) {
+                this.dispose();
+                new ClientPage().setVisible(true);
+            } else {
+                int x = employeeLogin(emailfield, passwordField);
+                switch (x) {
+                    case 2:
+                        this.dispose();
+                        new managerPg().setVisible(true);
+                        break;
+                    case 1:
+                        this.dispose();
+                        new EmployeePage().setVisible(true);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
+                        break;
+                }
+            }
+
         }
     }//GEN-LAST:event_buttonLogInActionPerformed
 
