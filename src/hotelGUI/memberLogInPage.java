@@ -11,13 +11,20 @@ import java.awt.*;
 import java.sql.*;
 import java.util.Arrays;
 import javax.swing.*;
-
+import HSMmodel.employee;
+import HSMcontrollers.employeeController;
 
 /**
  *
  * @author Jermaine
  */
+
 public class memberLogInPage extends javax.swing.JFrame {
+    final private employeeController log = new employeeController();
+    
+String username;
+String password;
+
     
     public void close(){
         WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
@@ -30,7 +37,29 @@ public class memberLogInPage extends javax.swing.JFrame {
     public memberLogInPage() {
         initComponents();
     }
-
+    
+   
+ /*   
+ public void logIn(String username, String password){
+  
+        if ((username.equals("manager")||username.equals("Manager"))&&(password.equals("Password")||password.equals("password"))){
+            this.dispose();
+            new managerPg().setVisible(true);
+        }
+        else if ((username.equals("clean")||username.equals("Clean"))&&(password.equals("Password")||password.equals("password"))){
+            this.dispose();
+            new cleaningServicesPage().setVisible(true);
+        }
+        else if ((username.equals("maintenance")||username.equals("Maintenace"))&&(password.equals("Password")||password.equals("password"))){
+            this.dispose();
+            new maintenancePage().setVisible(true);
+        }
+        else if ((username.equals("receptionist")||username.equals("Receptionist"))&&(password.equals("Password")||password.equals("password"))){
+            this.dispose();
+            new repPage().setVisible(true);
+        }
+        else JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");    
+    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,9 +77,9 @@ public class memberLogInPage extends javax.swing.JFrame {
         tabTableLogInType = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         txtUsername = new javax.swing.JLabel();
-        fieldUsername = new javax.swing.JTextField();
+        Usernamefield = new javax.swing.JTextField();
         txtPassword = new javax.swing.JLabel();
-        fieldPassword = new javax.swing.JPasswordField();
+        Passwordfield = new javax.swing.JPasswordField();
         buttonLogIn = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
         errorMess = new javax.swing.JLabel();
@@ -101,9 +130,20 @@ public class memberLogInPage extends javax.swing.JFrame {
 
         txtUsername.setText("Username:");
 
-        txtPassword.setText("Password:");
+        Usernamefield.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                UsernamefieldInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        Usernamefield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsernamefieldActionPerformed(evt);
+            }
+        });
 
-        fieldPassword.setText("jPadField1");
+        txtPassword.setText("Password:");
 
         buttonLogIn.setText("Log In");
         buttonLogIn.addActionListener(new java.awt.event.ActionListener() {
@@ -136,8 +176,8 @@ public class memberLogInPage extends javax.swing.JFrame {
                             .addComponent(txtUsername))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                            .addComponent(fieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(Usernamefield, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(Passwordfield, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                             .addComponent(errorMess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(536, Short.MAX_VALUE))
         );
@@ -147,11 +187,11 @@ public class memberLogInPage extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername)
-                    .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword)
-                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -338,12 +378,16 @@ public class memberLogInPage extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonJOBActionPerformed
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
-char[] a = fieldPassword.getPassword();
-char[] right = {'a', 'b', 'c'};
-if (Arrays.equals(a, right)){
-    this.dispose();
-    new ClientPage().setVisible(true);
-}else{errorMess.setText("Incorrect password, Please Try Again.");}
+          
+username = Usernamefield.getText();
+password = Passwordfield.getText();
+
+    if(log.logIn(username, password)){
+        this.dispose();
+    }
+   
+
+  
     }//GEN-LAST:event_buttonLogInActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
@@ -352,8 +396,16 @@ if (Arrays.equals(a, right)){
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJoinActionPerformed
-new roomBookingPage().setVisible(true);        // TODO add your handling code here:
+//new roomBookingPage().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_buttonJoinActionPerformed
+
+    private void UsernamefieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_UsernamefieldInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsernamefieldInputMethodTextChanged
+
+    private void UsernamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernamefieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsernamefieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,8 +441,11 @@ new roomBookingPage().setVisible(true);        // TODO add your handling code he
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Passwordfield;
+    private javax.swing.JTextField Usernamefield;
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonJOB;
     private javax.swing.JButton buttonJoin;
@@ -401,11 +456,9 @@ new roomBookingPage().setVisible(true);        // TODO add your handling code he
     private javax.swing.JTextField fieldBirthdayYear;
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldLastName;
-    private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JPasswordField fieldPasswordJoin;
     private javax.swing.JTextField fieldPhoneNumber;
     private javax.swing.JPasswordField fieldRePasswordJoin;
-    private javax.swing.JTextField fieldUsername;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

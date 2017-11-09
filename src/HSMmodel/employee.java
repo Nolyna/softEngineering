@@ -4,15 +4,15 @@ package HSMmodel;
  *
  * @author soumbou
  */
-public class Employee extends person{   
+public class employee extends person{   
     String bdate;
     String gender;
     
     /**
      * Constructor for employee
      */
-    public Employee(){}
-    public Employee( String fname, String lname){
+    public employee(){}
+    public employee( String fname, String lname){
         this.firstname = fname;
         this.lastname = lname;
     }    

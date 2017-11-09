@@ -5,17 +5,24 @@
  */
 package hotelGUI;
 
+import HSMcontrollers.employeeController;
+
 /**
  *
  * @author Jermaine
  */
 public class repPage extends javax.swing.JFrame {
 
+    final private employeeController clocktime = new employeeController();
     /**
      * Creates new form repPage
      */
     public repPage() {
         initComponents();
+        buttonClockIn.setEnabled(true);
+        buttonSBreak.setEnabled(false);
+        buttonEBreak.setEnabled(false);
+        buttonClockOut.setEnabled(false);
     }
 
     /**
@@ -34,16 +41,14 @@ public class repPage extends javax.swing.JFrame {
         txtBreakS = new javax.swing.JLabel();
         txtBreakE = new javax.swing.JLabel();
         txtClockOut = new javax.swing.JLabel();
-        fieldClockIn = new javax.swing.JTextField();
-        fieldBreakS = new javax.swing.JTextField();
-        fieldBreakE = new javax.swing.JTextField();
-        fieldClockOut = new javax.swing.JTextField();
         buttonClockIn = new javax.swing.JButton();
         buttonSBreak = new javax.swing.JButton();
         buttonEBreak = new javax.swing.JButton();
         buttonClockOut = new javax.swing.JButton();
-        txtTime = new javax.swing.JLabel();
-        fieldTime = new javax.swing.JTextField();
+        jLabel_Bin = new javax.swing.JLabel();
+        jLabel_Bout = new javax.swing.JLabel();
+        jLabel_Cout = new javax.swing.JLabel();
+        jLabel_Cin = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableHoursWorked = new javax.swing.JTable();
@@ -122,85 +127,83 @@ public class repPage extends javax.swing.JFrame {
 
         txtClockOut.setText("Clock-Out Time");
 
-        fieldClockIn.setFocusable(false);
-
-        fieldBreakS.setFocusable(false);
-
-        fieldBreakE.setFocusable(false);
-
-        fieldClockOut.setFocusable(false);
-
         buttonClockIn.setText("Clock-In");
+        buttonClockIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClockInActionPerformed(evt);
+            }
+        });
 
         buttonSBreak.setText("Start Break");
+        buttonSBreak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSBreakActionPerformed(evt);
+            }
+        });
 
         buttonEBreak.setText("End Break");
+        buttonEBreak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEBreakActionPerformed(evt);
+            }
+        });
 
         buttonClockOut.setText("Clock-Out");
-
-        txtTime.setText("Time:");
-
-        fieldTime.setFocusable(false);
+        buttonClockOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClockOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtTime)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockIn)
-                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonClockIn))
-                .addGap(74, 74, 74)
+                    .addComponent(buttonClockIn)
+                    .addComponent(jLabel_Cin))
+                .addGap(175, 175, 175)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakS)
-                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSBreak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                    .addComponent(buttonSBreak)
+                    .addComponent(jLabel_Bin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakE)
-                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEBreak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                    .addComponent(buttonEBreak)
+                    .addComponent(jLabel_Bout))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockOut)
-                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonClockOut))
-                .addGap(172, 172, 172))
+                    .addComponent(buttonClockOut)
+                    .addComponent(jLabel_Cout))
+                .addGap(262, 262, 262))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTime))
-                .addGap(82, 82, 82)
+                .addGap(109, 109, 109)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtClockOut)
                     .addComponent(txtBreakE)
                     .addComponent(txtBreakS)
                     .addComponent(txtClockIn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel_Bin)
+                    .addComponent(jLabel_Bout)
+                    .addComponent(jLabel_Cout)
+                    .addComponent(jLabel_Cin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonClockIn)
                     .addComponent(buttonSBreak)
                     .addComponent(buttonEBreak)
                     .addComponent(buttonClockOut))
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
 
         tabReceptionist.addTab("Clock-In/Out", jPanel4);
@@ -832,10 +835,36 @@ public class repPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOutActionPerformed
-        // TODO add your handling code here:
-       // memberLogInPage obj = new memberLogInPage();
-        //obj.setVisible(true);
+        this.dispose();
+        new memberLogInPage().setVisible(true);
     }//GEN-LAST:event_buttonLogOutActionPerformed
+
+    private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
+        // TODO add your handling code here:
+        jLabel_Cin.setText(clocktime.currentTime());
+        buttonClockIn.setEnabled(false);
+        buttonSBreak.setEnabled(true);
+    }//GEN-LAST:event_buttonClockInActionPerformed
+
+    private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
+        // TODO add your handling code here:
+        jLabel_Bin.setText(clocktime.currentTime());
+        buttonSBreak.setEnabled(false);
+        buttonEBreak.setEnabled(true);
+    }//GEN-LAST:event_buttonSBreakActionPerformed
+
+    private void buttonEBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEBreakActionPerformed
+        // TODO add your handling code here:
+         jLabel_Bout.setText(clocktime.currentTime());
+        buttonEBreak.setEnabled(false);
+        buttonClockOut.setEnabled(true);
+    }//GEN-LAST:event_buttonEBreakActionPerformed
+
+    private void buttonClockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockOutActionPerformed
+        // TODO add your handling code here:
+        jLabel_Cout.setText(clocktime.currentTime());
+        buttonClockOut.setEnabled(false);
+    }//GEN-LAST:event_buttonClockOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -887,10 +916,6 @@ public class repPage extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkboxPaid1;
     private javax.swing.JCheckBox checkboxPaid2;
     private javax.swing.JComboBox comboboxTypeofTransportation;
-    private javax.swing.JTextField fieldBreakE;
-    private javax.swing.JTextField fieldBreakS;
-    private javax.swing.JTextField fieldClockIn;
-    private javax.swing.JTextField fieldClockOut;
     private javax.swing.JTextField fieldConRoomNumber;
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldFirstName1;
@@ -902,8 +927,11 @@ public class repPage extends javax.swing.JFrame {
     private javax.swing.JTextField fieldLastName3;
     private javax.swing.JTextField fieldRoomNumber;
     private javax.swing.JTextField fieldRoomNumber1;
-    private javax.swing.JTextField fieldTime;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_Bin;
+    private javax.swing.JLabel jLabel_Bout;
+    private javax.swing.JLabel jLabel_Cin;
+    private javax.swing.JLabel jLabel_Cout;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -952,7 +980,6 @@ public class repPage extends javax.swing.JFrame {
     private javax.swing.JLabel txtSearch1;
     private javax.swing.JLabel txtSearch2;
     private javax.swing.JLabel txtSearch3;
-    private javax.swing.JLabel txtTime;
     private javax.swing.JLabel txtTypeofTransportation;
     // End of variables declaration//GEN-END:variables
 }

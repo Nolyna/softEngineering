@@ -1,13 +1,20 @@
 package HSMcontrollers;
 
-import HSMmodel.Employee;
+import HSMmodel.employee;
 import dbConnexion.SQLiteJDBConnection;
+import hotelGUI.cleaningServicesPage;
+import hotelGUI.maintenancePage;
+import hotelGUI.managerPg;
+import hotelGUI.repPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -16,8 +23,9 @@ import java.util.Calendar;
 public class employeeController {
     
     final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+  
     
-    public void insertEmployee(Employee x) {
+    public void insertEmployee(employee x) {
         String sql = "INSERT INTO employee(firstName,lastName, email, password) VALUES(?,?,?,?)";
         
         try (Connection conn = db.connect();
@@ -30,7 +38,7 @@ public class employeeController {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }    
     
     public void insertEmployee(String fname,String lname, String email, String pass) {
         String sql = "INSERT INTO employee(firstName,lastName, email, password) VALUES(?,?,?,?)";
@@ -98,9 +106,35 @@ public class employeeController {
     }
     
     public String currentTime (){
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Calendar time = Calendar.getInstance();
-        String today = (dateFormat.format(time));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String today = (dateFormat.format(time.getTime()));
         return today;
     }
+    
+   public boolean logIn(String username, String password){
+       boolean found;
+        if ((username.equals("manager")||username.equals("Manager"))&&(password.equals("Password")||password.equals("password"))){
+            found = true;
+            new managerPg().setVisible(true);
+        }
+        else if ((username.equals("clean")||username.equals("Clean"))&&(password.equals("Password")||password.equals("password"))){
+            found = true;
+            new cleaningServicesPage().setVisible(true);
+        }
+        else if ((username.equals("maintenance")||username.equals("Maintenace"))&&(password.equals("Password")||password.equals("password"))){
+            found = true;
+            new maintenancePage().setVisible(true);
+        }
+        else if ((username.equals("receptionist")||username.equals("Receptionist"))&&(password.equals("Password")||password.equals("password"))){
+            found = true;
+            new repPage().setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
+            found = false;
+        }
+    return found;
+    }
+    
 }
