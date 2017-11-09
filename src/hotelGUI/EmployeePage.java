@@ -5,6 +5,7 @@
  */
 package hotelGUI;
 
+import HSMcontrollers.*;
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
 import hotelGUI.employeeGUI.ProfilePanel;
@@ -21,6 +22,7 @@ public class EmployeePage extends javax.swing.JFrame {
     final ClockPanel clockView;
     final ProfilePanel profileView;
     final HoursPanel hoursView;
+    final employeeController ctrla;
 
     /**
      * Creates new form EmployeeGUI
@@ -30,6 +32,9 @@ public class EmployeePage extends javax.swing.JFrame {
         clockView = new ClockPanel();
         profileView = new ProfilePanel();
         hoursView = new HoursPanel();
+        
+        ctrla = new employeeController();
+        
         contentPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
 
@@ -441,6 +446,11 @@ public class EmployeePage extends javax.swing.JFrame {
         fieldClockOut.setFocusable(false);
 
         buttonClockIn.setText("Clock-In");
+        buttonClockIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClockInActionPerformed(evt);
+            }
+        });
 
         buttonSBreak.setText("Start Break");
 
@@ -1945,6 +1955,11 @@ public class EmployeePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         repView.setVisible(true);
     }//GEN-LAST:event_repMenuActionPerformed
+
+    private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
+        // TODO add your handling code here:
+        ctrla.clockout(334);
+    }//GEN-LAST:event_buttonClockInActionPerformed
 
     /**
      * @param args the command line arguments

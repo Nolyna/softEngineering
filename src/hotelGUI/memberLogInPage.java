@@ -11,6 +11,7 @@ import java.awt.*;
 import java.sql.*;
 import java.util.Arrays;
 import javax.swing.*;
+import HSMcontrollers.clientController;
 
 
 /**
@@ -18,6 +19,8 @@ import javax.swing.*;
  * @author Jermaine
  */
 public class memberLogInPage extends javax.swing.JFrame {
+    
+    private clientController a;
     
     public void close(){
         WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
@@ -352,7 +355,12 @@ if (Arrays.equals(a, right)){
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJoinActionPerformed
-new roomBookingPage().setVisible(true);        // TODO add your handling code here:
+       // TODO add your handling code here:
+       String first = fieldFirstName.getText();
+       String last = fieldLastName.getText();
+       String pass = Arrays.toString(fieldPasswordJoin.getPassword());
+       
+       a.newClient(first, last, null, pass);
     }//GEN-LAST:event_buttonJoinActionPerformed
 
     /**
