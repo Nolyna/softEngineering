@@ -42,8 +42,8 @@ public class hsmDatabase {
                 +"idAmenity INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +"title text NOT NULL,"
                 +"desc_amenity text NOT NULL,"
-                +"hoursOperation text NOT NULL,"
-                +"reserveFee varchar(10) DEFAULT NULL,"
+                +"hoursOperation text DEFAULT NULL,"
+                +"reserveFee int(11) DEFAULT NULL,"
                 +"maxOccupancy int(11) DEFAULT NULL"
                 +") ;";
 
@@ -171,8 +171,8 @@ public class hsmDatabase {
                 // SQL statement for creating table event
         String sql11 = "CREATE TABLE IF NOT EXISTS event ("
             +"idEvent int(11) NOT NULL DEFAULT '0',"
-            +"Title varchar(50) NOT NULL,"
-            +"Description text NOT NULL,"
+            +"title varchar(50) NOT NULL,"
+            +"description text NOT NULL,"
             +"date date NOT NULL,"
             +"timeBegin time NOT NULL,"
             +"timeEnd time NOT NULL,"

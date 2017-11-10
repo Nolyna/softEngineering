@@ -10,12 +10,16 @@ package hotelGUI.managerGUI;
  * @author Noria Soumbou
  */
 public class EventPanel extends javax.swing.JPanel {
-
+    final eventRegistrationPanel  registrationView;
     /**
      * Creates new form EventPanel
      */
     public EventPanel() {
         initComponents();
+    }
+    
+    public loadEvent(){
+        
     }
 
     /**
@@ -27,19 +31,251 @@ public class EventPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        contentPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        menuPanel = new javax.swing.JPanel();
+        addButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane4 = new javax.swing.JTextPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane5 = new javax.swing.JTextPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextPane6 = new javax.swing.JTextPane();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        addButton.setText("Add event");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        updateButton.setText("Update event");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Remove Event");
+
+        jButton1.setText("see participants");
+
+        jLabel1.setText("Name:");
+
+        jLabel2.setText("Description:");
+
+        jLabel3.setText("Price");
+
+        jLabel4.setText("Date");
+
+        jLabel5.setText("Time:  From");
+
+        jLabel6.setText("To");
+
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jScrollPane3.setViewportView(jTextPane2);
+
+        jScrollPane4.setViewportView(jTextPane3);
+
+        jScrollPane5.setViewportView(jTextPane4);
+
+        jScrollPane6.setViewportView(jTextPane5);
+
+        jScrollPane7.setViewportView(jTextPane6);
+
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addComponent(addButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(menuPanelLayout.createSequentialGroup()
+                                .addComponent(updateButton)
+                                .addGap(30, 30, 30)
+                                .addComponent(deleteButton)))
+                        .addGap(0, 36, Short.MAX_VALUE))))
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(menuPanelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane5))
+                            .addComponent(jScrollPane6)))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane7))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
+                        .addGap(34, 34, 34)
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane3))))
+                .addContainerGap())
+        );
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addButton)
+                .addGap(18, 18, 18)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel3))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane7)
+                        .addGap(18, 18, 18))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton)
+                    .addComponent(deleteButton))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
+        contentPanel.setLayout(contentPanelLayout);
+        contentPanelLayout.setHorizontalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        contentPanelLayout.setVerticalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contentPanelLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+                    .addGroup(contentPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(contentPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        new AddEventForm().setVisible(true); 
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextPane jTextPane4;
+    private javax.swing.JTextPane jTextPane5;
+    private javax.swing.JTextPane jTextPane6;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

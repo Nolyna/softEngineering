@@ -3,6 +3,7 @@ package hotelGUI;
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
 import hotelGUI.managerGUI.RoomPanel;
+import hotelGUI.managerGUI.EventPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -16,7 +17,7 @@ public class ManagerPage extends javax.swing.JFrame {
     final ClockPanel clockView; 
     final RoomPanel  roomView;
     final HoursPanel  hoursView;
-    
+    final EventPanel eventView;
     /**
      * Creates new form managerPage2
      */
@@ -25,6 +26,7 @@ public class ManagerPage extends javax.swing.JFrame {
         clockView =  new ClockPanel();
         roomView = new RoomPanel();
         hoursView = new HoursPanel();
+        eventView = new EventPanel();
         dynamicPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
@@ -39,6 +41,10 @@ public class ManagerPage extends javax.swing.JFrame {
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(hoursView,c);
         hoursView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        dynamicPanel.add(eventView,c);
+        eventView.setVisible(false);
     }
 
     /**
@@ -102,6 +108,11 @@ public class ManagerPage extends javax.swing.JFrame {
         activityMenu.setText("Activities");
 
         eventMenu.setText("Events");
+        eventMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventMenuActionPerformed(evt);
+            }
+        });
         activityMenu.add(eventMenu);
 
         tourMenu.setText("Tours");
@@ -204,6 +215,7 @@ public class ManagerPage extends javax.swing.JFrame {
         clockView.setVisible(true);
         roomView.setVisible(false);
         hoursView.setVisible(false);
+        eventView.setVisible(false);
     }//GEN-LAST:event_clockMenuActionPerformed
 
     private void roomMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomMenuActionPerformed
@@ -211,6 +223,7 @@ public class ManagerPage extends javax.swing.JFrame {
         roomView.setVisible(true);
         clockView.setVisible(false);
         hoursView.setVisible(false);
+        eventView.setVisible(false);
     }//GEN-LAST:event_roomMenuActionPerformed
 
     private void hoursMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursMenuActionPerformed
@@ -219,6 +232,7 @@ public class ManagerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
+        eventView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
 
     private void quitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitMenuActionPerformed
@@ -226,6 +240,15 @@ public class ManagerPage extends javax.swing.JFrame {
         this.dispose();
         new welcomePage().setVisible(true);  
     }//GEN-LAST:event_quitMenuActionPerformed
+
+    private void eventMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventMenuActionPerformed
+        // TODO add your handling code here:
+        eventView.setVisible(true);
+        hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+    }//GEN-LAST:event_eventMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +275,12 @@ public class ManagerPage extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
