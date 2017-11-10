@@ -1,6 +1,6 @@
 package setupGUI;
 
-import HSMmodel.Employee;
+import HSMmodel.employee;
 
 /**
  * HSM program
@@ -137,7 +137,7 @@ public class manager extends javax.swing.JFrame {
     **/
     private void ButtonContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonContinueMouseClicked
         // TODO  save user as manager and go to next page:
-        Employee user = new Employee();
+        employee user = new employee();
         new hotelsetup().setVisible(true);
     }//GEN-LAST:event_ButtonContinueMouseClicked
 

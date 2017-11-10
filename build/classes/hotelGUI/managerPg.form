@@ -32,11 +32,6 @@
               <Component id="buttonLogOutManager" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="1071" max="-2" attributes="0"/>
-              <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -54,9 +49,7 @@
                   <Component id="buttonLogOutManager" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-              <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="478" max="32767" attributes="0"/>
+              <EmptySpace pref="714" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -101,72 +94,60 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="txtTime" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldTime" min="-2" pref="201" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtClockIn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldClockIn" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                           <Component id="buttonClockIn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Cin" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtBreakS" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldBreakS" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                           <Component id="buttonSBreak" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Bin" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                      <EmptySpace pref="154" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtBreakE" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldBreakE" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                           <Component id="buttonEBreak" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Bout" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <EmptySpace pref="158" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtClockOut" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldClockOut" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                           <Component id="buttonClockOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Cout" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="fieldTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtClockOut" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtBreakE" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtBreakS" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="fieldClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldBreakS" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldBreakE" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldClockOut" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel_Bin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Bout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Cout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_Cin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonSBreak" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonEBreak" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonClockOut" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="401" max="32767" attributes="0"/>
+                      <EmptySpace pref="426" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -192,55 +173,45 @@
                 <Property name="text" type="java.lang.String" value="Clock-Out Time"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="fieldClockIn">
-              <Properties>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="fieldBreakS">
-              <Properties>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="fieldBreakE">
-              <Properties>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="fieldClockOut">
-              <Properties>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="buttonClockIn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Clock-In"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockInActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonSBreak">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Start Break"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSBreakActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonEBreak">
               <Properties>
                 <Property name="text" type="java.lang.String" value="End Break"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEBreakActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonClockOut">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Clock-Out"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockOutActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="txtTime">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Time:"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="jLabel_Bin">
             </Component>
-            <Component class="javax.swing.JTextField" name="fieldTime">
-              <Properties>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="jLabel_Bout">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel_Cout">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel_Cin">
             </Component>
           </SubComponents>
         </Container>
@@ -894,21 +865,6 @@
           </Layout>
         </Container>
       </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel9">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
     </Container>
   </SubComponents>
 </Form>

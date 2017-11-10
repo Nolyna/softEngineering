@@ -12,7 +12,7 @@ import java.awt.GridBagLayout;
  * page manager
  * @author Noria Soumbou
  */
-public class ManagerPage extends javax.swing.JFrame {
+public class managerPage extends javax.swing.JFrame {
     GridBagLayout layout = new GridBagLayout();
     final ClockPanel clockView; 
     final RoomPanel  roomView;
@@ -21,7 +21,7 @@ public class ManagerPage extends javax.swing.JFrame {
     /**
      * Creates new form managerPage2
      */
-    public ManagerPage() {
+    public managerPage() {
         initComponents();
         clockView =  new ClockPanel();
         roomView = new RoomPanel();
@@ -267,13 +267,13 @@ public class ManagerPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -287,7 +287,7 @@ public class ManagerPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagerPage().setVisible(true);
+                new managerPage().setVisible(true);
             }
         });
     }
