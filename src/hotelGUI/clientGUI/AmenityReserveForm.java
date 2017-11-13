@@ -1,22 +1,23 @@
 package hotelGUI.clientGUI;
 
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
-
 
 /**
  * Form to make the reservation for amenities
+ *
  * @author Noria Soumbou
  */
 public class AmenityReserveForm extends javax.swing.JFrame {
+    private int estimateTotal;
 
     /**
      * Creates new form AmenityReserveForm
      */
     public AmenityReserveForm() {
-        initComponents();     
+        initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +77,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
             }
         });
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM" }));
 
         estimateButton.setText("Estimate");
         estimateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +188,9 @@ public class AmenityReserveForm extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        setSize(new java.awt.Dimension(390, 418));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
@@ -196,19 +200,25 @@ public class AmenityReserveForm extends javax.swing.JFrame {
 
     private void estimateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estimateButtonActionPerformed
         // TODO add your handling code here:
+        if (jComboBox5.getSelectedItem().toString() == "Select Time" || jComboBox6.getSelectedItem().toString() == "Select Date" || jComboBox7.getSelectedItem().toString() == "Select Time") {
+            JOptionPane.showMessageDialog(null, "Error: Empty Field");
+        } else {
+            estimateText.setText("$");
+        }
     }//GEN-LAST:event_estimateButtonActionPerformed
     /**
      * Close form when click on cancel
-     * @param evt 
+     *
+     * @param evt
      */
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox6ActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -224,7 +234,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AmenityReserveForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -232,7 +242,7 @@ public class AmenityReserveForm extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton estimateButton;
