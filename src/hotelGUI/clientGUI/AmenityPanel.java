@@ -1,5 +1,7 @@
 package hotelGUI.clientGUI;
 
+import hotelGUI.clientGUI.amenities.*;
+
 /**
  *
  * @author Noria Soumbou
@@ -52,6 +54,8 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         conferenceTab.setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel4.setBackground(new java.awt.Color(255, 51, 51));
+
         reserveBallroomButton.setText("Reserve");
         reserveBallroomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +68,7 @@ public class AmenityPanel extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/danceIcon.png"))); // NOI18N
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea1.setBackground(new java.awt.Color(255, 51, 51));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTextArea1.setLineWrap(true);
@@ -116,6 +120,8 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         conferenceTab.addTab("Ballroom", jPanel4);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 0));
+
         jLabel10.setText("To reserve the Pool");
 
         reservePoolButton.setText("Reserve");
@@ -128,7 +134,7 @@ public class AmenityPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/poolIcon.png"))); // NOI18N
 
         jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea2.setBackground(new java.awt.Color(255, 255, 0));
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTextArea2.setLineWrap(true);
@@ -177,6 +183,7 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         conferenceTab.addTab("Pool", jPanel2);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
 
         jLabel1.setText("To reserve the Game Room");
@@ -191,7 +198,7 @@ public class AmenityPanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gameIcon.png"))); // NOI18N
 
         jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea3.setBackground(new java.awt.Color(0, 153, 255));
         jTextArea3.setColumns(20);
         jTextArea3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTextArea3.setLineWrap(true);
@@ -240,6 +247,7 @@ public class AmenityPanel extends javax.swing.JPanel {
 
         conferenceTab.addTab("Game Room", jPanel1);
 
+        jPanel3.setBackground(new java.awt.Color(51, 255, 0));
         jPanel3.setPreferredSize(new java.awt.Dimension(545, 550));
 
         jLabel4.setText("To make a reservation");
@@ -254,12 +262,12 @@ public class AmenityPanel extends javax.swing.JPanel {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/workIcon.png"))); // NOI18N
 
         jTextArea4.setEditable(false);
-        jTextArea4.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea4.setBackground(new java.awt.Color(51, 255, 0));
         jTextArea4.setColumns(20);
         jTextArea4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Our conference rooms, training rooms & classroom space for rent at AllSuites feature high end boardroom tables, training tables and chairs. Whether you’re holding a deposition, a real estate closing, meeting your next big client or making a presentation to your team, our conference rooms and training rooms will meet your business needs. Conference rooms, training rooms & classroom space are available Monday - Friday 8:30am-5pm.");
+        jTextArea4.setText("Our conference rooms, training rooms & classroom space for rent at AllSuites feature high end boardroom tables, training tables and chairs. Whether you’re holding a deposition, a real estate closing, meeting your next big client or making a presentation to your team, our conference rooms and training rooms will meet your business needs. Conference rooms, training rooms & classroom space are available Monday - Friday 8\nam-8pm.");
         jTextArea4.setWrapStyleWord(true);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -316,7 +324,7 @@ public class AmenityPanel extends javax.swing.JPanel {
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 601, Short.MAX_VALUE)
             .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(conferenceTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, Short.MAX_VALUE))
+                .addComponent(conferenceTab, javax.swing.GroupLayout.Alignment.TRAILING))
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,19 +346,19 @@ public class AmenityPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reservePoolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservePoolButtonActionPerformed
-        new AmenityReserveForm().setVisible(true);// TODO add your handling code here:
+        new poolReserveForm().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_reservePoolButtonActionPerformed
 
     private void reserveGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveGameButtonActionPerformed
-        new AmenityReserveForm().setVisible(true);// TODO add your handling code here:
+        new gameReserveForm().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_reserveGameButtonActionPerformed
 
     private void reserveConfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveConfButtonActionPerformed
-        new AmenityReserveForm().setVisible(true);// new amenities().jFrame1.setVisible(true);        // TODO add your handling code here:
+        new confReserveForm().setVisible(true);// new amenities().jFrame1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_reserveConfButtonActionPerformed
 
     private void reserveBallroomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveBallroomButtonActionPerformed
-        new AmenityReserveForm().setVisible(true);// TODO add your handling code here:
+        new ballroomReserveForm().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_reserveBallroomButtonActionPerformed
 
 

@@ -53,7 +53,7 @@ public class TaxiFormPanel extends javax.swing.JPanel {
         });
 
         jTextPane1.setEditable(false);
-        jTextPane1.setBackground(new java.awt.Color(150, 85, 84));
+        jTextPane1.setBackground(new java.awt.Color(0, 255, 102));
         jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

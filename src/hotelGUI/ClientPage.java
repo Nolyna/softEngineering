@@ -160,8 +160,8 @@ public class ClientPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
-        contentPanel.setBackground(new java.awt.Color(255, 255, 255));
         contentPanel.setAutoscrolls(true);
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
