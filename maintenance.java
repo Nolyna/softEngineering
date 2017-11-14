@@ -7,10 +7,11 @@ package HSMmodel;
 
 /**
  *
- * cameron wright
+ * @author cameron wright
  */
 public class maintenance {
-   private String name, time, room;
+    
+    private String name, time, room;
     
     public maintenance(){}
     
@@ -22,23 +23,12 @@ public class maintenance {
         this.time = t ;
     }
     public void setroom(String r){
-        this.room = r ;
+        
     }
-    
-    public String getName()
-    {
-        return this.name;
-    }
-    public String getTime(){
-        return this.time;
-    }
-    public String getRoom() {
-        return this.room;
-    }
-            
     
 
   
-  
-
+        
+    
+    
 }
