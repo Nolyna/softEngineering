@@ -29,16 +29,16 @@ public class amenitiesController {
     
     */
     
-    public void add( amenities model){
+    public void add( Amenities model){
         String sql = "INSERT INTO amnities(title,desc_amenity,hoursOperation,reserveFee,maxOccupancy) VALUES(?,?,?,?,?)";
         
         try (Connection conn = db.connect();
-                model.
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, mode. );
-            pstmt.setString(2, lname);
-            pstmt.setString(3, email);
-            pstmt.setString(4, pass);
+            pstmt.setString(1, model.getName() );
+            pstmt.setString(2, model.getDescription());
+            pstmt.setString(3, model.getHours());
+            pstmt.setInt(4, model. getFee());
+            pstmt.setInt(5, model.getMaxOccupancy());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

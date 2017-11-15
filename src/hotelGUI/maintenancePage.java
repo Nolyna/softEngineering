@@ -320,7 +320,7 @@ public class maintenancePage extends javax.swing.JFrame {
 
     private void buttonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOutActionPerformed
         this.dispose();
-        new memberLogInPage().setVisible(true);
+        new LoginPage().setVisible(true);
     }//GEN-LAST:event_buttonLogOutActionPerformed
 
     private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed

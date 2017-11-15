@@ -6,6 +6,7 @@
 package hotelGUI.managerGUI;
 
 import HSMmodel.events;
+import HSMcontrollers.eventController;
 import javax.swing.JOptionPane;
 
 /**
@@ -226,9 +227,9 @@ public class AddEventForm extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 
-        events ev = new events( null,nameText.getText(),  descText.getText(),  dateText.getText(),  beginText.getText(),  endText.getText(), int(priceText.getText()) );
-        eventController evc = neweventController(evc);
-        evc.cerate();
+        events ev = new events( 0,nameText.getText(),  descText.getText(),  dateText.getText(),  beginText.getText(),  endText.getText(), Integer.parseInt(priceText.getText()) );
+        eventController evc = new eventController(ev);
+        evc.create();
         JOptionPane.showMessageDialog(null, " Event added");
         emptyForm();
     }//GEN-LAST:event_addButtonActionPerformed

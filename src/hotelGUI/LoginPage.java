@@ -205,7 +205,7 @@ public class LoginPage extends javax.swing.JFrame {
                 switch (x) {
                     case 2:
                         this.dispose();
-                        new managerPage().setVisible(true);
+                        new ManagerPage().setVisible(true);
                         break;
                     case 1:
                         this.dispose();

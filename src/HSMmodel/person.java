@@ -12,12 +12,12 @@ package HSMmodel;
 public class person {
     public String firstname;
     public String lastname;
-    private String email;
-    private String password;
+    protected String email, phone, adress, password;
     /**
      * Constructor for person
      */
     public person(){}
+    
     public person( String fname, String lname){
         this.firstname = fname;
         this.lastname = lname;
@@ -27,6 +27,12 @@ public class person {
     }
     public void setlastname(String lname){
         this.lastname = lname;
+    }
+    public void setphone(String phone){
+        this.phone = phone;
+    }
+    public void setadress(String adress){
+        this.adress = adress;
     }
     public void setemail(String mail){
         this.email = mail;
@@ -40,6 +46,12 @@ public class person {
     }
     public String getlastname(){
         return this.lastname;
+    }
+    public String getphone(){
+        return this.phone ;
+    }
+    public String getadress(){
+        return this.adress;
     }
     public String getemail(){
         return this.email;

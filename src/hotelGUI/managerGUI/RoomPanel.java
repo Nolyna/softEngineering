@@ -5,17 +5,48 @@
  */
 package hotelGUI.managerGUI;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class RoomPanel extends javax.swing.JPanel {
-
+    GridBagLayout layout = new GridBagLayout();
+    final addRoomPanel addView; 
+    final allRoomPanel  roomView;
+    final occupiedRoomPanel  occupiedView;
+    final freeRoomPanel freeView;
+    
     /**
      * Creates new form RoomPanel
      */
     public RoomPanel() {
         initComponents();
+        addView =  new addRoomPanel();
+        roomView = new allRoomPanel();
+        occupiedView = new  occupiedRoomPanel();
+        freeView = new freeRoomPanel();
+        content.setLayout(layout);
+        GridBagConstraints c = new GridBagConstraints();
+        
+        c.gridx = 0; c.gridy = 0;        
+        content.add(roomView,c);
+        roomView.setVisible(true);
+        
+        c.gridx = 0; c.gridy = 0;        
+        content.add(addView,c);
+        addView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        content.add(occupiedView,c);
+        occupiedView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        content.add(freeView,c);
+        freeView.setVisible(false);
+        
     }
 
     /**
@@ -29,20 +60,21 @@ public class RoomPanel extends javax.swing.JPanel {
 
         sideBar = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        allButton = new javax.swing.JButton();
+        occupiedButton = new javax.swing.JButton();
+        freeButton = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
+        sideBar.setBackground(new java.awt.Color(255, 255, 255));
         sideBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jToggleButton1.setText("Add");
 
-        jButton1.setText("view all");
+        allButton.setText("view all");
 
-        jButton2.setText("Occupied");
+        occupiedButton.setText("Occupied");
 
-        jButton3.setText("Free");
+        freeButton.setText("Free");
 
         javax.swing.GroupLayout sideBarLayout = new javax.swing.GroupLayout(sideBar);
         sideBar.setLayout(sideBarLayout);
@@ -52,9 +84,9 @@ public class RoomPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(allButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(occupiedButton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(freeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sideBarLayout.setVerticalGroup(
@@ -63,13 +95,15 @@ public class RoomPanel extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addComponent(jToggleButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(allButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(occupiedButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(freeButton)
                 .addContainerGap(120, Short.MAX_VALUE))
         );
+
+        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -100,11 +134,11 @@ public class RoomPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allButton;
     private javax.swing.JPanel content;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton freeButton;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton occupiedButton;
     private javax.swing.JPanel sideBar;
     // End of variables declaration//GEN-END:variables
 }

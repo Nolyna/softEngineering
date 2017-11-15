@@ -611,7 +611,7 @@ public class managerPg extends javax.swing.JFrame {
 
     private void buttonLogOutManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOutManagerActionPerformed
         this.dispose();
-        new memberLogInPage().setVisible(true);
+        new LoginPage().setVisible(true);
     }//GEN-LAST:event_buttonLogOutManagerActionPerformed
 
     private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed

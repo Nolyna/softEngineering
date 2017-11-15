@@ -2,8 +2,7 @@ package hotelGUI;
 
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
-import hotelGUI.managerGUI.RoomPanel;
-import hotelGUI.managerGUI.EventPanel;
+import hotelGUI.managerGUI.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -12,27 +11,45 @@ import java.awt.GridBagLayout;
  * page manager
  * @author Noria Soumbou
  */
-public class managerPage extends javax.swing.JFrame {
+class ManagerPage extends javax.swing.JFrame {
     GridBagLayout layout = new GridBagLayout();
     final ClockPanel clockView; 
     final RoomPanel  roomView;
     final HoursPanel  hoursView;
     final EventPanel eventView;
+    final AmenityPanel amenityView;
+    final AddEmployeePanel addEmployeeView;
+    final employeePanel employeeView;
     /**
-     * Creates new form managerPage2
+     * Creates new form ManagerPage2
      */
-    public managerPage() {
+    public ManagerPage() {
         initComponents();
         clockView =  new ClockPanel();
         roomView = new RoomPanel();
         hoursView = new HoursPanel();
         eventView = new EventPanel();
+        amenityView = new AmenityPanel();
+        addEmployeeView = AddEmployeePanel();
+        employeeView = employeePanel();
         dynamicPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(roomView,c);
         roomView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        dynamicPanel.add(addEmployeeView,c);
+        addEmployeeView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        dynamicPanel.add(employeeView,c);
+        employeeView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        dynamicPanel.add(amenityView,c);
+        amenityView.setVisible(false);
         
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(clockView,c);
@@ -136,9 +153,19 @@ public class managerPage extends javax.swing.JFrame {
         jMenu4.setText("Employees");
 
         addEmployeeMenu.setText("new employee");
+        addEmployeeMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmployeeMenuActionPerformed(evt);
+            }
+        });
         jMenu4.add(addEmployeeMenu);
 
         viewEmployeeMenu.setText("view employees");
+        viewEmployeeMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEmployeeMenuActionPerformed(evt);
+            }
+        });
         jMenu4.add(viewEmployeeMenu);
 
         jMenuBar2.add(jMenu4);
@@ -199,6 +226,14 @@ public class managerPage extends javax.swing.JFrame {
 
     private void amenityMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amenityMenuActionPerformed
         // TODO add your handling code here:
+        amenityView.setVisible(true);
+        eventView.setVisible(false);
+        hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        employeeView.setVisible(false);
+        addEmployeeView.setVisible(false);
     }//GEN-LAST:event_amenityMenuActionPerformed
 
     private void clockMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clockMenuMouseClicked
@@ -216,6 +251,9 @@ public class managerPage extends javax.swing.JFrame {
         roomView.setVisible(false);
         hoursView.setVisible(false);
         eventView.setVisible(false);
+        amenityView.setVisible(false);
+        employeeView.setVisible(false);
+        addEmployeeView.setVisible(false);
     }//GEN-LAST:event_clockMenuActionPerformed
 
     private void roomMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomMenuActionPerformed
@@ -224,6 +262,9 @@ public class managerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         hoursView.setVisible(false);
         eventView.setVisible(false);
+        amenityView.setVisible(false);
+        employeeView.setVisible(false);
+        addEmployeeView.setVisible(false);
     }//GEN-LAST:event_roomMenuActionPerformed
 
     private void hoursMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursMenuActionPerformed
@@ -233,6 +274,9 @@ public class managerPage extends javax.swing.JFrame {
         roomView.setVisible(false);
         clockView.setVisible(false);
         eventView.setVisible(false);
+        amenityView.setVisible(false);
+        employeeView.setVisible(false);
+        addEmployeeView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
 
     private void quitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitMenuActionPerformed
@@ -248,7 +292,32 @@ public class managerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
+        amenityView.setVisible(false);
+        employeeView.setVisible(false);
+        addEmployeeView.setVisible(false);
     }//GEN-LAST:event_eventMenuActionPerformed
+
+    private void addEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeMenuActionPerformed
+        addEmployeeView.setVisible(true);
+        amenityView.setVisible(false);
+        eventView.setVisible(false);
+        hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        employeeView.setVisible(false);
+    }//GEN-LAST:event_addEmployeeMenuActionPerformed
+
+    private void viewEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeMenuActionPerformed
+        employeeView.setVisible(true);
+        amenityView.setVisible(false);
+        eventView.setVisible(false);
+        hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        addEmployeeView.setVisible(false);
+    }//GEN-LAST:event_viewEmployeeMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,14 +336,70 @@ public class managerPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(managerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -287,7 +412,7 @@ public class managerPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new managerPage().setVisible(true);
+                new ManagerPage().setVisible(true);
             }
         });
     }

@@ -5,7 +5,7 @@ package HSMmodel;
  * @author soumbou
  */
 public class employee extends person{   
-    String bdate;
+    String bdate, ssn;
     String gender;
     
     /**
@@ -17,12 +17,34 @@ public class employee extends person{
         this.lastname = lname;
     }    
     
+    public void setBirthday( String date){
+        this.bdate = date;
+    }
+    
+    public void setSSN( String ssn){
+        this.ssn = ssn;
+    }
+    
+    public void setGender( String gender){
+        this.gender = gender;
+    }
+    
     /* get Employee date of birth
      * @return Employee date of birth
     */
     public String getBirthday(){
-        String full = this.firstname + " " + this.lastname;
-        return full;
+        return this.bdate;
+    }
+    
+    public String getSSN(){
+        return this.ssn;
+    }
+    
+    /* get Employee gender
+     * @return Employee gender
+    */
+    public String getGender(){
+        return this.gender;
     }
     
     

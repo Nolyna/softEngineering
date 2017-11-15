@@ -10,7 +10,7 @@ package hotelGUI.managerGUI;
  * @author Noria Soumbou
  */
 public class EventPanel extends javax.swing.JPanel {
-    final eventRegistrationPanel  registrationView;
+    final eventRegistrationPanel  registrationView = new eventRegistrationPanel() ;
     /**
      * Creates new form EventPanel
      */
@@ -18,7 +18,7 @@ public class EventPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public loadEvent(){
+    public void loadEvent(){
         
     }
 

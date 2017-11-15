@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package hotelGUI.managerGUI;
-import HSMmodel.amenities;
+import HSMmodel.Amenities;
 
 /**
  *
@@ -19,8 +19,8 @@ public class AlistPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void filltable( amenities[] amenitiesArr){
-        for (amenities amenity : amenitiesArr ){
+    public void filltable( Amenities[] amenitiesArr){
+        for (Amenities amenity : amenitiesArr ){
               aTable.setValueAt(amenity, ERROR, WIDTH);
               aTable.setValueAt(aTable, ERROR, WIDTH);
         }
