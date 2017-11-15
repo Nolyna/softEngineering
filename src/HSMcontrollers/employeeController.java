@@ -4,7 +4,7 @@ import HSMmodel.employee;
 import dbConnexion.SQLiteJDBConnection;
 import hotelGUI.cleaningServicesPage;
 import hotelGUI.maintenancePage;
-import hotelGUI.managerPg;
+import hotelGUI.ManagerPage;
 import hotelGUI.repPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +28,10 @@ public class employeeController {
     public employeeController( employee model){
         this.model = model;
     }    
+
+    public employeeController() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     /*
     +"idEmployee INTEGER PRIMARY KEY AUTOINCREMENT,"

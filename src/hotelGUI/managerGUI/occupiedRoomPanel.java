@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package hotelGUI.managerGUI;
+import dbConnexion.SQLiteJDBConnection;
 
 /**
  *
  * @author Noria Soumbou
  */
 public class occupiedRoomPanel extends javax.swing.JPanel {
-
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    
     /**
      * Creates new form occupiedRoomPanel
      */

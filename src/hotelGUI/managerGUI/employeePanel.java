@@ -5,6 +5,8 @@
  */
 package hotelGUI.managerGUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Noria Soumbou

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package hotelGUI.managerGUI;
-import java.util.Random;
+import HSMcontrollers.employeeController;
 import HSMmodel.employee;
-import HSMControllers.employeeController;
+import java.util.Random;
 
 /**
  *

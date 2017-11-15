@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 package hotelGUI.employeeGUI;
+import HSMcontrollers.employeeController;
+import java.awt.event.*;
+import java.awt.*;
 
 /**
  *
  * @author Noria Soumbou
  */
 public class ClockPanel extends javax.swing.JPanel {
-
+    
+    final private employeeController clocktime = new employeeController();
+    
     /**
      * Creates new form clock
      */
@@ -48,6 +53,11 @@ public class ClockPanel extends javax.swing.JPanel {
         txtClockIn.setText("Clock-In Time");
 
         buttonClockIn.setText("Clock-In");
+        buttonClockIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClockInActionPerformed(evt);
+            }
+        });
 
         txtBreakS.setText("Break Started ");
 
@@ -55,6 +65,11 @@ public class ClockPanel extends javax.swing.JPanel {
         fieldBreakStart.setFocusable(false);
 
         buttonSBreak.setText("Start Break");
+        buttonSBreak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSBreakActionPerformed(evt);
+            }
+        });
 
         txtBreakE.setText("Break Ended");
 
@@ -62,6 +77,11 @@ public class ClockPanel extends javax.swing.JPanel {
         fieldTime.setFocusable(false);
 
         buttonEBreak.setText("End Break");
+        buttonEBreak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEBreakActionPerformed(evt);
+            }
+        });
 
         txtClockOut.setText("Clock-Out Time");
 
@@ -156,7 +176,30 @@ public class ClockPanel extends javax.swing.JPanel {
 
     private void buttonClockOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClockOutMouseClicked
         // TODO add your handling code here: clock out employee
+        jLabel_Cout.setText(clocktime.currentTime());
+        buttonClockOut.setEnabled(false);
     }//GEN-LAST:event_buttonClockOutMouseClicked
+
+    private void buttonEBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEBreakActionPerformed
+        // TODO add your handling code here:
+        jLabel_Bout.setText(clocktime.currentTime());
+        buttonEBreak.setEnabled(false);
+        buttonClockOut.setEnabled(true);
+    }//GEN-LAST:event_buttonEBreakActionPerformed
+
+    private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
+        // TODO add your handling code here:
+        jLabel_Bin.setText(clocktime.currentTime());
+        buttonSBreak.setEnabled(false);
+        buttonEBreak.setEnabled(true);
+    }//GEN-LAST:event_buttonSBreakActionPerformed
+
+    private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
+        // TODO add your handling code here:
+        jLabel_Cin.setText(clocktime.currentTime());
+        buttonClockIn.setEnabled(false);
+        buttonSBreak.setEnabled(true);
+    }//GEN-LAST:event_buttonClockInActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

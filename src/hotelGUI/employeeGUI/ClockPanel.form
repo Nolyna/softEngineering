@@ -124,6 +124,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clock-In"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockInActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="txtBreakS">
       <Properties>
@@ -140,6 +143,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Start Break"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSBreakActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="txtBreakE">
       <Properties>
@@ -156,6 +162,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="End Break"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEBreakActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="txtClockOut">
       <Properties>
