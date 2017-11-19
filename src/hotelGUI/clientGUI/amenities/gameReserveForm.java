@@ -1,8 +1,7 @@
 package hotelGUI.clientGUI.amenities;
 
-import hotelGUI.clientGUI.*;
+import HSMmodel.amenities;
 import java.text.NumberFormat;
-import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -15,11 +14,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class gameReserveForm extends javax.swing.JFrame {
 
-    private double estimateTotal;
-    private Date reserveDate;
-    private int start;
-    private int end;
-    private int numHours;
+    final String type = "ballroom";
+    amenities examp;
     NumberFormat n = NumberFormat.getCurrencyInstance(Locale.US);
 
     /**
@@ -209,24 +205,23 @@ public class gameReserveForm extends javax.swing.JFrame {
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
         // TODO add your handling code here:
         showMessageDialog(null, "Reservation Successful!"
-                + "\n\nDate: " + reserveDate.toString().substring(0, 10)
-                + "\nTime: " + numHours + " hour(s)"
-                + "\nTotal Charge: " + n.format(estimateTotal));
+                + "\n\nDate: " + examp.getreserveDate().toString().substring(0, 10)
+                + "\nTime: " + examp.getnumHours() + " hour(s)"
+                + "\nTotal Charge: " + n.format(examp.gettotalCharge()));
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void estimateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estimateButtonActionPerformed
         // TODO add your handling code here:
-        reserveDate = datePicked.getDate();
-        start = startTime.getValue();
-        end = endTime.getValue();
+        int start = startTime.getValue();
+        int end = endTime.getValue();
 
         if (start - end >= 0) {
             JOptionPane.showMessageDialog(null, "Error: Pick a different time");
-        } else {
-            numHours = end - start;
-            estimateTotal = (numHours * 40) * 1.1;  //40 dollars/hr, 10% tax
-            estimateText.setText(n.format(estimateTotal));
         }
+
+        examp = new amenities(type, datePicked.getDate(), (end - start) * 40 * 1.1, end - start);
+
+        estimateText.setText(n.format(examp.gettotalCharge()));
     }//GEN-LAST:event_estimateButtonActionPerformed
     /**
      * Close form when click on cancel

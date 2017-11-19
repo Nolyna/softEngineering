@@ -14,10 +14,17 @@ import java.util.Date;
  */
 public class amenities {
 
-    private String amenityType;
-    private Date reserveDate;
-    private double totalCharge;
-    private int numHours;
+    String amenityType;
+    Date reserveDate;
+    double totalCharge;
+    int numHours;
+
+    public amenities(String type, Date date, double total, int hours) {
+        amenityType = type;
+        reserveDate = date;
+        totalCharge = total;
+        numHours = hours;
+    }
 
     public String getamenityType() {
         return amenityType;

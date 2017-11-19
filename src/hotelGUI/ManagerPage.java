@@ -19,7 +19,7 @@ public class ManagerPage extends javax.swing.JFrame {
     final HoursPanel hoursView;
     final EventPanel eventView;
     final TourPanel tourView;
-    final amenty amenitiesView;
+    final amenity amenitiesView;
     final manageEmployees employeeView;
 
     /**
@@ -32,7 +32,7 @@ public class ManagerPage extends javax.swing.JFrame {
         hoursView = new HoursPanel();
         eventView = new EventPanel();
         tourView = new TourPanel();
-        amenitiesView = new amenty();
+        amenitiesView = new amenity();
         employeeView = new manageEmployees();
 
         dynamicPanel.setLayout(layout);

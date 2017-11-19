@@ -5,6 +5,7 @@
  */
 package hotelGUI;
 
+import hotelGUI.employeeGUI.EmployeePage;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
