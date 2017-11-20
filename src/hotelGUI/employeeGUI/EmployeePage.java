@@ -87,10 +87,6 @@ public class EmployeePage extends javax.swing.JFrame {
         txtBreakS = new javax.swing.JLabel();
         txtBreakE = new javax.swing.JLabel();
         txtClockOut = new javax.swing.JLabel();
-        fieldClockIn = new javax.swing.JTextField();
-        fieldBreakS = new javax.swing.JTextField();
-        fieldBreakE = new javax.swing.JTextField();
-        fieldClockOut = new javax.swing.JTextField();
         buttonClockIn = new javax.swing.JButton();
         buttonSBreak = new javax.swing.JButton();
         buttonEBreak = new javax.swing.JButton();
@@ -107,10 +103,6 @@ public class EmployeePage extends javax.swing.JFrame {
         txtBreakS1 = new javax.swing.JLabel();
         txtBreakE1 = new javax.swing.JLabel();
         txtClockOut1 = new javax.swing.JLabel();
-        fieldClockIn1 = new javax.swing.JTextField();
-        fieldBreakS1 = new javax.swing.JTextField();
-        fieldBreakE1 = new javax.swing.JTextField();
-        fieldClockOut1 = new javax.swing.JTextField();
         buttonClockIn1 = new javax.swing.JButton();
         buttonSBreak1 = new javax.swing.JButton();
         buttonEBreak1 = new javax.swing.JButton();
@@ -138,10 +130,6 @@ public class EmployeePage extends javax.swing.JFrame {
         txtBreakS2 = new javax.swing.JLabel();
         txtBreakE2 = new javax.swing.JLabel();
         txtClockOut2 = new javax.swing.JLabel();
-        fieldClockIn2 = new javax.swing.JTextField();
-        fieldBreakS2 = new javax.swing.JTextField();
-        fieldBreakE2 = new javax.swing.JTextField();
-        fieldClockOut2 = new javax.swing.JTextField();
         buttonClockIn2 = new javax.swing.JButton();
         buttonSBreak2 = new javax.swing.JButton();
         buttonEBreak2 = new javax.swing.JButton();
@@ -168,10 +156,6 @@ public class EmployeePage extends javax.swing.JFrame {
         txtBreakS3 = new javax.swing.JLabel();
         txtBreakE3 = new javax.swing.JLabel();
         txtClockOut3 = new javax.swing.JLabel();
-        fieldClockIn3 = new javax.swing.JTextField();
-        fieldBreakS3 = new javax.swing.JTextField();
-        fieldBreakE3 = new javax.swing.JTextField();
-        fieldClockOut3 = new javax.swing.JTextField();
         buttonClockIn3 = new javax.swing.JButton();
         buttonSBreak3 = new javax.swing.JButton();
         buttonEBreak3 = new javax.swing.JButton();
@@ -438,14 +422,6 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtClockOut.setText("Clock-Out Time");
 
-        fieldClockIn.setFocusable(false);
-
-        fieldBreakS.setFocusable(false);
-
-        fieldBreakE.setFocusable(false);
-
-        fieldClockOut.setFocusable(false);
-
         buttonClockIn.setText("Clock-In");
         buttonClockIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -477,24 +453,20 @@ public class EmployeePage extends javax.swing.JFrame {
                 .addGap(141, 141, 141)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockIn)
-                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockIn))
-                .addGap(74, 74, 74)
+                .addGap(204, 204, 204)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakS)
-                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSBreak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakE)
-                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEBreak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockOut)
-                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockOut))
-                .addGap(172, 172, 172))
+                .addGap(294, 294, 294))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,13 +481,7 @@ public class EmployeePage extends javax.swing.JFrame {
                     .addComponent(txtBreakE)
                     .addComponent(txtBreakS)
                     .addComponent(txtClockIn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonClockIn)
                     .addComponent(buttonSBreak)
@@ -594,14 +560,6 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtClockOut1.setText("Clock-Out Time");
 
-        fieldClockIn1.setFocusable(false);
-
-        fieldBreakS1.setFocusable(false);
-
-        fieldBreakE1.setFocusable(false);
-
-        fieldClockOut1.setFocusable(false);
-
         buttonClockIn1.setText("Clock-In");
 
         buttonSBreak1.setText("Start Break");
@@ -628,24 +586,20 @@ public class EmployeePage extends javax.swing.JFrame {
                 .addGap(141, 141, 141)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockIn1)
-                    .addComponent(fieldClockIn1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockIn1))
-                .addGap(74, 74, 74)
+                .addGap(204, 204, 204)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakS1)
-                    .addComponent(fieldBreakS1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSBreak1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakE1)
-                    .addComponent(fieldBreakE1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEBreak1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockOut1)
-                    .addComponent(fieldClockOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockOut1))
-                .addGap(172, 172, 172))
+                .addGap(294, 294, 294))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,13 +614,7 @@ public class EmployeePage extends javax.swing.JFrame {
                     .addComponent(txtBreakE1)
                     .addComponent(txtBreakS1)
                     .addComponent(txtClockIn1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldClockIn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakE1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldClockOut1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonClockIn1)
                     .addComponent(buttonSBreak1)
@@ -853,14 +801,6 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtClockOut2.setText("Clock-Out Time");
 
-        fieldClockIn2.setFocusable(false);
-
-        fieldBreakS2.setFocusable(false);
-
-        fieldBreakE2.setFocusable(false);
-
-        fieldClockOut2.setFocusable(false);
-
         buttonClockIn2.setText("Clock-In");
 
         buttonSBreak2.setText("Start Break");
@@ -887,24 +827,20 @@ public class EmployeePage extends javax.swing.JFrame {
                 .addGap(141, 141, 141)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockIn2)
-                    .addComponent(fieldClockIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockIn2))
-                .addGap(74, 74, 74)
+                .addGap(204, 204, 204)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakS2)
-                    .addComponent(fieldBreakS2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSBreak2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakE2)
-                    .addComponent(fieldBreakE2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEBreak2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockOut2)
-                    .addComponent(fieldClockOut2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockOut2))
-                .addGap(172, 172, 172))
+                .addGap(294, 294, 294))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -919,13 +855,7 @@ public class EmployeePage extends javax.swing.JFrame {
                     .addComponent(txtBreakE2)
                     .addComponent(txtBreakS2)
                     .addComponent(txtClockIn2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldClockIn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakE2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldClockOut2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonClockIn2)
                     .addComponent(buttonSBreak2)
@@ -1113,14 +1043,6 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtClockOut3.setText("Clock-Out Time");
 
-        fieldClockIn3.setFocusable(false);
-
-        fieldBreakS3.setFocusable(false);
-
-        fieldBreakE3.setFocusable(false);
-
-        fieldClockOut3.setFocusable(false);
-
         buttonClockIn3.setText("Clock-In");
 
         buttonSBreak3.setText("Start Break");
@@ -1147,24 +1069,20 @@ public class EmployeePage extends javax.swing.JFrame {
                 .addGap(141, 141, 141)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockIn3)
-                    .addComponent(fieldClockIn3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockIn3))
-                .addGap(74, 74, 74)
+                .addGap(204, 204, 204)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakS3)
-                    .addComponent(fieldBreakS3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSBreak3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBreakE3)
-                    .addComponent(fieldBreakE3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEBreak3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtClockOut3)
-                    .addComponent(fieldClockOut3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonClockOut3))
-                .addGap(172, 172, 172))
+                .addGap(294, 294, 294))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1179,13 +1097,7 @@ public class EmployeePage extends javax.swing.JFrame {
                     .addComponent(txtBreakE3)
                     .addComponent(txtBreakS3)
                     .addComponent(txtClockIn3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldClockIn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldBreakE3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldClockOut3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonClockIn3)
                     .addComponent(buttonSBreak3)
@@ -2036,22 +1948,6 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JFrame cleaningView;
     private javax.swing.JComboBox comboboxTypeofTransportation;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JTextField fieldBreakE;
-    private javax.swing.JTextField fieldBreakE1;
-    private javax.swing.JTextField fieldBreakE2;
-    private javax.swing.JTextField fieldBreakE3;
-    private javax.swing.JTextField fieldBreakS;
-    private javax.swing.JTextField fieldBreakS1;
-    private javax.swing.JTextField fieldBreakS2;
-    private javax.swing.JTextField fieldBreakS3;
-    private javax.swing.JTextField fieldClockIn;
-    private javax.swing.JTextField fieldClockIn1;
-    private javax.swing.JTextField fieldClockIn2;
-    private javax.swing.JTextField fieldClockIn3;
-    private javax.swing.JTextField fieldClockOut;
-    private javax.swing.JTextField fieldClockOut1;
-    private javax.swing.JTextField fieldClockOut2;
-    private javax.swing.JTextField fieldClockOut3;
     private javax.swing.JTextField fieldConRoomNumber;
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldFirstName1;

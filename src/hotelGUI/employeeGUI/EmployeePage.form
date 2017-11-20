@@ -338,28 +338,24 @@
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockIn" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockIn" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockIn" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakS" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonSBreak" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="181" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonEBreak" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="187" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockOut" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -378,14 +374,7 @@
                               <Component id="txtBreakS" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="fieldClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -416,26 +405,6 @@
                 <Component class="javax.swing.JLabel" name="txtClockOut">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out Time"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockIn">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakS">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakE">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockOut">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockIn">
@@ -569,28 +538,24 @@
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockIn1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockIn1" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockIn1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakS1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS1" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonSBreak1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="181" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE1" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonEBreak1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="187" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut1" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockOut1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -609,14 +574,7 @@
                               <Component id="txtBreakS1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="fieldClockIn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -647,26 +605,6 @@
                 <Component class="javax.swing.JLabel" name="txtClockOut1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out Time"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockIn1">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakS1">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakE1">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockOut1">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockIn1">
@@ -988,28 +926,24 @@
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockIn2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockIn2" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockIn2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakS2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS2" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonSBreak2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="181" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE2" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonEBreak2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="187" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut2" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockOut2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1028,14 +962,7 @@
                               <Component id="txtBreakS2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="fieldClockIn2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1066,26 +993,6 @@
                 <Component class="javax.swing.JLabel" name="txtClockOut2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out Time"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockIn2">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakS2">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakE2">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockOut2">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockIn2">
@@ -1398,28 +1305,24 @@
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockIn3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockIn3" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockIn3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakS3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS3" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonSBreak3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="82" max="32767" attributes="0"/>
+                          <EmptySpace pref="196" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE3" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonEBreak3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="79" max="32767" attributes="0"/>
+                          <EmptySpace pref="199" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut3" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="buttonClockOut3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1438,14 +1341,7 @@
                               <Component id="txtBreakS3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="fieldClockIn3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakS3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldBreakE3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fieldClockOut3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1476,26 +1372,6 @@
                 <Component class="javax.swing.JLabel" name="txtClockOut3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out Time"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockIn3">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakS3">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldBreakE3">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="fieldClockOut3">
-                  <Properties>
-                    <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockIn3">
