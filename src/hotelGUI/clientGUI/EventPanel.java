@@ -5,19 +5,80 @@
  */
 package hotelGUI.clientGUI;
 
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Noria Soumbou
  */
 public class EventPanel extends javax.swing.JPanel {
-
+    
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    private int cid;
+    
     /**
      * Creates new form EventPanel
      */
-    public EventPanel() {
+    public EventPanel( int CID) {
         initComponents();
+        cid = CID;
+        fillTable();
+    }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
+
+        String sql = "SELECT * FROM event";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    //TODO change to date
+                  model.addRow(new Object[]{ rs.getInt("idEvent"), rs.getString("title"), rs.getString("description"), 
+                      rs.getString("date"),rs.getString("timeBegin"),rs.getString("timeEnd"),rs.getInt("fee")});
+                  System.out.println("event: "+ rs.getString("title"));
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("all event: "+e.getMessage()); }            
+            pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("all event db"+e.getMessage());
+        }
+        //System.out.println(eventTable.getValueAt(1, 1));
+        eventTable.removeColumn(eventTable.getColumnModel().getColumn(0)); // hide id
+        eventTable.removeColumn(eventTable.getColumnModel().getColumn(1)); // hide description
+        eventTable.removeColumn(eventTable.getColumnModel().getColumn(4)); // hide fee
+        eventTable.setDefaultEditor(Object.class, null);
+    }
+    
+    /**
+     * Update the invoice of the client
+     * @param id client id
+     * @param fee 
+     */
+    private void updateInvoice( int id, int fee){
+        // TODO WRITE CODE
+    }
+    
+    private boolean isRegister( int idc, int ide){
+        // TODO WRITE CODE
+        return false;
+    }
+    
+    private void empty(){
+        evT.setText("Event:");
+        descT.setText("Description:");
+        dTe.setText("Date:");
+        BeginT.setText("Begin:");
+        EndT.setText("End:");
+        costT.setText("Cost:");
     }
 
     /**
@@ -30,17 +91,30 @@ public class EventPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Title");
+        model.addColumn("Description");
+        model.addColumn("Date");
+        model.addColumn("Beginning");
+        model.addColumn("Ending");
+        model.addColumn("Fee");
+        eventTable = new javax.swing.JTable();
         registerButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        evT = new javax.swing.JLabel();
+        descT = new javax.swing.JLabel();
+        dTe = new javax.swing.JLabel();
+        BeginT = new javax.swing.JLabel();
+        EndT = new javax.swing.JLabel();
+        costT = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        eventTable.setModel(model);
+        /*
+        eventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
@@ -49,7 +123,7 @@ public class EventPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true
@@ -63,13 +137,13 @@ public class EventPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(204, 204, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        */
+        eventTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eventTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(eventTable);
 
         registerButton.setBackground(new java.awt.Color(145, 149, 166));
         registerButton.setText("Register");
@@ -79,6 +153,51 @@ public class EventPanel extends javax.swing.JPanel {
             }
         });
 
+        evT.setText("Event:");
+
+        descT.setText("Description:");
+
+        dTe.setText("Date:");
+
+        BeginT.setText("begin:");
+
+        EndT.setText("End':");
+
+        costT.setText("Cost:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(evT)
+                    .addComponent(descT)
+                    .addComponent(dTe)
+                    .addComponent(BeginT)
+                    .addComponent(EndT)
+                    .addComponent(costT))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(evT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(descT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dTe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BeginT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(EndT)
+                .addGap(18, 18, 18)
+                .addComponent(costT)
+                .addContainerGap(139, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,13 +205,13 @@ public class EventPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
                         .addComponent(registerButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,7 +220,7 @@ public class EventPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(registerButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,16 +229,51 @@ public class EventPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
-        showMessageDialog(null, "Registration succesful");
+        
+        if( isRegister(cid, (int) eventTable.getModel().getValueAt(eventTable.getSelectedRow(),0))){
+            showMessageDialog(null, "Already Register");
+        }else{
+            String sql = "INSERT INTO event_register(idEvent,idClient) VALUES(?,?)";
+            try (Connection conn = db.connect();
+                    PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, (int) eventTable.getModel().getValueAt(eventTable.getSelectedRow(), 0));
+                pstmt.setInt(2, cid);
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            showMessageDialog(null, "Registration succesful");
+            updateInvoice(cid, (int)eventTable.getModel().getValueAt(eventTable.getSelectedRow(), 5));
+            empty();
+        }
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void eventTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMouseClicked
+        int row = eventTable.getSelectedRow();
+        System.out.println("select event row"+eventTable.getModel().getValueAt(row, 4));
+        if (row >= 0){
+           BeginT.setText("Start at "+eventTable.getModel().getValueAt(row, 4));
+           EndT.setText("End at "+eventTable.getModel().getValueAt(row, 5));
+           costT.setText("Cost to participate "+eventTable.getModel().getValueAt(row, 6));
+           dTe.setText("Event the "+eventTable.getModel().getValueAt(row, 3));
+           descT.setText("Description "+eventTable.getModel().getValueAt(row, 2));
+           evT.setText("Event: "+eventTable.getModel().getValueAt(row, 1));
+       }else{
+           empty();
+       }
+    }//GEN-LAST:event_eventTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BeginT;
+    private javax.swing.JLabel EndT;
+    private javax.swing.JLabel costT;
+    private javax.swing.JLabel dTe;
+    private javax.swing.JLabel descT;
+    private javax.swing.JLabel evT;
+    private javax.swing.JTable eventTable;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
 }

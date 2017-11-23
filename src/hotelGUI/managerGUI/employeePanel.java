@@ -26,7 +26,9 @@ public class employeePanel extends javax.swing.JPanel {
      * search and render result in table
      * @param text to search, employee name
      */
-    private void search(String text){}
+    private void search(String text){
+        text = "";
+    }
     
     /**
      * fill up the employee Table

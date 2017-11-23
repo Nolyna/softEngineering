@@ -199,7 +199,7 @@ public class LoginPage extends javax.swing.JFrame {
         }else{
             if(clientLogin(emailfield,passwordField)){
                 this.dispose();
-                new ClientPage().setVisible(true);
+                new ClientPage(emailfield.getText()).setVisible(true);
             }else{
                 int x = employeeLogin(emailfield,passwordField);
                 switch (x) {

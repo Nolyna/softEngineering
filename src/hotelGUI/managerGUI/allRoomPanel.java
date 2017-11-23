@@ -5,6 +5,7 @@
  */
 package hotelGUI.managerGUI;
 import dbConnexion.SQLiteJDBConnection;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,13 +13,29 @@ import dbConnexion.SQLiteJDBConnection;
  */
 public class allRoomPanel extends javax.swing.JPanel {
 
-        final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
         
     /**
      * Creates new form allRoomPanel
      */
     public allRoomPanel() {
         initComponents();
+        fillTable();
+    }
+    
+    private void fillTable(){
+     DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
+     model.addRow(new Object[]{"Room 1", "Column 2", "Column 3", 4});
+      
+     /* String[] column = new String [] {"id", "room", "location", "ltype", "bed", "price", "status", "null"};
+       Object [][] data = new Object [][] {
+                { 1, "wow", "w", "w",  new Integer(3),  new Double(3.0), "w", "w"},
+                { 2, "wreck", "wr", "wr",  new Integer(3),  new Double(3.0), "wr", "wr"},
+                { 3, "fries", "f", "f",  new Integer(3),  new Double(3.0), "f", "f"}
+            };
+        //roomTable.setValueAt("test", 2, 2);
+        DefaultTableModel tmodel = new DefaultTableModel(data,column);
+        roomTable.setModel(tmodel);*/
     }
 
     /**
@@ -30,19 +47,45 @@ public class allRoomPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        roomTable = new javax.swing.JTable();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        roomTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        roomTable.setPreferredSize(new java.awt.Dimension(300, 64));
+        jScrollPane1.setViewportView(roomTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable roomTable;
     // End of variables declaration//GEN-END:variables
+
+
 }

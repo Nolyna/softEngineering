@@ -54,9 +54,13 @@ public class TransportPanel extends javax.swing.JPanel {
         rentalButton = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
 
-        sidebarPanel.setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        sidebarPanel.setBackground(new java.awt.Color(255, 255, 255));
         sidebarPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        trainButton.setBackground(new java.awt.Color(23, 63, 86));
+        trainButton.setForeground(new java.awt.Color(255, 255, 255));
         trainButton.setText("Public transportation");
         trainButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +68,8 @@ public class TransportPanel extends javax.swing.JPanel {
             }
         });
 
+        taxiButton.setBackground(new java.awt.Color(23, 63, 86));
+        taxiButton.setForeground(new java.awt.Color(255, 255, 255));
         taxiButton.setText("Taxi");
         taxiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +77,8 @@ public class TransportPanel extends javax.swing.JPanel {
             }
         });
 
+        rentalButton.setBackground(new java.awt.Color(23, 63, 86));
+        rentalButton.setForeground(new java.awt.Color(255, 255, 255));
         rentalButton.setText("Rent a car");
         rentalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

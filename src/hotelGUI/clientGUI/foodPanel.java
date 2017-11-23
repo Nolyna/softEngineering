@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotelGUI.managerGUI;
-import dbConnexion.SQLiteJDBConnection;
+package hotelGUI.clientGUI;
 
 /**
  *
  * @author Noria Soumbou
  */
-public class occupiedRoomPanel extends javax.swing.JPanel {
-    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
-    
+public class foodPanel extends javax.swing.JPanel {
+
     /**
-     * Creates new form occupiedRoomPanel
+     * Creates new form foodPanel
      */
-    public occupiedRoomPanel() {
+    public foodPanel() {
         initComponents();
     }
 
@@ -28,8 +26,6 @@ public class occupiedRoomPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

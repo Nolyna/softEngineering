@@ -45,7 +45,9 @@ public class ClockPanel extends javax.swing.JPanel {
         fieldClockOut = new javax.swing.JTextField();
         buttonClockOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        fieldBreakEnd1 = new javax.swing.JTextField();
+        fieldBreakEnd = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         fieldClockIn.setEditable(false);
         fieldClockIn.setFocusable(false);
@@ -97,8 +99,8 @@ public class ClockPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Date and time:");
 
-        fieldBreakEnd1.setEditable(false);
-        fieldBreakEnd1.setFocusable(false);
+        fieldBreakEnd.setEditable(false);
+        fieldBreakEnd.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,7 +135,7 @@ public class ClockPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(fieldBreakStart, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                    .addComponent(fieldBreakEnd1)))
+                                    .addComponent(fieldBreakEnd)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
                                 .addComponent(buttonSBreak)
@@ -169,34 +171,34 @@ public class ClockPanel extends javax.swing.JPanel {
                     .addComponent(txtBreakE)
                     .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtClockOut)
-                    .addComponent(fieldBreakEnd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldBreakEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonClockOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClockOutMouseClicked
         // TODO add your handling code here: clock out employee
-        jLabel_Cout.setText(clocktime.currentTime());
+         fieldClockOut.setText(clocktime.currentTime());
         buttonClockOut.setEnabled(false);
     }//GEN-LAST:event_buttonClockOutMouseClicked
 
     private void buttonEBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEBreakActionPerformed
         // TODO add your handling code here:
-        jLabel_Bout.setText(clocktime.currentTime());
+         fieldBreakEnd.setText(clocktime.currentTime());
         buttonEBreak.setEnabled(false);
         buttonClockOut.setEnabled(true);
     }//GEN-LAST:event_buttonEBreakActionPerformed
 
     private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
         // TODO add your handling code here:
-        jLabel_Bin.setText(clocktime.currentTime());
+         fieldBreakStart.setText(clocktime.currentTime());
         buttonSBreak.setEnabled(false);
         buttonEBreak.setEnabled(true);
     }//GEN-LAST:event_buttonSBreakActionPerformed
 
     private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
         // TODO add your handling code here:
-        jLabel_Cin.setText(clocktime.currentTime());
+        fieldClockIn.setText(clocktime.currentTime());
         buttonClockIn.setEnabled(false);
         buttonSBreak.setEnabled(true);
     }//GEN-LAST:event_buttonClockInActionPerformed
@@ -207,7 +209,7 @@ public class ClockPanel extends javax.swing.JPanel {
     private javax.swing.JButton buttonClockOut;
     private javax.swing.JButton buttonEBreak;
     private javax.swing.JButton buttonSBreak;
-    private javax.swing.JTextField fieldBreakEnd1;
+    private javax.swing.JTextField fieldBreakEnd;
     private javax.swing.JTextField fieldBreakStart;
     private javax.swing.JTextField fieldClockIn;
     private javax.swing.JTextField fieldClockOut;

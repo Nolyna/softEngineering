@@ -19,7 +19,7 @@ class ManagerPage extends javax.swing.JFrame {
     final EventPanel eventView;
     final AmenityPanel amenityView;
     final AddEmployeePanel addEmployeeView;
-    final employeePanel employeeView;
+   // final employeePanel employeeView;
     /**
      * Creates new form ManagerPage2
      */
@@ -30,8 +30,8 @@ class ManagerPage extends javax.swing.JFrame {
         hoursView = new HoursPanel();
         eventView = new EventPanel();
         amenityView = new AmenityPanel();
-        addEmployeeView = AddEmployeePanel();
-        employeeView = employeePanel();
+        addEmployeeView = new AddEmployeePanel();
+        //employeeView = new employeePanel();
         dynamicPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
@@ -43,9 +43,9 @@ class ManagerPage extends javax.swing.JFrame {
         dynamicPanel.add(addEmployeeView,c);
         addEmployeeView.setVisible(false);
         
-        c.gridx = 0; c.gridy = 0;        
+       /* c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(employeeView,c);
-        employeeView.setVisible(false);
+        employeeView.setVisible(false);*/
         
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(amenityView,c);
@@ -232,7 +232,7 @@ class ManagerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
-        employeeView.setVisible(false);
+        //employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_amenityMenuActionPerformed
 
@@ -252,19 +252,22 @@ class ManagerPage extends javax.swing.JFrame {
         hoursView.setVisible(false);
         eventView.setVisible(false);
         amenityView.setVisible(false);
-        employeeView.setVisible(false);
+        //employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
+        clockView.revalidate();
     }//GEN-LAST:event_clockMenuActionPerformed
 
     private void roomMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomMenuActionPerformed
         // TODO add your handling code here:
+        dynamicPanel.setPreferredSize(roomView.getSize());
         roomView.setVisible(true);
         clockView.setVisible(false);
         hoursView.setVisible(false);
         eventView.setVisible(false);
         amenityView.setVisible(false);
-        employeeView.setVisible(false);
+        //employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
+        this.validate();
     }//GEN-LAST:event_roomMenuActionPerformed
 
     private void hoursMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursMenuActionPerformed
@@ -275,7 +278,7 @@ class ManagerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         eventView.setVisible(false);
         amenityView.setVisible(false);
-        employeeView.setVisible(false);
+        //employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
 
@@ -293,7 +296,7 @@ class ManagerPage extends javax.swing.JFrame {
         roomView.setVisible(false);
         clockView.setVisible(false);
         amenityView.setVisible(false);
-        employeeView.setVisible(false);
+        //employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_eventMenuActionPerformed
 
@@ -305,11 +308,11 @@ class ManagerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
-        employeeView.setVisible(false);
+        //employeeView.setVisible(false);
     }//GEN-LAST:event_addEmployeeMenuActionPerformed
 
     private void viewEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeMenuActionPerformed
-        employeeView.setVisible(true);
+        //employeeView.setVisible(true);
         amenityView.setVisible(false);
         eventView.setVisible(false);
         hoursView.setVisible(false);
@@ -335,79 +338,10 @@ class ManagerPage extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

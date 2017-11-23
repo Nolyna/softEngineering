@@ -5,10 +5,12 @@
  */
 package dbConnexion;
 
+import HSMcontrollers.amenitiesController;
 import HSMcontrollers.clientController;
 import HSMcontrollers.departmentController;
 import HSMcontrollers.employeeController;
 import HSMcontrollers.roomController;
+import HSMmodel.RoomType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -52,14 +54,14 @@ public class hsmDatabase {
         String sql2 = "CREATE TABLE IF NOT EXISTS amenities_reserve ( "
             +"idAmenity int(11) NOT NULL,"
             +"idAReserve INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"date date NOT NULL,"
-            +"hoursBegin time NOT NULL,"
-            +"hoursEnd time NOT NULL,"
-            +"amountPaid varchar(10) NOT NULL,"
-            +"PayStatus text NOT NULL,"
+            +"date text NOT NULL,"
+            +"hoursBegin text NOT NULL,"
+            +"hoursEnd text NOT NULL,"
+            +"amountPaid varchar(10)  DEFAULT NULL,"
+            +"PayStatus text  DEFAULT NULL,"
             +"reserveStatus text NOT NULL,"
             +"idClient int(11) NOT NULL,"
-            +"TotalPrice varchar(10) NOT NULL,"
+            +"TotalPrice int(11)  DEFAULT NULL,"
             +"nbrGuest int(11) NOT NULL,"
            /* +"KEY idAmenity (idAmenity),"
             +"KEY idClient (idClient),"
@@ -155,7 +157,8 @@ public class hsmDatabase {
             +"idEmployee INTEGER PRIMARY KEY AUTOINCREMENT,"
             +"firstName varchar(15) NOT NULL,"
             +"lastName varchar(15) NOT NULL,"
-            +"bdate date DEFAULT NULL NULL,"
+            +"bdate text DEFAULT NULL NULL,"
+            //+"bdate date DEFAULT NULL NULL,"
             +"gender varchar(8) DEFAULT NULL NULL,"
             +"phone varchar(15) DEFAULT NULL NULL,"
             +"ssn varchar(15) DEFAULT NULL NULL,"
@@ -171,12 +174,14 @@ public class hsmDatabase {
         
                 // SQL statement for creating table event
         String sql11 = "CREATE TABLE IF NOT EXISTS event ("
-            +"idEvent int(11) NOT NULL DEFAULT '0',"
+            +"idEvent INTEGER PRIMARY KEY AUTOINCREMENT,"
             +"title varchar(50) NOT NULL,"
             +"description text NOT NULL,"
             +"date date NOT NULL,"
-            +"timeBegin time NOT NULL,"
-            +"timeEnd time NOT NULL,"
+            +"timeBegin text NOT NULL,"
+            //+"timeBegin time NOT NULL,"
+            +"timeEnd text NOT NULL,"
+            //+"timeEnd time NOT NULL,"
             +"fee int(11) NOT NULL"
             //+"KEY Title (Title,date)"
             +") ; ";
@@ -221,7 +226,8 @@ public class hsmDatabase {
             +"idEmployee int(11) NOT NULL,"
             +"checkin time DEFAULT NULL,"
             +"checkout time DEFAULT NULL,"
-            +"dates date NOT NULL,"
+            +"dates text NOT NULL,"
+            /*+"dates date NOT NULL,"
             /*+"KEY idEmployee (idEmployee),"
             +"KEY date (dates),"*/
             +"CONSTRAINT in_out_ibfk_1 FOREIGN KEY (idEmployee) REFERENCES employee (idEmployee) ON DELETE CASCADE ON UPDATE CASCADE "
@@ -231,15 +237,14 @@ public class hsmDatabase {
                 // SQL statement for creating a new table  maintenance	
         String sql16 =" CREATE TABLE IF NOT EXISTS maintenance ("
             +"idMaintenance INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"type int(11) NOT NULL,"
-            +"Description text,"
-            +"Status varchar(15) DEFAULT NULL,"
+            +"type text NOT NULL,"
+            +"description text,"
+            +"status varchar(15) DEFAULT NULL,"
             +"dateRequest timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, "
             +"dateSolve timestamp NULL DEFAULT NULL,"
             +"idClient int(11) NOT NULL,"
             +"idRoom int(11) NOT NULL,"
-            /*+"KEY type (type),"
-            +"KEY idClient (idClient,idRoom),"
+            /*+"KEY idClient (idClient,idRoom),"
             +"KEY Status (Status),"
             +"KEY idRoom (idRoom),"*/
             +"CONSTRAINT maintenance_ibfk_1 FOREIGN KEY (idClient) REFERENCES client (idClient) ON DELETE CASCADE ON UPDATE CASCADE, "
@@ -317,7 +322,11 @@ public class hsmDatabase {
         String sql23 = "CREATE TABLE  IF NOT EXISTS rent_auto ("
             +"idAuto int(11) NOT NULL,"
             +"idClient int(11) NOT NULL,"
-            +"dateBegin date NOT NULL,"
+            +"dateBegin text NOT NULL,"
+            +"dateEnd text NOT NULL,"
+            +"timeStart text DEFAULT NULL,"
+            +"timeEnd text DEFAULT NULL,"
+            /* +"dateBegin date NOT NULL,"
             +"dateEnd date NOT NULL,"
             +"timeStart time DEFAULT NULL,"
             +"timeEnd time DEFAULT NULL,"
@@ -368,10 +377,13 @@ public class hsmDatabase {
             +" idTour INTEGER PRIMARY KEY AUTOINCREMENT,"
             +" title varchar(50) NOT NULL,"
             +" description text NOT NULL,"
-            +" date date NOT NULL,"
-            +" timeEnd time NOT NULL,"
-            +" timeBegin time NOT NULL,"
+            +" date text NOT NULL,"
+            +" timeEnd text NOT NULL,"
+            +" timeBegin text NOT NULL,"
             +" fee int(11) NOT NULL"
+            /*+" date date NOT NULL,"
+            +" timeEnd time NOT NULL,"
+            +" timeBegin time NOT NULL,"*/
             //+" KEY idTour (idTour)"
             +") ;";
 
@@ -390,9 +402,12 @@ public class hsmDatabase {
                 // SQL statement for creating a new table  transportation
         String sql29 =" CREATE TABLE IF NOT EXISTS transportation ("
             +" idTrans INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +" date date NOT NULL,"
+            +" date text NOT NULL,"
+            +" timeLeave text NOT NULL,"
+            +" timeBack text NOT NULL,"
+            /*+" date date NOT NULL,"
             +" timeLeave time NOT NULL,"
-            +" timeBack time NOT NULL,"
+            +" timeBack time NOT NULL,"*/
             +" nbrGuest int(11) NOT NULL,"
             +" Status int(11) NOT NULL,"
             +" idClient int(11) NOT NULL,"
@@ -402,10 +417,19 @@ public class hsmDatabase {
             +" CONSTRAINT transportation_ibfk_1 FOREIGN KEY (idClient) REFERENCES client (idClient) ON DELETE CASCADE ON UPDATE CASCADE, "
             +" CONSTRAINT transportation_ibfk_2 FOREIGN KEY (idRoom) REFERENCES rooms (idRoom) ON DELETE CASCADE ON UPDATE CASCADE "
             +") ; ";
-
+            
+        // SQL statement for creating a new table  wake up
+        String sql30 = "CREATE TABLE IF NOT EXISTS wake ("
+            +" idWake INTEGER PRIMARY KEY AUTOINCREMENT,"
+            +" idRoom text NOT NULL,"
+            +" date date NOT NULL,"
+            +" time text NOT NULL,"
+            +" client text NOT NULL,"
+            +" more text DEFAULT NULL"
+            +") ; ";
        
-                // SQL statement for creating a new table  workfor
-        String sql30 = "CREATE TABLE IF NOT EXISTS workfor ("
+               // SQL statement for creating a new table  workfor
+        String sql31 = "CREATE TABLE IF NOT EXISTS workfor ("
             +" idEmployee int(11) NOT NULL,"
             +" idDepartment int(11) NOT NULL,"
             /*+" KEY idEmployee (idEmployee),"
@@ -420,7 +444,7 @@ public class hsmDatabase {
             test(sql13);test(sql14);test(sql15);test(sql16);
             /*test(sql17);*/test(sql18);test(sql19);test(sql20);
             test(sql21);test(sql22);test(sql23);
-            test(sql26);test(sql28);
+            test(sql26);test(sql28);test(sql31);
             test(sql29);test(sql30);test(sql27);
         
         
@@ -435,9 +459,11 @@ public class hsmDatabase {
         }
     }
     
-    public void initContent(){        
+    
+    public void initContent(){       
+        amenitiesController initamenity =  new amenitiesController();
         roomController initroom =  new roomController();
-        roomController initroomtype =  new roomController();
+        RoomType initroomtype =  new RoomType();
         departmentController initdepartment = new departmentController();
         employeeController initemployee =  new employeeController();
         clientController initclient =  new clientController();
@@ -445,6 +471,10 @@ public class hsmDatabase {
         initemployee.insertEmployee("John", "Doe", "test@gmail.com", "admintest");
         initclient.newClient("client", "testeur", "user@gmail.com", "clienttest");
         initdepartment.insertDepartment("Administration");
+        initdepartment.insertDepartment("Maintenance");
+        initdepartment.insertDepartment("Kitchen");
+        initdepartment.insertDepartment("Delivery");
+        initdepartment.insertDepartment("Reception");
         initemployee.madeManager(1, 1);
         
         initroomtype.roomNewType("King Suite",150,1);
@@ -458,6 +488,11 @@ public class hsmDatabase {
         initroom.newroom("Queen two beds room", "3nd floor", 4);
         initroom.newroom("Queen one bed room", "1nd floor", 3);
         initroom.newroom("Queen one room", "1nd floor", 3);
+        
+        initamenity.insert("Balroom", " Dance room for bal, party, show", "Mon-fri: 6:00pm to 12:00am, Sat-Sun: 6:00pm to 3:00am", 1500, 500);
+        initamenity.insert("Pool", "Swim !! Swim !!","Mon-Sun: 9:00am to 6:00pm", 150, 200);
+        initamenity.insert("Game room", " Come and have Fun!!!", "Mon-fri: 9:00am to 8:00am, Sat-Sun: 9:00am to 12:00am", 200, 200);
+        initamenity.insert("Conference room", " Need to roganize an event", "Mon-fri: 6:00pm to 12:00am", 750, 500);
     }
     
 }

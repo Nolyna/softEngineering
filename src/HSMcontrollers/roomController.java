@@ -1,7 +1,8 @@
 package HSMcontrollers;
 
+import HSMmodel.room;
+import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -10,8 +11,70 @@ import java.sql.SQLException;
  * @author Noria Soumbou
  */
 public class roomController {
-    final private static String URL = "jdbc:sqlite:hotelmanagement.db";
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    private room model;
+
+    public roomController( room model){
+        this.model = model;
+    }
+
+    public roomController() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     
+     
     
+    /**
+     * Add a new room in the database using room class
+     */
+    public void newroom(){
+        String sql = "INSERT INTO rooms(description,location,idRoomType) VALUES(?,?,?)";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, this.model.getDescription());
+            pstmt.setString(2, this.model.getLocation());
+            pstmt.setInt(3, this.model.getTypeID());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /**
+     * update Room details in database
+     */
+    public void updateRoom(){
+         String sql = "UPDATE rooms "
+                 + "SET description=? ,location=?, idRoomType=?"
+                 + "WHERE idRoom =?";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, this.model.getDescription());
+            pstmt.setString(2, this.model.getLocation());
+            pstmt.setInt(3, this.model.getTypeID());
+            pstmt.setInt(4, this.model.getroomID());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /**
+     * Delete a room from database using 
+     * NB: room class need to be defined
+     */    
+    public void deleteRoom(){
+         String sql = "DELETE FROM rooms  WHERE idRoom = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, this.model.getroomID());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /***********************************************************************************************************************/
     /**
      * Add a new room in the database
      * @param desc description of the room
@@ -20,7 +83,7 @@ public class roomController {
      */
     public void newroom(String desc, String locate, int roomType){
          String sql = "INSERT INTO rooms(description,location,idRoomType) VALUES(?,?,?)";
-        try (Connection conn = DriverManager.getConnection(URL);
+        try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, desc);
             pstmt.setString(2, locate);
@@ -42,7 +105,7 @@ public class roomController {
          String sql = "UPDATE rooms "
                  + "SET description=? ,location=?, idRoomType=?"
                  + "WHERE idRoom =?";
-        try (Connection conn = DriverManager.getConnection(URL);
+        try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, desc);
             pstmt.setString(2, locate);
@@ -60,7 +123,7 @@ public class roomController {
      */    
     public void deleteRoom( int id){
          String sql = "DELETE FROM rooms  WHERE idRoom = ?"; 
-        try (Connection conn = DriverManager.getConnection(URL);
+        try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -69,44 +132,5 @@ public class roomController {
         }
     }
         
-    public void roomNewType(String a, int b, int c){
-         String sql = "INSERT INTO room_type(nameType,pricePerNight,beds) VALUES(?,?,?)";
-        try (Connection conn = DriverManager.getConnection(URL);
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, a);
-            pstmt.setInt(2, b);
-            pstmt.setInt(3, c);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     
-    public void roomUpdateType(int id, String name, int bed, int price){
-         String sql = "UPDATE room_type"
-                 + "SET nameType = ? , beds = ?, pricePerNight = ?"
-                 + "WHERE idRoomType = ?";
-        try (Connection conn = DriverManager.getConnection(URL);
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, name);
-            pstmt.setInt(2, bed);
-            pstmt.setInt(3, price);
-            pstmt.setInt(4, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public void roomDeleteType(int id){
-         String sql = "DELETE FROM room_type"
-                 + "WHERE idRoomType = ?";
-        try (Connection conn = DriverManager.getConnection(URL);
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

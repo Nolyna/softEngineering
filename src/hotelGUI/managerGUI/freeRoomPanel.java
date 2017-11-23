@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Panel show all tables who has not be reserved
@@ -28,23 +29,24 @@ public class freeRoomPanel extends javax.swing.JPanel {
      * Fill the table of free rooms
      */
     private void fillTable(){
-        
-        String sql = "SELECT * FROM room ";
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        String sql = "SELECT * FROM rooms ";
         try (Connection conn = db.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()) {
                     if(isFree(rs.getInt(1))){
-                        //TODO put in table
+                        model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), 4});
                     }
-                    // System.out.println("2:"+rs.getInt(1));
                 }
                 rs.close();
             }catch(SQLException e){ System.out.println("Result: "+e.getMessage()); }            
             pstmt.close();
-            conn.close();
+           // conn.close();
         } catch (SQLException e) {
             System.out.println("select "+e.getMessage());
-        }      
+        }  
+        //hide id column - retrieve id table.getModel().getValueAt(table.getSelectedRow(),4);
+        jTable1.removeColumn(jTable1.getColumnModel().getColumn(0));
     
     }
     
@@ -65,7 +67,7 @@ public class freeRoomPanel extends javax.swing.JPanel {
                 rs.close();
             }catch(SQLException e){ System.out.println("Result: "+e.getMessage()); }            
             pstmt.close();
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             System.out.println("select "+e.getMessage());
         }   
@@ -90,10 +92,7 @@ public class freeRoomPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"

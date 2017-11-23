@@ -2,10 +2,6 @@ package HSMcontrollers;
 
 import HSMmodel.employee;
 import dbConnexion.SQLiteJDBConnection;
-import hotelGUI.cleaningServicesPage;
-import hotelGUI.maintenancePage;
-import hotelGUI.ManagerPage;
-import hotelGUI.repPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,7 +26,7 @@ public class employeeController {
     }    
 
     public employeeController() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     /*
@@ -140,7 +136,7 @@ public class employeeController {
         return today;
     }
     
-   public boolean logIn(String username, String password){
+   /*public boolean logIn(String username, String password){
        boolean found;
         if ((username.equals("manager")||username.equals("Manager"))&&(password.equals("Password")||password.equals("password"))){
             found = true;
@@ -163,6 +159,6 @@ public class employeeController {
             found = false;
         }
     return found;
-    }
+    }*/
     
 }

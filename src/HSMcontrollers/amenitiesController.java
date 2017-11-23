@@ -28,9 +28,25 @@ public class amenitiesController {
                 +") ;";
     
     */
+    public amenitiesController(){}
     
-    public void add( Amenities model){
-        String sql = "INSERT INTO amnities(title,desc_amenity,hoursOperation,reserveFee,maxOccupancy) VALUES(?,?,?,?,?)";
+    public void insert( String title, String description, String hours, int fee, int max){
+        String sql = "INSERT INTO amenities(title,desc_amenity,hoursOperation,reserveFee,maxOccupancy) VALUES(?,?,?,?,?)";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title );
+            pstmt.setString(2, description);
+            pstmt.setString(3, hours);
+            pstmt.setInt(4, fee);
+            pstmt.setInt(5, max);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+    }
+    
+    /*public void add( Amenities model){
+        String sql = "SELECT * FROM amenities(title,desc_amenity,hoursOperation,reserveFee,maxOccupancy) VALUES(?,?,?,?,?)";
         
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -42,7 +58,6 @@ public class amenitiesController {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-        
-    }
+        }        
+    }*/
 }

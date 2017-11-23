@@ -5,13 +5,21 @@
  */
 package HSMmodel;
 
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class Amenities {
+    
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
     private String name, description, hours;
-    private int fee,occupancy;
+    private int id,fee,occupancy;
     
     public Amenities(){}
     
@@ -21,6 +29,14 @@ public class Amenities {
      */
     public void setName(String n){
         this.name = n;
+    }
+    
+    /**
+     *  set the ID of the amenity
+     * @param id 
+     */
+    public void setId(int id){
+        this.id = id;
     }
     
     /**
@@ -53,6 +69,13 @@ public class Amenities {
      */
     public void setMaxOccupancy(int max){
         this.occupancy = max;
+    }
+    
+    /**
+     *  set the ID of the amenity
+     */
+    public int getId(){
+        return this.id;
     }
     
     /**
@@ -93,6 +116,73 @@ public class Amenities {
      */
     public int getMaxOccupancy(){
         return this.occupancy;
+    }
+    
+    public void getAmenityByName(String name){
+        String sql = "Select * FROM amenities where title LIKE ? ";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   this.id = rs.getInt("idAmenity");
+                   this.description = rs.getString("desc_amenity");
+                   this.fee = rs.getInt("reserveFee");
+                   this.hours= rs.getString("hoursOperation");
+                   this.name= rs.getString("title");
+                   this.occupancy = rs.getInt("maxOccupancy");
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("getClientByEmail: "+e.getMessage()); }   
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
+    public void getAmenityById(int id){
+        String sql = "Select * FROM amenities where idAmenity = ? ";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   this.id = rs.getInt("idAmenity");
+                   this.description = rs.getString("desc_amenity");
+                   this.fee = rs.getInt("reserveFee");
+                   this.hours= rs.getString("hoursOperation");
+                   this.name= rs.getString("title");
+                   this.occupancy = rs.getInt("maxOccupancy");
+                   System.out.println("getAmeniybyid: "+ rs.getString("title")); // remove later
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("getAmeniybyid: "+e.getMessage()); }   
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
+    
+    public void reserve(int idclient, String date, String begin, String end, int amount, String Pstatus, String Rstatus, int price, int guest, int idamenity){
+        String sql = "INSERT INTO amenities_reserve(date,hoursBegin,hoursEnd,amountPaid,PayStatus,reserveStatus,idClient,TotalPrice,nbrGuest,idAmenity) VALUES(?,?,?,?,?,?,?,?,?,?)";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) { 
+            pstmt.setString(1, date);
+            pstmt.setString(2, begin);
+            pstmt.setString(3, end);
+            pstmt.setInt(4, amount);
+            pstmt.setString(5, Pstatus);
+            pstmt.setString(6, Rstatus);
+             pstmt.setInt(7, idclient);
+            pstmt.setInt(8, price);
+            pstmt.setInt(9, guest);
+            pstmt.setInt(10, idamenity);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package hotelGUI.managerGUI;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Noria Soumbou
@@ -19,7 +21,8 @@ public class EventPanel extends javax.swing.JPanel {
     }
     
     public void loadEvent(){
-        
+        DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
+        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});
     }
 
     /**
@@ -33,7 +36,7 @@ public class EventPanel extends javax.swing.JPanel {
 
         contentPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        eventTable = new javax.swing.JTable();
         menuPanel = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
@@ -58,7 +61,7 @@ public class EventPanel extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextPane6 = new javax.swing.JTextPane();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        eventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,10 +69,18 @@ public class EventPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "name", "date", "Title 4"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(eventTable);
 
         addButton.setText("Add event");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +265,7 @@ public class EventPanel extends javax.swing.JPanel {
     private javax.swing.JButton addButton;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JTable eventTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -268,7 +280,6 @@ public class EventPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
