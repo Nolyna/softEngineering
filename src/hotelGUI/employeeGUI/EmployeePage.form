@@ -334,28 +334,32 @@
                           <Component id="fieldTime" min="-2" pref="201" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockIn" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonClockIn" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockinField" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakS" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="onbreakField" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="181" max="32767" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonEBreak" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="187" max="32767" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonClockOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -374,12 +378,19 @@
                               <Component id="txtBreakS" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buttonClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="onbreakField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockinField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonSBreak" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonEBreak" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonClockOut" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonClockIn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="438" max="32767" attributes="0"/>
                       </Group>
@@ -419,16 +430,25 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Start Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSBreakActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonEBreak">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="End Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEBreakActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockOut">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockOutActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="txtTime">
                   <Properties>
@@ -439,6 +459,50 @@
                   <Properties>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="onbreakField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onbreakFieldActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockinField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockinFieldActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="offbreakField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="offbreakFieldActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockoutField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockoutFieldActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -534,28 +598,39 @@
                           <Component id="fieldTime1" min="-2" pref="201" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtClockIn1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonClockIn1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtClockIn1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonClockIn1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtBreakS1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonSBreak1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="clockinField1" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="onbreakField1" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtBreakS1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonSBreak1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="181" max="32767" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonEBreak1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField1" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="187" max="32767" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonClockOut1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField1" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -574,7 +649,14 @@
                               <Component id="txtBreakS1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="onbreakField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockinField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -611,21 +693,33 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-In"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockIn1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonSBreak1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Start Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSBreak1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonEBreak1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="End Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEBreak1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockOut1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockOut1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="txtTime1">
                   <Properties>
@@ -636,6 +730,50 @@
                   <Properties>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="onbreakField1">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onbreakField1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockinField1">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockinField1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="offbreakField1">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="offbreakField1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockoutField1">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockoutField1ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -922,28 +1060,39 @@
                           <Component id="fieldTime2" min="-2" pref="201" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtClockIn2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonClockIn2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtClockIn2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonClockIn2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtBreakS2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonSBreak2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="clockinField2" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="onbreakField2" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtBreakS2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonSBreak2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="181" max="32767" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonEBreak2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField2" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="187" max="32767" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonClockOut2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField2" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -962,7 +1111,14 @@
                               <Component id="txtBreakS2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="onbreakField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockinField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -999,21 +1155,33 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-In"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockIn2ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonSBreak2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Start Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSBreak2ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonEBreak2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="End Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEBreak2ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockOut2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockOut2ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="txtTime2">
                   <Properties>
@@ -1024,6 +1192,50 @@
                   <Properties>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockinField2">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockinField2ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="onbreakField2">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onbreakField2ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="offbreakField2">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="offbreakField2ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockoutField2">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockoutField2ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1301,28 +1513,39 @@
                           <Component id="fieldTime3" min="-2" pref="201" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtClockIn3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonClockIn3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtClockIn3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonClockIn3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtBreakS3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonSBreak3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="clockinField3" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="onbreakField3" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtBreakS3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonSBreak3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="196" max="32767" attributes="0"/>
+                          <EmptySpace pref="151" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtBreakE3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonEBreak3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField3" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="199" max="32767" attributes="0"/>
+                          <EmptySpace pref="148" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtClockOut3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonClockOut3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField3" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1341,7 +1564,14 @@
                               <Component id="txtBreakS3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtClockIn3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="onbreakField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockinField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="offbreakField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clockoutField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonClockIn3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buttonSBreak3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1378,21 +1608,33 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-In"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockIn3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonSBreak3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Start Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSBreak3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonEBreak3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="End Break"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEBreak3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonClockOut3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clock-Out"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonClockOut3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="txtTime3">
                   <Properties>
@@ -1403,6 +1645,50 @@
                   <Properties>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockinField3">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockinField3ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="onbreakField3">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onbreakField3ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="offbreakField3">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="offbreakField3ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clockoutField3">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clockoutField3ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
