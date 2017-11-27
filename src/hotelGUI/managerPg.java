@@ -99,7 +99,17 @@ public class managerPg extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
+        txtSearch4 = new javax.swing.JLabel();
+        txtFirstName4 = new javax.swing.JLabel();
+        txtLastName4 = new javax.swing.JLabel();
+        txtAmenity = new javax.swing.JLabel();
+        checkboxPaid3 = new javax.swing.JCheckBox();
+        fieldAmenityType = new javax.swing.JTextField();
+        fieldFirstName4 = new javax.swing.JTextField();
+        fieldLastName4 = new javax.swing.JTextField();
+        buttonSearch4 = new javax.swing.JButton();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tableAmenities = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -559,44 +569,109 @@ public class managerPg extends javax.swing.JFrame {
 
         tabReceptionist.addTab("Manage Employees", jPanel10);
 
+        txtSearch4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        txtSearch4.setText("Search:");
+
+        txtFirstName4.setText("First Name");
+
+        txtLastName4.setText("Last Name");
+
+        txtAmenity.setText("Amenity Type:");
+
+        checkboxPaid3.setText("Paid");
+
+        buttonSearch4.setText("Search");
+
+        tableAmenities.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Amenity Reserved", "First Name", "Last Name", "Date Booked", "Hours Needed", "Paid Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane16.setViewportView(tableAmenities);
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1317, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane16)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(txtSearch4)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonSearch4)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldAmenityType, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAmenity))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldFirstName4, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFirstName4))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtLastName4)
+                                    .addGroup(jPanel14Layout.createSequentialGroup()
+                                        .addComponent(fieldLastName4, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(checkboxPaid3)))))
+                        .addGap(0, 572, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch4)
+                    .addComponent(txtFirstName4)
+                    .addComponent(txtAmenity)
+                    .addComponent(txtLastName4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldAmenityType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldFirstName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldLastName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkboxPaid3))
+                .addGap(18, 18, 18)
+                .addComponent(buttonSearch4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tabReceptionist.addTab("Amenities", jPanel14);
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(610, Short.MAX_VALUE)
+                .addContainerGap(629, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(508, 508, 508)
                 .addComponent(buttonLogOutManager)
                 .addGap(27, 27, 27))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(1071, 1071, 1071)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -610,9 +685,7 @@ public class managerPg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonLogOutManager)
                     .addComponent(jLabel1))
-                .addGap(136, 136, 136)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(478, Short.MAX_VALUE))
+                .addContainerGap(691, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(45, 45, 45)
@@ -674,7 +747,10 @@ public class managerPg extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogOutManager;
     private javax.swing.JButton buttonSBreak;
     private javax.swing.JButton buttonSearch3;
+    private javax.swing.JButton buttonSearch4;
+    private javax.swing.JCheckBox checkboxPaid3;
     private javax.swing.JComboBox comboboxDuty;
+    private javax.swing.JTextField fieldAmenityType;
     private javax.swing.JTextField fieldBreakE;
     private javax.swing.JTextField fieldBreakS;
     private javax.swing.JTextField fieldClockIn;
@@ -683,7 +759,9 @@ public class managerPg extends javax.swing.JFrame {
     private javax.swing.JTextField fieldDay1;
     private javax.swing.JTextField fieldEmployeeID;
     private javax.swing.JTextField fieldFirstName3;
+    private javax.swing.JTextField fieldFirstName4;
     private javax.swing.JTextField fieldLastName3;
+    private javax.swing.JTextField fieldLastName4;
     private javax.swing.JTextField fieldMonth;
     private javax.swing.JTextField fieldMonth1;
     private javax.swing.JTextField fieldTime;
@@ -704,16 +782,18 @@ public class managerPg extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTabbedPane tabReceptionist;
+    private javax.swing.JTable tableAmenities;
     private javax.swing.JTable tableHoursWorked;
     private javax.swing.JTable tableManageEmployees;
+    private javax.swing.JLabel txtAmenity;
     private javax.swing.JLabel txtBreakE;
     private javax.swing.JLabel txtBreakS;
     private javax.swing.JLabel txtClockIn;
@@ -725,8 +805,11 @@ public class managerPg extends javax.swing.JFrame {
     private javax.swing.JLabel txtDuty;
     private javax.swing.JLabel txtEmployeeID;
     private javax.swing.JLabel txtFirstName3;
+    private javax.swing.JLabel txtFirstName4;
     private javax.swing.JLabel txtLastName3;
+    private javax.swing.JLabel txtLastName4;
     private javax.swing.JLabel txtSearch;
+    private javax.swing.JLabel txtSearch4;
     private javax.swing.JLabel txtTime;
     private javax.swing.JLabel txtTitleofEvent;
     private javax.swing.JLabel txtTitleofTour;

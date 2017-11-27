@@ -7,6 +7,15 @@ package HSMmodel;
 public class Employee extends person{   
     String bdate;
     String gender;
+    int idNum;
+
+    public int getIdNum() {
+        return idNum;
+    }
+
+    public void setIdNum(int idNum) {
+        this.idNum = idNum;
+    }
     
     /**
      * Constructor for employee

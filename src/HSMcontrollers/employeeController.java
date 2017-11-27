@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -91,16 +92,14 @@ public class employeeController {
     }
     
     public String todayDate (){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar date = Calendar.getInstance();
-        String today = (dateFormat.format(date));
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        String today = (dateFormat.format(new Date()));
         return today;
     }
     
     public String currentTime (){
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        Calendar time = Calendar.getInstance();
-        String today = (dateFormat.format(time));
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
+        String today = (dateFormat.format(new Date()));
         return today;
     }
 }

@@ -10,9 +10,12 @@ import hotelGUI.welcomePage;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Date;
-import HSMcontrollers.*;
+import HSMmodel.Employee;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.Timer;
 
 /**
  *
@@ -24,9 +27,20 @@ public class EmployeePage extends javax.swing.JFrame {
     final ClockPanel clockView;
     final ProfilePanel profileView;
     final HoursPanel hoursView;
-    private employeeController ctrla;
+    final employeeController ctrla;
+    final Employee user = new Employee();
 
-    private DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
+    Timer timer = new Timer(100, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fieldTime.setText(dateFormat.format(new Date()));
+            fieldTime1.setText(dateFormat.format(new Date()));
+            fieldTime2.setText(dateFormat.format(new Date()));
+            fieldTime3.setText(dateFormat.format(new Date()));
+        }
+    });
+
+    final DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
 
     /**
      * Creates new form EmployeeGUI
@@ -230,20 +244,18 @@ public class EmployeePage extends javax.swing.JFrame {
         jPanel24 = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         tableHotelEvents = new javax.swing.JTable();
-        jPanel25 = new javax.swing.JPanel();
-        jPanel26 = new javax.swing.JPanel();
-        txtSearch3 = new javax.swing.JLabel();
-        txtFirstName3 = new javax.swing.JLabel();
-        txtLastName3 = new javax.swing.JLabel();
-        txtConRoomNumber = new javax.swing.JLabel();
-        checkboxPaid2 = new javax.swing.JCheckBox();
-        fieldConRoomNumber = new javax.swing.JTextField();
-        fieldFirstName3 = new javax.swing.JTextField();
-        fieldLastName3 = new javax.swing.JTextField();
-        buttonSearch3 = new javax.swing.JButton();
-        jScrollPane15 = new javax.swing.JScrollPane();
-        tableConRooms = new javax.swing.JTable();
         jPanel27 = new javax.swing.JPanel();
+        txtSearch4 = new javax.swing.JLabel();
+        txtFirstName4 = new javax.swing.JLabel();
+        txtLastName4 = new javax.swing.JLabel();
+        txtAmenity = new javax.swing.JLabel();
+        checkboxPaid3 = new javax.swing.JCheckBox();
+        fieldAmenityType = new javax.swing.JTextField();
+        fieldFirstName4 = new javax.swing.JTextField();
+        fieldLastName4 = new javax.swing.JTextField();
+        buttonSearch4 = new javax.swing.JButton();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tableAmenities = new javax.swing.JTable();
         buttonLogOut3 = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -471,39 +483,25 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtTime.setText("Time:");
 
+        fieldTime.setEditable(false);
         fieldTime.setFocusable(false);
+        fieldTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldTimeActionPerformed(evt);
+            }
+        });
 
         onbreakField.setEditable(false);
         onbreakField.setForeground(new java.awt.Color(51, 204, 0));
-        onbreakField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onbreakFieldActionPerformed(evt);
-            }
-        });
 
         clockinField.setEditable(false);
         clockinField.setForeground(new java.awt.Color(51, 204, 0));
-        clockinField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockinFieldActionPerformed(evt);
-            }
-        });
 
         offbreakField.setEditable(false);
         offbreakField.setForeground(new java.awt.Color(255, 0, 0));
-        offbreakField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                offbreakFieldActionPerformed(evt);
-            }
-        });
 
         clockoutField.setEditable(false);
         clockoutField.setForeground(new java.awt.Color(255, 0, 0));
-        clockoutField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockoutFieldActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -666,39 +664,20 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtTime1.setText("Time:");
 
+        fieldTime1.setEditable(false);
         fieldTime1.setFocusable(false);
 
         onbreakField1.setEditable(false);
         onbreakField1.setForeground(new java.awt.Color(51, 204, 0));
-        onbreakField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onbreakField1ActionPerformed(evt);
-            }
-        });
 
         clockinField1.setEditable(false);
         clockinField1.setForeground(new java.awt.Color(51, 204, 0));
-        clockinField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockinField1ActionPerformed(evt);
-            }
-        });
 
         offbreakField1.setEditable(false);
         offbreakField1.setForeground(new java.awt.Color(255, 0, 0));
-        offbreakField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                offbreakField1ActionPerformed(evt);
-            }
-        });
 
         clockoutField1.setEditable(false);
         clockoutField1.setForeground(new java.awt.Color(255, 0, 0));
-        clockoutField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockoutField1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -973,39 +952,20 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtTime2.setText("Time:");
 
+        fieldTime2.setEditable(false);
         fieldTime2.setFocusable(false);
 
         clockinField2.setEditable(false);
         clockinField2.setForeground(new java.awt.Color(51, 204, 0));
-        clockinField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockinField2ActionPerformed(evt);
-            }
-        });
 
         onbreakField2.setEditable(false);
         onbreakField2.setForeground(new java.awt.Color(51, 204, 0));
-        onbreakField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onbreakField2ActionPerformed(evt);
-            }
-        });
 
         offbreakField2.setEditable(false);
         offbreakField2.setForeground(new java.awt.Color(255, 0, 0));
-        offbreakField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                offbreakField2ActionPerformed(evt);
-            }
-        });
 
         clockoutField2.setEditable(false);
         clockoutField2.setForeground(new java.awt.Color(255, 0, 0));
-        clockoutField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockoutField2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1281,39 +1241,20 @@ public class EmployeePage extends javax.swing.JFrame {
 
         txtTime3.setText("Time:");
 
+        fieldTime3.setEditable(false);
         fieldTime3.setFocusable(false);
 
         clockinField3.setEditable(false);
         clockinField3.setForeground(new java.awt.Color(51, 204, 0));
-        clockinField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockinField3ActionPerformed(evt);
-            }
-        });
 
         onbreakField3.setEditable(false);
         onbreakField3.setForeground(new java.awt.Color(51, 204, 0));
-        onbreakField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onbreakField3ActionPerformed(evt);
-            }
-        });
 
         offbreakField3.setEditable(false);
         offbreakField3.setForeground(new java.awt.Color(255, 0, 0));
-        offbreakField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                offbreakField3ActionPerformed(evt);
-            }
-        });
 
         clockoutField3.setEditable(false);
         clockoutField3.setForeground(new java.awt.Color(255, 0, 0));
-        clockoutField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockoutField3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1840,128 +1781,98 @@ public class EmployeePage extends javax.swing.JFrame {
 
         tabReceptionist3.addTab("Hotel Events", jPanel24);
 
-        txtSearch3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        txtSearch3.setText("Search:");
+        txtSearch4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        txtSearch4.setText("Search:");
 
-        txtFirstName3.setText("First Name");
+        txtFirstName4.setText("First Name");
 
-        txtLastName3.setText("Last Name");
+        txtLastName4.setText("Last Name");
 
-        txtConRoomNumber.setText("Con. Room Number");
+        txtAmenity.setText("Amenity Type:");
 
-        checkboxPaid2.setText("Paid");
+        checkboxPaid3.setText("Paid");
 
-        buttonSearch3.setText("Search");
+        buttonSearch4.setText("Search");
 
-        tableConRooms.setModel(new javax.swing.table.DefaultTableModel(
+        tableAmenities.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Con. Room Number", "First Name", "Last Name", "Date Booked", "Hours Needed", "Paid Status"
+                "Amenity Reserved", "First Name", "Last Name", "Date Booked", "Hours Needed", "Paid Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane15.setViewportView(tableConRooms);
-
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel26Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane15)
-                    .addGroup(jPanel26Layout.createSequentialGroup()
-                        .addComponent(txtSearch3)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSearch3)
-                            .addGroup(jPanel26Layout.createSequentialGroup()
-                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldConRoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtConRoomNumber))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldFirstName3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFirstName3))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtLastName3)
-                                    .addGroup(jPanel26Layout.createSequentialGroup()
-                                        .addComponent(fieldLastName3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(checkboxPaid2)))))
-                        .addGap(0, 571, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel26Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch3)
-                    .addComponent(txtFirstName3)
-                    .addComponent(txtConRoomNumber)
-                    .addComponent(txtLastName3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldConRoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldFirstName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldLastName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkboxPaid2))
-                .addGap(18, 18, 18)
-                .addComponent(buttonSearch3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1352, Short.MAX_VALUE)
-            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel25Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
-            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel25Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        tabReceptionist3.addTab("Conference Rooms", jPanel25);
+        jScrollPane16.setViewportView(tableAmenities);
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1352, Short.MAX_VALUE)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane16)
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addComponent(txtSearch4)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonSearch4)
+                            .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldAmenityType, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAmenity))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldFirstName4, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFirstName4))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtLastName4)
+                                    .addGroup(jPanel27Layout.createSequentialGroup()
+                                        .addComponent(fieldLastName4, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(checkboxPaid3)))))
+                        .addGap(0, 615, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch4)
+                    .addComponent(txtFirstName4)
+                    .addComponent(txtAmenity)
+                    .addComponent(txtLastName4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldAmenityType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldFirstName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldLastName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkboxPaid3))
+                .addGap(18, 18, 18)
+                .addComponent(buttonSearch4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        tabReceptionist3.addTab("Amenities", jPanel27);
+        tabReceptionist3.addTab("View Amenities", jPanel27);
 
         buttonLogOut3.setText("Log-Out");
         buttonLogOut3.addActionListener(new java.awt.event.ActionListener() {
@@ -2103,6 +2014,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private void kitchenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kitchenMenuActionPerformed
         // TODO add your handling code here:
         kitchenView.setVisible(true);
+        timer.start();
     }//GEN-LAST:event_kitchenMenuActionPerformed
 
     private void buttonStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStockActionPerformed
@@ -2111,59 +2023,51 @@ public class EmployeePage extends javax.swing.JFrame {
 
     private void buttonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOutActionPerformed
         // TODO add your handling code here:
-
+        this.dispose();
+        new welcomePage().setVisible(true);
     }//GEN-LAST:event_buttonLogOutActionPerformed
 
     private void buttonLogOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOut1ActionPerformed
         // TODO add your handling code here:
-
+        this.dispose();
+        new welcomePage().setVisible(true);
     }//GEN-LAST:event_buttonLogOut1ActionPerformed
 
     private void maintenanceMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceMenuActionPerformed
         // TODO add your handling code here:
         maintenenceView.setVisible(true);
+        timer.start();
     }//GEN-LAST:event_maintenanceMenuActionPerformed
 
     private void buttonLogOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOut2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new welcomePage().setVisible(true);
     }//GEN-LAST:event_buttonLogOut2ActionPerformed
 
     private void cleaningMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleaningMenuActionPerformed
-        cleaningView.setVisible(true);        // TODO add your handling code here:
+        cleaningView.setVisible(true);
+        timer.start();
     }//GEN-LAST:event_cleaningMenuActionPerformed
 
     private void buttonLogOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogOut3ActionPerformed
         // TODO add your handling code here:
-        // memberLogInPage obj = new memberLogInPage();
-        //obj.setVisible(true);
+        this.dispose();
+        new welcomePage().setVisible(true);
     }//GEN-LAST:event_buttonLogOut3ActionPerformed
 
     private void repMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repMenuActionPerformed
         // TODO add your handling code here:
         repView.setVisible(true);
+        timer.start();
     }//GEN-LAST:event_repMenuActionPerformed
 
     private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockinField.setText(today);
+        ctrla.clockin(user.getIdNum());
     }//GEN-LAST:event_buttonClockInActionPerformed
-
-    private void onbreakFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onbreakFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onbreakFieldActionPerformed
-
-    private void clockinFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockinFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockinFieldActionPerformed
-
-    private void offbreakFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offbreakFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_offbreakFieldActionPerformed
-
-    private void clockoutFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockoutFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockoutFieldActionPerformed
 
     private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
         // TODO add your handling code here:
@@ -2181,28 +2085,14 @@ public class EmployeePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockoutField.setText(today);
+        ctrla.clockout(user.getIdNum());
     }//GEN-LAST:event_buttonClockOutActionPerformed
-
-    private void onbreakField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onbreakField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onbreakField1ActionPerformed
-
-    private void clockinField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockinField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockinField1ActionPerformed
-
-    private void offbreakField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offbreakField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_offbreakField1ActionPerformed
-
-    private void clockoutField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockoutField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockoutField1ActionPerformed
 
     private void buttonClockIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockIn1ActionPerformed
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockinField1.setText(today);
+        ctrla.clockin(user.getIdNum());
     }//GEN-LAST:event_buttonClockIn1ActionPerformed
 
     private void buttonSBreak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreak1ActionPerformed
@@ -2221,28 +2111,14 @@ public class EmployeePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockoutField1.setText(today);
+        ctrla.clockout(user.getIdNum());
     }//GEN-LAST:event_buttonClockOut1ActionPerformed
-
-    private void clockinField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockinField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockinField2ActionPerformed
-
-    private void onbreakField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onbreakField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onbreakField2ActionPerformed
-
-    private void offbreakField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offbreakField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_offbreakField2ActionPerformed
-
-    private void clockoutField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockoutField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockoutField2ActionPerformed
 
     private void buttonClockIn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockIn2ActionPerformed
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockinField2.setText(today);
+        ctrla.clockin(user.getIdNum());
     }//GEN-LAST:event_buttonClockIn2ActionPerformed
 
     private void buttonSBreak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreak2ActionPerformed
@@ -2261,28 +2137,14 @@ public class EmployeePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockoutField2.setText(today);
+        ctrla.clockout(user.getIdNum());
     }//GEN-LAST:event_buttonClockOut2ActionPerformed
-
-    private void clockinField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockinField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockinField3ActionPerformed
-
-    private void onbreakField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onbreakField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onbreakField3ActionPerformed
-
-    private void offbreakField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offbreakField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_offbreakField3ActionPerformed
-
-    private void clockoutField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockoutField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockoutField3ActionPerformed
 
     private void buttonClockIn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockIn3ActionPerformed
         // TODO add your handling code here:
         String today = (dateFormat.format(new Date()));
         clockinField3.setText(today);
+        ctrla.clockin(user.getIdNum());
     }//GEN-LAST:event_buttonClockIn3ActionPerformed
 
     private void buttonSBreak3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreak3ActionPerformed
@@ -2302,6 +2164,11 @@ public class EmployeePage extends javax.swing.JFrame {
         String today = (dateFormat.format(new Date()));
         clockoutField3.setText(today);
     }//GEN-LAST:event_buttonClockOut3ActionPerformed
+
+    private void fieldTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTimeActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_fieldTimeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2335,6 +2202,7 @@ public class EmployeePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EmployeePage().setVisible(true);
+
             }
         });
     }
@@ -2367,12 +2235,12 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonSearch1;
     private javax.swing.JButton buttonSearch2;
-    private javax.swing.JButton buttonSearch3;
+    private javax.swing.JButton buttonSearch4;
     private javax.swing.JButton buttonStock;
     private javax.swing.JCheckBox checkboxCalled;
     private javax.swing.JCheckBox checkboxPaid;
     private javax.swing.JCheckBox checkboxPaid1;
-    private javax.swing.JCheckBox checkboxPaid2;
+    private javax.swing.JCheckBox checkboxPaid3;
     private javax.swing.JMenuItem cleaningMenu;
     private javax.swing.JFrame cleaningView;
     private javax.swing.JTextField clockinField;
@@ -2385,15 +2253,15 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JTextField clockoutField3;
     private javax.swing.JComboBox comboboxTypeofTransportation;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JTextField fieldConRoomNumber;
+    private javax.swing.JTextField fieldAmenityType;
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldFirstName1;
     private javax.swing.JTextField fieldFirstName2;
-    private javax.swing.JTextField fieldFirstName3;
+    private javax.swing.JTextField fieldFirstName4;
     private javax.swing.JTextField fieldLastName;
     private javax.swing.JTextField fieldLastName1;
     private javax.swing.JTextField fieldLastName2;
-    private javax.swing.JTextField fieldLastName3;
+    private javax.swing.JTextField fieldLastName4;
     private javax.swing.JTextField fieldRoomNumber;
     private javax.swing.JTextField fieldRoomNumber1;
     private javax.swing.JTextField fieldRoomNumber3;
@@ -2427,8 +2295,6 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2442,7 +2308,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
-    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2471,8 +2337,8 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabReceptionist1;
     private javax.swing.JTabbedPane tabReceptionist2;
     private javax.swing.JTabbedPane tabReceptionist3;
+    private javax.swing.JTable tableAmenities;
     private javax.swing.JTable tableCheckOutReminders;
-    private javax.swing.JTable tableConRooms;
     private javax.swing.JTable tableDuties;
     private javax.swing.JTable tableDuties1;
     private javax.swing.JTable tableDuties2;
@@ -2485,6 +2351,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JTable tableStock;
     private javax.swing.JTable tableTransportation;
     private javax.swing.JTable tableWakeupCallTime;
+    private javax.swing.JLabel txtAmenity;
     private javax.swing.JLabel txtBreakE;
     private javax.swing.JLabel txtBreakE1;
     private javax.swing.JLabel txtBreakE2;
@@ -2504,15 +2371,14 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JLabel txtClockOut1;
     private javax.swing.JLabel txtClockOut2;
     private javax.swing.JLabel txtClockOut3;
-    private javax.swing.JLabel txtConRoomNumber;
     private javax.swing.JLabel txtFirstName;
     private javax.swing.JLabel txtFirstName1;
     private javax.swing.JLabel txtFirstName2;
-    private javax.swing.JLabel txtFirstName3;
+    private javax.swing.JLabel txtFirstName4;
     private javax.swing.JLabel txtLastName;
     private javax.swing.JLabel txtLastName1;
     private javax.swing.JLabel txtLastName2;
-    private javax.swing.JLabel txtLastName3;
+    private javax.swing.JLabel txtLastName4;
     private javax.swing.JLabel txtRoomNumber;
     private javax.swing.JLabel txtRoomNumber1;
     private javax.swing.JLabel txtRoomNumber3;
@@ -2521,7 +2387,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JLabel txtSearch;
     private javax.swing.JLabel txtSearch1;
     private javax.swing.JLabel txtSearch2;
-    private javax.swing.JLabel txtSearch3;
+    private javax.swing.JLabel txtSearch4;
     private javax.swing.JLabel txtTime;
     private javax.swing.JLabel txtTime1;
     private javax.swing.JLabel txtTime2;
