@@ -469,6 +469,7 @@ public class hsmDatabase {
         clientController initclient =  new clientController();
         
         initemployee.insertEmployee("John", "Doe", "test@gmail.com", "admintest");
+        initemployee.insertEmployee("ELie", "Doe", "reception@gmail.com", "receptiontest");
         initclient.newClient("client", "testeur", "user@gmail.com", "clienttest");
         initdepartment.insertDepartment("Administration");
         initdepartment.insertDepartment("Maintenance");

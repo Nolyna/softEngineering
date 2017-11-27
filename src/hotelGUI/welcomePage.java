@@ -5,7 +5,12 @@
  */
 package hotelGUI;
 
+import dbConnexion.SQLiteJDBConnection;
 import dbConnexion.hsmDatabase;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,6 +23,29 @@ public class welcomePage extends javax.swing.JFrame {
      */
     public welcomePage() {
         initComponents();
+    }
+    
+    /**
+     * check if database is initiated
+     * @return 
+     */
+    public static boolean is_init(){
+        boolean found = false;
+        SQLiteJDBConnection db = new SQLiteJDBConnection();
+        String sql = "SELECT idDepartment FROM department";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    found = true;
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("is_init: "+e.getMessage()); }            
+        } catch (SQLException e) {
+            System.out.println("is_init db"+e.getMessage());
+        }     
+        System.out.println("init is "+found); // code to remove
+        return found;    
     }
 
     /**
@@ -122,7 +150,8 @@ public class welcomePage extends javax.swing.JFrame {
                 new welcomePage().setVisible(true);
                 hsmDatabase database = new hsmDatabase();
                 hsmDatabase.DbInit();
-                //database.initContent();
+                if (!is_init())
+                    database.initContent();
             }
         });
     }
