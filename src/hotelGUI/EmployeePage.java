@@ -34,7 +34,7 @@ public class EmployeePage extends javax.swing.JFrame {
         GridBagConstraints c = new GridBagConstraints();
         
         c.gridx = 0; c.gridy = 0;        
-       contentPanel.add(profileView,c);
+        contentPanel.add(profileView,c);
         profileView.setVisible(false);
         
         c.gridx = 0; c.gridy = 0;        

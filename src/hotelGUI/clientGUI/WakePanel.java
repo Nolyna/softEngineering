@@ -139,10 +139,12 @@ public class WakePanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String sql = "INSERT INTO wake (idRoom,date,time,client,more) VALUES(?,?,?,?,?)";
+        java.util.Date utilWakeDate = dateChooser.getDate();
+        java.sql.Date sqlWakeDate = new java.sql.Date(utilWakeDate.getTime());
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setDate(3, (Date) dateChooser.getDate());
-            pstmt.setString(2, timeBox.getItemAt(timeBox.getSelectedIndex()));
+            pstmt.setDate(2, sqlWakeDate);
+            pstmt.setString(3, timeBox.getItemAt(timeBox.getSelectedIndex()));
             pstmt.setInt(1, rid);
             pstmt.setString(4, cid);
             pstmt.setString(5, moreText.getText());

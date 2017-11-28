@@ -9,6 +9,7 @@ import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -99,7 +100,28 @@ public class RoomType {
             System.out.println(e.getMessage());
         }
     }
-    //public String getRoomType(){}
+    /**
+     * get the room type data by ID
+     */
+    public void getRoomType(){
+        String sql = "SELECT * FROM room_type where idRoomType = ?";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, this.typeID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    this.beds = (rs.getInt("beds"));
+                    this.price = (rs.getInt("pricePerNight"));
+                    this.typeName = (rs.getString("nameType"));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("all room: "+e.getMessage()); }            
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("all room db"+e.getMessage());
+        }
+    }
     
     public void roomNewType(String name, int price, int beds){
          String sql = "INSERT INTO room_type(nameType,pricePerNight,beds) VALUES(?,?,?)";

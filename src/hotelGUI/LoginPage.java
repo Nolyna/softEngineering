@@ -29,7 +29,15 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
     }
-    
+     public boolean receptionLogin(JTextField email, JPasswordField psd  ){
+        String re = "reception@gmail.com", rp = "receptiontest";
+        boolean found = false;
+        if(re.equals(email.getText()) && rp.equals(new String(psd.getPassword()))){
+            found = true;
+        }
+        return found;
+     }
+     
     public boolean clientLogin(JTextField email, JPasswordField psd  ){
         boolean found = false;
         String sql = "SELECT idClient FROM client where email = ? AND password = ?";
@@ -44,10 +52,10 @@ public class LoginPage extends javax.swing.JFrame {
                     System.out.println("2:"+rs.getInt(1));
                 }
                 System.out.println("3:"+rs.getInt(1));
-                rs.close();
+                //rs.close();
             }catch(SQLException e){ System.out.println("client check result: "+e.getMessage()); }            
-            pstmt.close();
-            conn.close();
+            //pstmt.close();
+            //conn.close();
         } catch (SQLException e) {
             System.out.println("select"+e.getMessage());
         }        
@@ -56,7 +64,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     public int employeeLogin(JTextField email, JPasswordField psd  ){
         int found = 0;
-        String sql1 = "SELECT idClient FROM client where email = ? AND password = ?";
+        String sql1 = "SELECT idEmployee FROM employee where email = ? AND password = ?";
         String sql2 = "SELECT idManager FROM department where idManager = ?";
         
         try (Connection conn = db.connect();
@@ -67,11 +75,9 @@ public class LoginPage extends javax.swing.JFrame {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()) {
                     //check if manager
-                    System.out.println("1:"+rs.getInt(1));
                     try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)){
                         pstmt2.setInt(1, rs.getInt(1));
-                        pstmt2.executeUpdate();
-                        try (ResultSet rs2 = pstmt.executeQuery()) {
+                        try (ResultSet rs2 = pstmt2.executeQuery()) {
                             if(rs2.next()) {
                                 found = 2;
                             }else{
@@ -79,16 +85,16 @@ public class LoginPage extends javax.swing.JFrame {
                             }
                         }
                     }catch (SQLException e) {
-                        System.out.println(" manger error "+e.getMessage());
+                        System.out.println(" manager error "+e.getMessage());
                     }  
                 }
             }
-            pstmt.close();
-            conn.close();
+            //pstmt.close();
+            //conn.close();
         } catch (SQLException e) {
             System.out.println(" error "+e.getMessage());
         }        
-        System.out.println("aexist "+ found);
+        System.out.println("found "+ found);
         return found;
     }
 
@@ -197,7 +203,10 @@ public class LoginPage extends javax.swing.JFrame {
         if(passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter email and/or password");
         }else{
-            if(clientLogin(emailfield,passwordField)){
+            if(receptionLogin(emailfield,passwordField)){
+                this.dispose();
+                new ReceptionistPage(emailfield.getText()).setVisible(true);
+            }else if(clientLogin(emailfield,passwordField)){
                 this.dispose();
                 new ClientPage(emailfield.getText()).setVisible(true);
             }else{

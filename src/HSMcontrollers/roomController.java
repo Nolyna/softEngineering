@@ -4,6 +4,7 @@ import HSMmodel.room;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -74,6 +75,27 @@ public class roomController {
         }
     }
     
+    /**
+     * get the status of the room reservation 
+     * @return status
+     */
+    public String roomReservationStatus(){
+        String status = "Avalaible", sql = "SELECT status FROM room_reserve where idRoom = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, this.model.getroomID());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    status = (rs.getString("status"));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("roomReservationStatus: "+e.getMessage()); }  
+        } catch (SQLException e) {
+            System.out.println("roomReservationStatus: "+e.getMessage());
+        }
+        return status;
+    }
+    
     /***********************************************************************************************************************/
     /**
      * Add a new room in the database
@@ -130,6 +152,28 @@ public class roomController {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    /**
+     * get the status of the room reservation 
+     * @param id idRoom
+     * @return status
+     */
+    public String roomReservationStatus(int id){
+        String status = "Avalaible", sql = "SELECT status FROM room_reserve where idRoom = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    status = (rs.getString("status"));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("roomReservationStatus: "+e.getMessage()); }  
+        } catch (SQLException e) {
+            System.out.println("roomReservationStatus: "+e.getMessage());
+        }
+        return status;
     }
         
     
