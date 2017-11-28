@@ -75,7 +75,7 @@ public class departmentController {
         }
     }
     
-    /* TODO get name of manager, change requete
+    // get name of manager, change requete
     public void getNameofManagerDepartment(int idept, int idman){
          String sql = "UPDATE department set idManager = ?"
                  +" WHERE idDepartment = ? ";
@@ -88,5 +88,5 @@ public class departmentController {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }*/
+    }
 }

@@ -5,17 +5,39 @@
  */
 package hotelGUI.employeeGUI;
 
+import HSMcontrollers.employeeController;
+import HSMmodel.Employee;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class ClockPanel extends javax.swing.JPanel {
 
+    final DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy\thh:mm:ss a");
+    final DateFormat clockFormat = new SimpleDateFormat("hh:mm:ss a");
+    final employeeController ctrla = new employeeController();
+    final Employee user = new Employee();
+
+    Timer timer = new Timer(100, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fieldTime.setText(dateFormat.format(new Date()));
+        }
+    });
+
     /**
      * Creates new form clock
      */
     public ClockPanel() {
         initComponents();
+        timer.start();
     }
 
     /**
@@ -39,45 +61,69 @@ public class ClockPanel extends javax.swing.JPanel {
         txtClockOut = new javax.swing.JLabel();
         fieldClockOut = new javax.swing.JTextField();
         buttonClockOut = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         fieldBreakEnd1 = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         fieldClockIn.setEditable(false);
+        fieldClockIn.setBackground(new java.awt.Color(255, 255, 255));
+        fieldClockIn.setForeground(new java.awt.Color(0, 204, 0));
         fieldClockIn.setFocusable(false);
 
         txtClockIn.setText("Clock-In Time");
 
         buttonClockIn.setText("Clock-In");
+        buttonClockIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClockInActionPerformed(evt);
+            }
+        });
 
         txtBreakS.setText("Break Started ");
 
         fieldBreakStart.setEditable(false);
+        fieldBreakStart.setBackground(new java.awt.Color(255, 255, 255));
+        fieldBreakStart.setForeground(new java.awt.Color(0, 204, 0));
         fieldBreakStart.setFocusable(false);
 
         buttonSBreak.setText("Start Break");
+        buttonSBreak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSBreakActionPerformed(evt);
+            }
+        });
 
         txtBreakE.setText("Break Ended");
 
         fieldTime.setEditable(false);
+        fieldTime.setBackground(new java.awt.Color(255, 255, 255));
+        fieldTime.setBorder(null);
         fieldTime.setFocusable(false);
 
         buttonEBreak.setText("End Break");
+        buttonEBreak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEBreakActionPerformed(evt);
+            }
+        });
 
         txtClockOut.setText("Clock-Out Time");
 
         fieldClockOut.setEditable(false);
+        fieldClockOut.setBackground(new java.awt.Color(255, 255, 255));
+        fieldClockOut.setForeground(new java.awt.Color(255, 0, 0));
         fieldClockOut.setFocusable(false);
 
         buttonClockOut.setText("Clock-Out");
-        buttonClockOut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonClockOutMouseClicked(evt);
+        buttonClockOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClockOutActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Date and time:");
-
         fieldBreakEnd1.setEditable(false);
+        fieldBreakEnd1.setBackground(new java.awt.Color(255, 255, 255));
+        fieldBreakEnd1.setForeground(new java.awt.Color(255, 0, 0));
         fieldBreakEnd1.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -88,75 +134,102 @@ public class ClockPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtClockIn)
-                                        .addGap(23, 23, 23))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txtClockOut)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fieldClockIn, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                    .addComponent(fieldClockOut)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonClockIn)
-                                .addGap(6, 6, 6)
-                                .addComponent(buttonClockOut)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonClockOut))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtClockIn)
+                                .addGap(26, 26, 26)
+                                .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBreakS)
-                                    .addComponent(txtBreakE))
+                                .addComponent(txtBreakS)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fieldBreakStart, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                    .addComponent(fieldBreakEnd1)))
+                                .addComponent(fieldBreakStart, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
                                 .addComponent(buttonSBreak)
-                                .addGap(115, 115, 115)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buttonEBreak))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtClockOut)
+                                .addGap(18, 18, 18)
+                                .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(txtBreakE)
+                                .addGap(27, 27, 27)
+                                .addComponent(fieldBreakEnd1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonClockIn, buttonClockOut, buttonEBreak, buttonSBreak});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {fieldBreakEnd1, fieldBreakStart, fieldClockIn, fieldClockOut});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonClockIn)
                     .addComponent(buttonSBreak)
                     .addComponent(buttonEBreak)
-                    .addComponent(buttonClockOut))
+                    .addComponent(buttonClockOut)
+                    .addComponent(buttonClockIn))
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtClockIn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldClockIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBreakS)
-                    .addComponent(fieldBreakStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldBreakStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtClockIn)
+                            .addComponent(txtBreakS))))
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBreakE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtClockOut)
-                    .addComponent(fieldBreakEnd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addComponent(fieldBreakEnd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtClockOut)
+                            .addComponent(txtBreakE))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonClockOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClockOutMouseClicked
-        // TODO add your handling code here: clock out employee
-    }//GEN-LAST:event_buttonClockOutMouseClicked
+    private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
+        // TODO add your handling code here:
+        String today = (clockFormat.format(new Date()));
+        fieldClockIn.setText(today);
+        ctrla.clockin(user.getIdNum());
+    }//GEN-LAST:event_buttonClockInActionPerformed
+
+    private void buttonClockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockOutActionPerformed
+        // TODO add your handling code here:
+        String today = (clockFormat.format(new Date()));
+        fieldClockOut.setText(today);
+        ctrla.clockin(user.getIdNum());
+    }//GEN-LAST:event_buttonClockOutActionPerformed
+
+    private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
+        // TODO add your handling code here:
+        String today = (clockFormat.format(new Date()));
+        fieldBreakStart.setText(today);
+    }//GEN-LAST:event_buttonSBreakActionPerformed
+
+    private void buttonEBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEBreakActionPerformed
+        // TODO add your handling code here:
+        String today = (clockFormat.format(new Date()));
+        fieldBreakEnd1.setText(today);
+    }//GEN-LAST:event_buttonEBreakActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -169,7 +242,6 @@ public class ClockPanel extends javax.swing.JPanel {
     private javax.swing.JTextField fieldClockIn;
     private javax.swing.JTextField fieldClockOut;
     private javax.swing.JTextField fieldTime;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel txtBreakE;
     private javax.swing.JLabel txtBreakS;
     private javax.swing.JLabel txtClockIn;
