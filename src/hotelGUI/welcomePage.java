@@ -151,7 +151,7 @@ public class welcomePage extends javax.swing.JFrame {
                 hsmDatabase database = new hsmDatabase();
                 hsmDatabase.DbInit();
 
-                //database.initContent();
+                database.initContent();
 
                 if (!is_init())
                     database.initContent();
