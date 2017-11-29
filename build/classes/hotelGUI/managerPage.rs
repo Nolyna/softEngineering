@@ -1,0 +1,12 @@
+hotelGUI.ManagerPage$7
+hotelGUI.ManagerPage$8
+hotelGUI.ManagerPage$9
+hotelGUI.ManagerPage$10
+hotelGUI.ManagerPage$11
+hotelGUI.ManagerPage$1
+hotelGUI.ManagerPage$2
+hotelGUI.ManagerPage
+hotelGUI.ManagerPage$3
+hotelGUI.ManagerPage$4
+hotelGUI.ManagerPage$5
+hotelGUI.ManagerPage$6

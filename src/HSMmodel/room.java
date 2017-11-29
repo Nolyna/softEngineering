@@ -21,6 +21,13 @@ public class room {
         this.roomID =  roomID;
     }
     
+    public void setRoom(int id,String desc,String location,int typeID){
+        this.roomID = id;
+        this.description = desc;
+        this.location = location;
+        this.typeID = typeID;
+    }
+    
     public void setDescription(String desc){
         this.description = desc;
     }

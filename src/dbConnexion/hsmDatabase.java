@@ -469,6 +469,7 @@ public class hsmDatabase {
         clientController initclient =  new clientController();
         
         initemployee.insertEmployee("John", "Doe", "test@gmail.com", "admintest");
+        initemployee.insertEmployee("ELie", "Doe", "reception@gmail.com", "receptiontest");
         initclient.newClient("client", "testeur", "user@gmail.com", "clienttest");
         initdepartment.insertDepartment("Administration");
         initdepartment.insertDepartment("Maintenance");
@@ -489,10 +490,24 @@ public class hsmDatabase {
         initroom.newroom("Queen one bed room", "1nd floor", 3);
         initroom.newroom("Queen one room", "1nd floor", 3);
         
-        initamenity.insert("Balroom", " Dance room for bal, party, show", "Mon-fri: 6:00pm to 12:00am, Sat-Sun: 6:00pm to 3:00am", 1500, 500);
-        initamenity.insert("Pool", "Swim !! Swim !!","Mon-Sun: 9:00am to 6:00pm", 150, 200);
-        initamenity.insert("Game room", " Come and have Fun!!!", "Mon-fri: 9:00am to 8:00am, Sat-Sun: 9:00am to 12:00am", 200, 200);
-        initamenity.insert("Conference room", " Need to roganize an event", "Mon-fri: 6:00pm to 12:00am", 750, 500);
+        String br = "The AllSuites Ballroom is 7,600 square feet with a large 18â€™ ceiling. "
+                + "The ballroom is beautifully appointed with crystal chandeliers and a creamy color palette that is sure "
+                + "to compliment your chosen color scheme or preferred dÃ©cor. The ballroom can comfortably accommodate up "
+                + "to 500 guests for a sit-down meal with ample room for a dance floor and staging for a bridal party head "
+                + "table.";
+        String pl = "One of the most popular features of our hotel is the Olympic-sized swimming pool. Many members join "
+                + "for the pool alone, as it gives families a safe, supervised and healthy environment for their children.";
+        String gr = "We offer a large variety of retro arcade games, including classic arcade games like Donkey Kong, Pacman"
+                + " and Galaga. Our classic arcades are the original versions! We also have some of the all-time best fighting "
+                + "games too! We have the largest selection of classic arcade games for rental for any occasion.Come and have Fun!!!";
+        String cr = "Our conference rooms, training rooms & classroom space for rent at AllSuites feature high end boardroom "
+                + "tables, training tables and chairs. Whether you are holding a deposition, a real estate closing, meeting "
+                + "your next big client or making a presentation to your team, our conference rooms and training rooms will "
+                + "meet your business needs.";
+        initamenity.insert("Balroom", br, "Mon-fri: 6:00pm to 12:00am, Sat-Sun: 6:00pm to 3:00am", 1500, 500);
+        initamenity.insert("Pool", pl,"Mon-Sun: 9:00am to 6:00pm", 150, 200);
+        initamenity.insert("Game room", gr, "Mon-fri: 9:00am to 8:00am, Sat-Sun: 9:00am to 12:00am", 200, 200);
+        initamenity.insert("Conference room", cr, "Mon-fri: 6:00pm to 12:00am", 750, 500);
     }
     
 }
