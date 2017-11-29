@@ -226,7 +226,9 @@ public class hsmDatabase {
             +"idEmployee int(11) NOT NULL,"
             +"checkin time DEFAULT NULL,"
             +"checkout time DEFAULT NULL,"
-            +"dates text NOT NULL,"
+            +"breakin time DEFAULT NULL,"
+            +"breakout time DEFAULT NULL,"
+            +"dates date NOT NULL,"
             /*+"dates date NOT NULL,"
             /*+"KEY idEmployee (idEmployee),"
             +"KEY date (dates),"*/
@@ -470,6 +472,7 @@ public class hsmDatabase {
         
         initemployee.insertEmployee("John", "Doe", "test@gmail.com", "admintest");
         initemployee.insertEmployee("ELie", "Doe", "reception@gmail.com", "receptiontest");
+        initemployee.insertEmployee("Jeanne", "Doe", "emp@gmail.com", "emptest");
         initclient.newClient("client", "testeur", "user@gmail.com", "clienttest");
         initdepartment.insertDepartment("Administration");
         initdepartment.insertDepartment("Maintenance");

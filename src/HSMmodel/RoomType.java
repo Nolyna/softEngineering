@@ -123,6 +123,29 @@ public class RoomType {
         }
     }
     
+    /**
+     * get the room type data by ID
+     */
+    public String getRoomTypeName(){
+        String nme = "";
+        String sql = "SELECT nameType FROM room_type where idRoomType = ?";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, this.typeID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    nme = (rs.getString("nameType"));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("room type name: "+e.getMessage()); }            
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("room type name db"+e.getMessage());
+        }
+        return nme;
+    }
+    
     public void roomNewType(String name, int price, int beds){
          String sql = "INSERT INTO room_type(nameType,pricePerNight,beds) VALUES(?,?,?)";
         try (Connection conn = db.connect();

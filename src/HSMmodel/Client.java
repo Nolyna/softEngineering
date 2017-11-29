@@ -35,7 +35,8 @@ public class Client {
         this.email = email;
         this.phone = phone;
     }
-     public void setid(int id){
+    
+    public void setid(int id){
         this.id =id;
     }
     public void setfirst(String firstName){

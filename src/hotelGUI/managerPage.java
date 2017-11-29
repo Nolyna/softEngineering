@@ -1,5 +1,6 @@
 package hotelGUI;
 
+import HSMmodel.employee;
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
 import hotelGUI.managerGUI.*;
@@ -12,6 +13,7 @@ import java.awt.GridBagLayout;
  * @author Noria Soumbou
  */
 class ManagerPage extends javax.swing.JFrame {
+    public static employee emp = new employee();
     GridBagLayout layout = new GridBagLayout();
     final ClockPanel clockView; 
     final RoomPanel  roomView;
@@ -23,9 +25,12 @@ class ManagerPage extends javax.swing.JFrame {
     /**
      * Creates new form ManagerPage2
      */
-    public ManagerPage() {
+    public ManagerPage( String email) {
+        emp.setemail(email);
+        emp.getEmployeeByEmail();
         initComponents();
-        clockView =  new ClockPanel();
+        
+        clockView =  new ClockPanel(emp.getid());
         roomView = new RoomPanel();
         hoursView = new HoursPanel();
         eventView = new EventPanel();
@@ -346,7 +351,7 @@ class ManagerPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagerPage().setVisible(true);
+                new ManagerPage("").setVisible(true);
             }
         });
     }

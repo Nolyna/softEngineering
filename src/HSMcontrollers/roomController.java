@@ -1,11 +1,13 @@
 package HSMcontrollers;
 
+import HSMmodel.RoomType;
 import HSMmodel.room;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -72,6 +74,28 @@ public class roomController {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    /**
+     * Make a room reservation
+     * @param idr Room ID
+     * @param idc Client ID
+     * @param din Date Entry
+     * @param dout Date out
+     * @param status Reservation status
+     */
+    public void roomReservation(int idr, int idc, Date din, Date dout, String status){
+        String sql = "INSERT INTO room_reserve(idRoom,idClient, dateIn, dateOut, status) VALUES(?,?,?,?,?)"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idr);
+            pstmt.setInt(2, idc);
+            pstmt.setDate(3, new java.sql.Date(din.getTime()));
+            pstmt.setDate(4, new java.sql.Date(dout.getTime()));
+            pstmt.setString(5, status);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("roomReservation: "+e.getMessage());
         }
     }
     
@@ -167,6 +191,26 @@ public class roomController {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()) {
                     status = (rs.getString("status"));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("roomReservationStatus: "+e.getMessage()); }  
+        } catch (SQLException e) {
+            System.out.println("roomReservationStatus: "+e.getMessage());
+        }
+        return status;
+    }
+    
+    public String GetRoom(int id){
+        RoomType rt = new RoomType();
+        String status = "", sql = "SELECT * FROM rooms where idRoom = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    rt.setTypeID(rs.getInt("idRoomType"));
+                    String nt = rt.getRoomTypeName();
+                    status = (nt +" "+rs.getString("location"));       
                 }
                 rs.close();
             }catch(SQLException e){ System.out.println("roomReservationStatus: "+e.getMessage()); }  

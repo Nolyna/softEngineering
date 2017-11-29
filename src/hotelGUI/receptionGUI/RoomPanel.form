@@ -81,7 +81,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="DefaultTableModel model = new DefaultTableModel();&#xa;    model.addColumn(&quot;ID&quot;);&#xa;    model.addColumn(&quot;Type&quot;);&#xa;    model.addColumn(&quot;Description&quot;);&#xa;    model.addColumn(&quot;Location&quot;);&#xa;    model.addColumn(&quot;Bed&quot;);&#xa;    model.addColumn(&quot;Price/night&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="DefaultTableModel model = new DefaultTableModel();&#xa;    model.addColumn(&quot;ID&quot;);&#xa;    model.addColumn(&quot;Type&quot;);&#xa;    model.addColumn(&quot;Description&quot;);&#xa;    model.addColumn(&quot;Location&quot;);&#xa;    model.addColumn(&quot;Bed&quot;);&#xa;    model.addColumn(&quot;Price/night&quot;);&#xa;    model.addColumn(&quot;Status&quot;);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="*/"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="roomTable.setModel(model);&#xa;/*"/>
           </AuxValues>

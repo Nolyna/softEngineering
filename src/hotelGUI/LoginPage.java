@@ -214,11 +214,11 @@ public class LoginPage extends javax.swing.JFrame {
                 switch (x) {
                     case 2:
                         this.dispose();
-                        new ManagerPage().setVisible(true);
+                        new ManagerPage(emailfield.getText()).setVisible(true);
                         break;
                     case 1:
                         this.dispose();
-                        new EmployeePage().setVisible(true);
+                        new EmployeePage(emailfield.getText()).setVisible(true);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");

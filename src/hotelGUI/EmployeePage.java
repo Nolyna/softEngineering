@@ -5,6 +5,7 @@
  */
 package hotelGUI;
 
+import HSMmodel.employee;
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
 import hotelGUI.employeeGUI.ProfilePanel;
@@ -16,7 +17,7 @@ import java.awt.GridBagLayout;
  * @author Noria Soumbou
  */
 public class EmployeePage extends javax.swing.JFrame {
-    
+    public static employee emp = new employee();
     GridBagLayout layout = new GridBagLayout();
     final ClockPanel clockView; 
     final ProfilePanel  profileView;
@@ -24,10 +25,15 @@ public class EmployeePage extends javax.swing.JFrame {
     
     /**
      * Creates new form EmployeeGUI
+     * @param email employee email use to log in
      */
-    public EmployeePage() {
+    public EmployeePage( String email) {
         initComponents();
-        clockView =  new ClockPanel();
+        emp.setemail(email);
+        emp.getEmployeeByEmail();
+        jLabel1.setText(" Hello "+ emp.getfullname());
+        
+        clockView =  new ClockPanel(emp.getid());
         profileView = new ProfilePanel();
         hoursView = new HoursPanel();
         contentPanel.setLayout(layout);
@@ -57,6 +63,7 @@ public class EmployeePage extends javax.swing.JFrame {
 
         jMenuItem3 = new javax.swing.JMenuItem();
         contentPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         profileMenu = new javax.swing.JMenuItem();
@@ -70,15 +77,25 @@ public class EmployeePage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        contentPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jLabel1)
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(contentPanelLayout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jLabel1)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         jMenu1.setText("User");
@@ -148,6 +165,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private void profileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileMenuActionPerformed
         // TODO add your handling code here:
         profileView.setVisible(true);
+        jLabel1.setVisible(false);
         hoursView.setVisible(false);
         clockView.setVisible(false);
     }//GEN-LAST:event_profileMenuActionPerformed
@@ -162,6 +180,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private void hoursMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursMenuActionPerformed
         // TODO add your handling code here:
         hoursView.setVisible(true);
+        jLabel1.setVisible(false);
         clockView.setVisible(false);
         profileView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
@@ -169,6 +188,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private void clockMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockMenuActionPerformed
         // TODO add your handling code here:
         clockView.setVisible(true);
+        jLabel1.setVisible(false);
         hoursView.setVisible(false);
         profileView.setVisible(false);
     }//GEN-LAST:event_clockMenuActionPerformed
@@ -210,7 +230,7 @@ public class EmployeePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeePage().setVisible(true);
+                new EmployeePage("").setVisible(true);
             }
         });
     }
@@ -219,6 +239,7 @@ public class EmployeePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem clockMenu;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JMenuItem hoursMenu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

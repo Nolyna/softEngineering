@@ -5,17 +5,49 @@
  */
 package hotelGUI.clientGUI;
 
+import HSMcontrollers.roomController;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class reservationPanel extends javax.swing.JPanel {
-
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    private int cid;
+    
     /**
      * Creates new form reservationPanel
      */
-    public reservationPanel() {
+    public reservationPanel(int CID) {
         initComponents();
+        cid = CID;
+        reservation();
+    }
+    
+    private void reservation(){
+        roomController rc = new roomController();
+        String sql = "SELECT * FROM room_reserve WHERE idClient = ?";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                 pstmt.setInt(1, cid);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    jLabel1.setText("Room" + rc.GetRoom(rs.getInt("idRoom")));
+                    jLabel2.setText("Reservation made: " + rs.getTimestamp("dateReservation").toString());
+                    jLabel3.setText("From" + rs.getInt("dateIn")+" To" + rs.getInt("dateIn"));
+                }else{
+                    jLabel1.setText("No reservation");
+                    jLabel2.setText("");
+                    jLabel3.setText("");
+                }
+            }catch(SQLException e){ System.out.println(e.getMessage()); }   
+        } catch (SQLException e) { System.out.println(e.getMessage());  }
     }
 
     /**
@@ -27,19 +59,153 @@ public class reservationPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TabPane = new javax.swing.JTabbedPane();
+        roomtab = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        evtab = new javax.swing.JPanel();
+        tourtab = new javax.swing.JPanel();
+        foodtab = new javax.swing.JPanel();
+        maintab = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        TabPane.setBackground(new java.awt.Color(204, 204, 255));
+        TabPane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        TabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+
+        roomtab.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout roomtabLayout = new javax.swing.GroupLayout(roomtab);
+        roomtab.setLayout(roomtabLayout);
+        roomtabLayout.setHorizontalGroup(
+            roomtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roomtabLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(roomtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+        roomtabLayout.setVerticalGroup(
+            roomtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roomtabLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(146, Short.MAX_VALUE))
+        );
+
+        TabPane.addTab("Room", roomtab);
+
+        javax.swing.GroupLayout evtabLayout = new javax.swing.GroupLayout(evtab);
+        evtab.setLayout(evtabLayout);
+        evtabLayout.setHorizontalGroup(
+            evtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+        );
+        evtabLayout.setVerticalGroup(
+            evtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+        );
+
+        TabPane.addTab("Event", evtab);
+
+        javax.swing.GroupLayout tourtabLayout = new javax.swing.GroupLayout(tourtab);
+        tourtab.setLayout(tourtabLayout);
+        tourtabLayout.setHorizontalGroup(
+            tourtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+        );
+        tourtabLayout.setVerticalGroup(
+            tourtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+        );
+
+        TabPane.addTab("Tours", tourtab);
+
+        javax.swing.GroupLayout foodtabLayout = new javax.swing.GroupLayout(foodtab);
+        foodtab.setLayout(foodtabLayout);
+        foodtabLayout.setHorizontalGroup(
+            foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+        );
+        foodtabLayout.setVerticalGroup(
+            foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+        );
+
+        TabPane.addTab("Food", foodtab);
+
+        javax.swing.GroupLayout maintabLayout = new javax.swing.GroupLayout(maintab);
+        maintab.setLayout(maintabLayout);
+        maintabLayout.setHorizontalGroup(
+            maintabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+        );
+        maintabLayout.setVerticalGroup(
+            maintabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+        );
+
+        TabPane.addTab("Maitenance", maintab);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+        );
+
+        TabPane.addTab("Wake", jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(115, Short.MAX_VALUE)
+                .addComponent(TabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(TabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane TabPane;
+    private javax.swing.JPanel evtab;
+    private javax.swing.JPanel foodtab;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel maintab;
+    private javax.swing.JPanel roomtab;
+    private javax.swing.JPanel tourtab;
     // End of variables declaration//GEN-END:variables
 }

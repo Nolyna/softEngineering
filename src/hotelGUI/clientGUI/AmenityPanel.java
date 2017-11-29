@@ -22,7 +22,7 @@ public class AmenityPanel extends javax.swing.JPanel {
         initComponents();
         cid = CID;
         amPool.getAmenityByName("Pool");
-        amBal.getAmenityByName("Balroom");
+        amBal.getAmenityByName("Ballroom");
         amGame.getAmenityByName("Game room");
         amConference.getAmenityByName("Conference room");
         

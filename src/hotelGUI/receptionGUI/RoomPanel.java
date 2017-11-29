@@ -5,6 +5,9 @@
  */
 package hotelGUI.receptionGUI;
 
+import HSMcontrollers.roomController;
+import HSMmodel.RoomType;
+import HSMmodel.room;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,27 +30,24 @@ public class RoomPanel extends javax.swing.JPanel {
     }
     
      private void fillTable(){
+        RoomType rmTpe =  new RoomType();
+        room rm = new room();
         DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
+        String locate, desc, type;
+        int id, bed, price;
 
         String sql1 = "SELECT * FROM rooms";
-        String sql2 = "SELECT * FROM room_type where idRoomType = ?";
-        String sql3 = "SELECT * FROM room_reserve where idRoom = ?";
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql1)) {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()) {
-                    //get type
-                    PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-                    ResultSet rs2 = pstmt2.executeQuery();
-                    if(rs2.next()) {
+                    rmTpe.setTypeID(rs.getInt("idRoomType"));
+                    rmTpe.getRoomType();            
+                    rm.setRoom(rs.getInt("idRoom"),rs.getString("description"),rs.getString("location"),rs.getInt("idRoomType"));
+                    roomController rc = new roomController(rm);
                     
-                    }       
-                    pstmt.setInt(1, rs.getInt("idRoomType"));
-                    pstmt.setInt(1, rs.getInt("idRoom"));
-                    
-                  model.addRow(new Object[]{ rs.getInt("idEvent"), rs.getString("title"), rs.getString("description"), 
-                      rs.getString("date"),rs.getString("timeBegin"),rs.getString("timeEnd"),rs.getInt("fee")});
-                  System.out.println("event: "+ rs.getString("title"));
+                  model.addRow(new Object[]{ rm.getroomID(), rmTpe.getType(), rm.getDescription(), 
+                     rm.getLocation(),rmTpe.getBeds(),rmTpe.getprice(),rc.roomReservationStatus()});
                 }
                 rs.close();
             }catch(SQLException e){ System.out.println("all room: "+e.getMessage()); }            
@@ -77,6 +77,7 @@ public class RoomPanel extends javax.swing.JPanel {
         model.addColumn("Location");
         model.addColumn("Bed");
         model.addColumn("Price/night");
+        model.addColumn("Status");
         roomTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));

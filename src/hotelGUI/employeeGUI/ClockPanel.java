@@ -5,8 +5,15 @@
  */
 package hotelGUI.employeeGUI;
 import HSMcontrollers.employeeController;
-import java.awt.event.*;
-import java.awt.*;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -15,12 +22,52 @@ import java.awt.*;
 public class ClockPanel extends javax.swing.JPanel {
     
     final private employeeController clocktime = new employeeController();
-    
+    private int cid;
+    private final DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+    private final DateFormat tf = new SimpleDateFormat("HH:mm:ss");
+    private Date date = new Date();
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
     /**
      * Creates new form clock
+     * @param EID employee ID
      */
-    public ClockPanel() {
+    public ClockPanel( int EID) {
         initComponents();
+        cid = EID;
+        fieldTime.setText(df.format(date));
+        buttonEBreak.setEnabled(false);
+        buttonSBreak.setEnabled(false);
+        buttonClockOut.setEnabled(false);
+    }
+        
+    /**
+     * get today day timeStamp
+     * @return timestamp
+     */
+    public Long todayDate(){
+        Date dtes = new Date();
+        Long today = dtes.getTime();
+        return today; 
+    }
+    
+    private void getData(){        
+        java.sql.Date sqlDate = new java.sql.Date(todayDate());
+        String sql = "SELECT * FROM in_out where idEmployee = ? AND dates <= ?";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, cid);
+            pstmt.setDate(2, sqlDate);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                System.out.println("in-out search: ");
+                if(rs.next()) {
+                    System.out.println("in-out found: ");
+                    if(rs.getTime("checkin") != null ){ fieldClockIn.setText(rs.getTime("checkin").toString());}
+                    if(rs.getTime("checkout")!= null ){ fieldClockOut.setText(rs.getTime("checkout").toString());}
+                    if(rs.getTime("breakin") != null ){ fieldBreakStart.setText(rs.getTime("breakin").toString());}
+                    if(rs.getTime("breakout")!= null ){ fieldBreakEnd.setText(rs.getTime("breakout").toString());}
+                }
+            }catch(SQLException e){ System.out.println("in-out: "+e.getMessage()); }  
+        } catch (SQLException e) {  System.out.println("in-out db"+e.getMessage());}      
     }
 
     /**
@@ -97,7 +144,7 @@ public class ClockPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Date and time:");
+        jLabel1.setText("Date:");
 
         fieldBreakEnd.setEditable(false);
         fieldBreakEnd.setFocusable(false);
@@ -126,9 +173,9 @@ public class ClockPanel extends javax.swing.JPanel {
                                 .addComponent(buttonClockIn)
                                 .addGap(6, 6, 6)
                                 .addComponent(buttonClockOut)))
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtBreakS)
                                     .addComponent(txtBreakE))
@@ -137,15 +184,14 @@ public class ClockPanel extends javax.swing.JPanel {
                                     .addComponent(fieldBreakStart, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                                     .addComponent(fieldBreakEnd)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
                                 .addComponent(buttonSBreak)
-                                .addGap(115, 115, 115)
+                                .addGap(24, 24, 24)
                                 .addComponent(buttonEBreak))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,30 +223,36 @@ public class ClockPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonClockOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClockOutMouseClicked
-        // TODO add your handling code here: clock out employee
-         fieldClockOut.setText(clocktime.currentTime());
+        //fieldClockOut.setText(clocktime.currentTime());
         buttonClockOut.setEnabled(false);
+        clocktime.clockout(cid);
+        getData();
     }//GEN-LAST:event_buttonClockOutMouseClicked
 
     private void buttonEBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEBreakActionPerformed
-        // TODO add your handling code here:
-         fieldBreakEnd.setText(clocktime.currentTime());
+        //fieldBreakEnd.setText(clocktime.currentTime());
+        clocktime.breakkout(cid);
         buttonEBreak.setEnabled(false);
         buttonClockOut.setEnabled(true);
+        getData();
     }//GEN-LAST:event_buttonEBreakActionPerformed
 
     private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
         // TODO add your handling code here:
-         fieldBreakStart.setText(clocktime.currentTime());
+         //fieldBreakStart.setText(clocktime.currentTime());
+         clocktime.breakin(cid);
         buttonSBreak.setEnabled(false);
         buttonEBreak.setEnabled(true);
+        getData();
     }//GEN-LAST:event_buttonSBreakActionPerformed
 
     private void buttonClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClockInActionPerformed
         // TODO add your handling code here:
-        fieldClockIn.setText(clocktime.currentTime());
+        //fieldClockIn.setText(clocktime.currentTime());
+        clocktime.clockin(cid);
         buttonClockIn.setEnabled(false);
         buttonSBreak.setEnabled(true);
+        getData();
     }//GEN-LAST:event_buttonClockInActionPerformed
 
 
