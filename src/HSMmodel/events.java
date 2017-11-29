@@ -41,8 +41,7 @@ public class events {
     
     
     /**
-     *  set the id of the event
-     * @param name 
+     *  set the id of the event 
      */
     public void setId( int id){
            this.id =  id;
@@ -97,8 +96,7 @@ public class events {
      //////////////////////////////////////////////
     
     /**
-     *  get the id of the event
-     * @param name 
+     *  get the id of the event 
      */
     public int getId(){
            return this.id;
@@ -113,30 +111,26 @@ public class events {
     }
     
     /**
-     * get the description of the event
-     * @param description 
+     * get the description of the event 
      */
     public String getDescription(){
            return this.description;
     }
     /**
-     *  get the date of the event
-     * @param date 
+     *  get the date of the event 
      */
     public String getDate(){
            return this.date;
     }
     /**
-     * get the time of the start of the event
-     * @param begin 
+     * get the time of the start of the event 
      */
     public String getBeginTime(){
            return this.timeBegin;
     }
     
     /**
-     * get the time of end of the event
-     * @param end 
+     * get the time of end of the event 
      */
     public String getEndTime(){
            return this.timeEnd ;

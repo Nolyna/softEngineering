@@ -46,8 +46,8 @@ public class LoginPage extends javax.swing.JFrame {
                 System.out.println("3:"+rs.getInt(1));
                 rs.close();
             }catch(SQLException e){ System.out.println("client check result: "+e.getMessage()); }            
-            pstmt.close();
-            conn.close();
+            //pstmt.close();
+            //conn.close();
         } catch (SQLException e) {
             System.out.println("select"+e.getMessage());
         }        
