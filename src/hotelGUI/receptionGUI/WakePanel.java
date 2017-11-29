@@ -5,17 +5,50 @@
  */
 package hotelGUI.receptionGUI;
 
+import HSMcontrollers.roomController;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class WakePanel extends javax.swing.JPanel {
-
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
     /**
      * Creates new form WakePanel
      */
     public WakePanel() {
         initComponents();
+        fillTable();
+    }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) tableWakeupCallTime.getModel();
+        roomController rc = new roomController();
+        String sql = "SELECT * FROM wake";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                  String roomdata = rc.GetRoom(rs.getInt("idRoom"));
+                  model.addRow(new Object[]{ rs.getInt("idWake"), roomdata,rs.getString("client"),
+                      rs.getString("date"),rs.getString("time"),rs.getString("more")});
+                  System.out.println("event: "+ rs.getString("title"));
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("all wake: "+e.getMessage()); }            
+            pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("all wake db"+e.getMessage());
+        }
+        tableWakeupCallTime.removeColumn(tableWakeupCallTime.getColumnModel().getColumn(0)); // hide id
+        tableWakeupCallTime.setDefaultEditor(Object.class, null);
     }
 
     /**
@@ -28,102 +61,69 @@ public class WakePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel12 = new javax.swing.JPanel();
-        txtSearch1 = new javax.swing.JLabel();
-        txtFirstName1 = new javax.swing.JLabel();
-        txtLastName1 = new javax.swing.JLabel();
-        txtRoomNumber1 = new javax.swing.JLabel();
-        checkboxCalled = new javax.swing.JCheckBox();
-        fieldRoomNumber1 = new javax.swing.JTextField();
-        fieldFirstName1 = new javax.swing.JTextField();
-        fieldLastName1 = new javax.swing.JTextField();
-        buttonSearch1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Room");
+        model.addColumn("Name");
+        model.addColumn("Date");
+        model.addColumn("Time");
+        model.addColumn("More");
         tableWakeupCallTime = new javax.swing.JTable();
+        tableWakeupCallTime.setModel(model);
+        /*
+        tableWakeupCallTime = new javax.swing.JTable();
+        callButton = new javax.swing.JButton();
+        textF = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
-        txtSearch1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        txtSearch1.setText("Search:");
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtFirstName1.setText("First Name");
-
-        txtLastName1.setText("Last Name");
-
-        txtRoomNumber1.setText("Room Number");
-
-        checkboxCalled.setText("Called");
-
-        buttonSearch1.setText("Search");
-
-        tableWakeupCallTime.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Room Number", "First Name", "Last Name", "Call Date", "Call Time", "Called Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        */
+        tableWakeupCallTime.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableWakeupCallTimeMouseClicked(evt);
             }
         });
         jScrollPane4.setViewportView(tableWakeupCallTime);
+
+        callButton.setText("Called");
+        callButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                callButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Room:");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(txtSearch1)
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSearch1)
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fieldRoomNumber1)
-                                    .addComponent(txtRoomNumber1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFirstName1)
-                                    .addComponent(fieldFirstName1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtLastName1)
-                                    .addGroup(jPanel12Layout.createSequentialGroup()
-                                        .addComponent(fieldLastName1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(checkboxCalled)))))
-                        .addGap(0, 591, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(textF, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(callButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch1)
-                    .addComponent(txtFirstName1)
-                    .addComponent(txtRoomNumber1)
-                    .addComponent(txtLastName1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldRoomNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldFirstName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldLastName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkboxCalled))
-                .addGap(18, 18, 18)
-                .addComponent(buttonSearch1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                    .addComponent(callButton)
+                    .addComponent(textF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -131,37 +131,48 @@ public class WakePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1315, Short.MAX_VALUE)
+            .addGap(0, 717, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
+            .addGap(0, 445, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void callButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_callButtonActionPerformed
+        int row = tableWakeupCallTime.getSelectedRow();
+        int id = (int)tableWakeupCallTime.getModel().getValueAt(row, 0);
+        deleteWake(id);
+    }//GEN-LAST:event_callButtonActionPerformed
+
+    private void tableWakeupCallTimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableWakeupCallTimeMouseClicked
+        int row = tableWakeupCallTime.getSelectedRow();
+        if (row >= 0){
+           textF.setText(tableWakeupCallTime.getModel().getValueAt(row, 1)+" "+tableWakeupCallTime.getModel().getValueAt(row, 2));       }
+    }//GEN-LAST:event_tableWakeupCallTimeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonSearch1;
-    private javax.swing.JCheckBox checkboxCalled;
-    private javax.swing.JTextField fieldFirstName1;
-    private javax.swing.JTextField fieldLastName1;
-    private javax.swing.JTextField fieldRoomNumber1;
+    private javax.swing.JButton callButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tableWakeupCallTime;
-    private javax.swing.JLabel txtFirstName1;
-    private javax.swing.JLabel txtLastName1;
-    private javax.swing.JLabel txtRoomNumber1;
-    private javax.swing.JLabel txtSearch1;
+    private javax.swing.JTextField textF;
     // End of variables declaration//GEN-END:variables
+
+    private void deleteWake(int id) {       
+         String sql = "DELETE FROM wake WHERE idWake = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -5,10 +5,9 @@ import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
+import java.util.Date;
 
 
 
@@ -79,14 +78,36 @@ public class employeeController {
         }
     }
     
+    public void deleteEmployee(){
+         String sql = "DELETE FROM employee WHERE idEmployee = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, this.model.getid());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void deleteEmployee(int id){
+         String sql = "DELETE FROM employee WHERE idEmployee = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public void clockin(int id) {
+        
         String sql = "INSERT INTO in_out(idEmployee,checkin,dates) VALUES(?,?,?)";
         
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
-            pstmt.setString(2, currentTime());
-            pstmt.setString(3, todayDate());
+            pstmt.setTime(2, new java.sql.Time(todayDate().getTime()));
+            pstmt.setDate(3, new java.sql.Date(todayDate().getTime()));
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,18 +115,51 @@ public class employeeController {
     }
     
     public void clockout(int id) {
-        String sql = "UPDATE in_out SET checkout= ?"
-                + "WHERE idEmployee=? AND dates = ?";
+        String sql = "UPDATE in_out SET checkout = ?"
+                + "WHERE idEmployee = ? AND dates <= ?";
         
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, currentTime());
+            pstmt.setTime(1, new java.sql.Time(todayDate().getTime()));
             pstmt.setInt(2, id);
-            pstmt.setString(3, todayDate());
+            pstmt.setDate(3, new java.sql.Date(todayDate().getTime()));
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public void breakin(int id) {
+        String sql = "UPDATE in_out SET breakin = ?"
+                + "WHERE idEmployee = ? AND dates <= ?";
+        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setTime(1, new java.sql.Time(todayDate().getTime()));
+            pstmt.setInt(2, id);
+            pstmt.setDate(3, new java.sql.Date(todayDate().getTime()));
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println( "date br" +new java.sql.Date(todayDate().getTime()));
+    }
+    
+    public void breakkout(int id) {
+        
+        String sql = "UPDATE in_out SET breakout= ?"
+                + "WHERE idEmployee = ? AND dates <= ?";
+        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setTime(1, new java.sql.Time(todayDate().getTime()));
+            pstmt.setInt(2, id);
+            pstmt.setDate(3, new java.sql.Date(todayDate().getTime()));
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println( "date br" +new java.sql.Date(todayDate().getTime()));
     }
     
     public void madeManager(int employee, int dept){
@@ -122,11 +176,10 @@ public class employeeController {
         }
     }
     
-    public String todayDate (){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public Date todayDate (){
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar date = Calendar.getInstance();
-        String today = (dateFormat.format(date));
-        return today;
+        return date.getTime();
     }
     
     public String currentTime (){
@@ -160,5 +213,13 @@ public class employeeController {
         }
     return found;
     }*/
+    
+    /* time and date
+        java.util.Date date = new java.util.Date();
+        long t = date.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(t);
+        java.sql.Time sqlTime = new java.sql.Time(t);
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(t);
+    */
     
 }
