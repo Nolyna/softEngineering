@@ -216,7 +216,7 @@ public class ClockPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String today = (clockFormat.format(new Date()));
         fieldClockOut.setText(today);
-        ctrla.clockin(user.getIdNum());
+        ctrla.clockout(user.getIdNum());
     }//GEN-LAST:event_buttonClockOutActionPerformed
 
     private void buttonSBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSBreakActionPerformed
