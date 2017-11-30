@@ -5,11 +5,9 @@ import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 
 
@@ -65,6 +63,27 @@ public class employeeController {
         }
     }    
     
+    public void insertnewEmployee(String fname,String lname, String email, String pass,Date bdate, String gender, String phone, String ssn, String adress) {
+         String sql = "INSERT INTO employee(firstName,lastName, email, password, bdate, gender,phone,ssn,adress)"
+                 + "VALUES(?,?,?,?,?,?,?,?,?)";
+          
+          try (Connection conn = db.connect();
+                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             pstmt.setString(1,  fname);
+             pstmt.setString(2,  lname);
+             pstmt.setString(3,  email);
+             pstmt.setString(4,  pass);
+             pstmt.setDate(5,  new java.sql.Date(bdate.getTime()));
+             pstmt.setString(6,  gender);
+             pstmt.setString(7,  phone);
+             pstmt.setString(8,  ssn);
+             pstmt.setString(9,  adress);
+              pstmt.executeUpdate();
+          } catch (SQLException e) {
+              System.out.println(e.getMessage());
+          }
+    }  
+    
     public void insertEmployee(String fname,String lname, String email, String pass) {
         String sql = "INSERT INTO employee(firstName,lastName, email, password) VALUES(?,?,?,?)";
         
@@ -74,11 +93,6 @@ public class employeeController {
             pstmt.setString(2,  lname);
             pstmt.setString(3,  email);
             pstmt.setString(4,  pass);
-            
-            
-
-
-          
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -105,32 +119,7 @@ public class employeeController {
             System.out.println(e.getMessage());
         }
     }
-    }    
-    
-    public void deleteEmployee(){
-         String sql = "DELETE FROM employee WHERE idEmployee = ?"; 
-        try (Connection conn = db.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, this.model.getid());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    public void deleteEmployee(int id){
-         String sql = "DELETE FROM employee WHERE idEmployee = ?"; 
-        try (Connection conn = db.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            
-           
-            
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
+        
     public void clockin(int id) {
         String sql = "INSERT INTO in_out(idEmployee,checkin,dates) VALUES(?,?,?)";
         

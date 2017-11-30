@@ -198,7 +198,7 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                             
 
-    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
         // TODO add your handling code here:
         if(passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter email and/or password");
@@ -214,11 +214,11 @@ public class LoginPage extends javax.swing.JFrame {
                 switch (x) {
                     case 2:
                         this.dispose();
-                        new ManagerPage().setVisible(true);
+                        new ManagerPage(emailfield.getText()).setVisible(true);
                         break;
                     case 1:
                         this.dispose();
-                        new EmployeePage().setVisible(true);
+                        new EmployeePage(emailfield.getText()).setVisible(true);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Please try again! Email or password invalid");
@@ -227,7 +227,7 @@ public class LoginPage extends javax.swing.JFrame {
             }        
                 
         }
-    }                                           
+    }                                       
 
     /**
      * @param args the command line arguments
