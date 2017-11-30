@@ -382,6 +382,7 @@ public class hsmDatabase {
             +" date text NOT NULL,"
             +" timeEnd text NOT NULL,"
             +" timeBegin text NOT NULL,"
+            +" max int(11) NOT NULL,"
             +" fee int(11) NOT NULL"
             /*+" date date NOT NULL,"
             +" timeEnd time NOT NULL,"

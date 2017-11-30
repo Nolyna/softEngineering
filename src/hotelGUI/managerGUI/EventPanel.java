@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Noria Soumbou
  */
 public class EventPanel extends javax.swing.JPanel {
-    final eventRegistrationPanel  registrationView = new eventRegistrationPanel() ;
+   
     /**
      * Creates new form EventPanel
      */
@@ -99,6 +99,11 @@ public class EventPanel extends javax.swing.JPanel {
         deleteButton.setText("Remove Event");
 
         jButton1.setText("see participants");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Name:");
 
@@ -259,6 +264,13 @@ public class EventPanel extends javax.swing.JPanel {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here: get ID from selected element and put in x
+        int x = 0;
+        eventRegistrationPanel  registrationView = new eventRegistrationPanel(x) ;
+        registrationView.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
