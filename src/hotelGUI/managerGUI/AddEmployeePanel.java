@@ -7,8 +7,6 @@ package hotelGUI.managerGUI;
 import HSMcontrollers.employeeController;
 import HSMmodel.employee;
 import dbConnexion.SQLiteJDBConnection;
-import java.awt.Checkbox;
-import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,15 +30,9 @@ public class AddEmployeePanel extends javax.swing.JPanel {
      */
     public AddEmployeePanel() {
         initComponents();
-        getDepartmentlist ();
+        getDepartmentlist();
     }
-    /**
-     * function to add  employee in the database
-     * @param E employee Controller
-     */
-    private void addEmployee(employeeController E){
-        E.insertEmployee();
-    }
+    
     /**
      * generate a random password for the employee
      * @return string password
@@ -57,7 +49,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         return saltStr;
     }
     
-    public void getDepartmentlist () {
+    private void getDepartmentlist () {
         String sql = "Select * from department";
         
         try (Connection conn = db.connect();
@@ -76,8 +68,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         
     }    
     
-  
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -311,6 +302,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
     }                                             
+   
     /**
      * reset the form by empty all the text fields
      * @param evt 
@@ -322,46 +314,38 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         firstNameText.setText("");
         phoneText.setText("");
         ssnText.setText("");
-        adressText.setText("");
-        
+        adressText.setText("");        
     }                                           
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-         
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                   
         
         employeeController ec = new employeeController();
         
-      String fn = firstNameText.getText();
-      String ln = lastNameText.getText();
-      String e = emailText.getText();
-      String pw = randomPassword();
-      String a = adressText.getText();
-      String pt = phoneText.getText();
-      String sn = ssnText.getText();
-      Date bdate = birthday.getDate();
-      
-      ec.insertnewEmployee(fn, ln, e, pw, bdate,genderbox.getItemAt(genderbox.getSelectedIndex()), pt, sn, a);
-      int x = Departmentlist.getSelectedIndex();
-      int did = (int)departmentid.get(x);
-      employee emp = new employee();
-      emp.setemail(e);
-      emp.getEmployeeByEmail();
-      assignDepartment(emp.getid(),did);
-      if(checkbox.isSelected()){
-       ec.madeManager(emp.getid(), did);
-      }
-       JOptionPane.showMessageDialog(null, "Employee added sucessfully");
-      resetButton.setSelected(true);
-      
-      
-      
-      
-       
-     
+        String fn = firstNameText.getText();
+        String ln = lastNameText.getText();
+        String e = emailText.getText();
+        String pw = randomPassword();
+        String a = adressText.getText();
+        String pt = phoneText.getText();
+        String sn = ssnText.getText();
+        Date bdate = birthday.getDate();
+
+        ec.insertnewEmployee(fn, ln, e, pw, bdate,genderbox.getItemAt(genderbox.getSelectedIndex()), pt, sn, a);
+        int x = Departmentlist.getSelectedIndex();
+        int did = (int)departmentid.get(x);
+        employee emp = new employee();
+        emp.setemail(e);
+        emp.getEmployeeByEmail();
+        assignDepartment(emp.getid(),did);
+        if(checkbox.isSelected()){
+            ec.madeManager(emp.getid(), did);
+        }
+         JOptionPane.showMessageDialog(null, "Employee added sucessfully");
+        resetButton.setSelected(true);    
     }                                         
   
     /**
-     * xxxxxxx
+     * Assign department to employee
      * @param eid employee id
      * @param did department id
      */
@@ -373,7 +357,6 @@ public class AddEmployeePanel extends javax.swing.JPanel {
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1,  eid);
             pstmt.setInt(2,  did);
-          
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
