@@ -221,7 +221,7 @@ public class LoginPage extends javax.swing.JFrame {
                         new EmployeePage(emailfield.getText()).setVisible(true);
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Please try again! Email or passord invalid");
+                        JOptionPane.showMessageDialog(null, "Please try again! Email or password invalid");
                         break;
                 }
             }        
