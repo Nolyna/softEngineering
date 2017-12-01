@@ -69,9 +69,7 @@ public class WakePanel extends javax.swing.JPanel {
         model.addColumn("Date");
         model.addColumn("Time");
         model.addColumn("More");
-        tableWakeupCallTime = new javax.swing.JTable();
-        tableWakeupCallTime.setModel(model);
-        /*
+        //tableWakeupCallTime = new javax.swing.JTable();
         tableWakeupCallTime = new javax.swing.JTable();
         callButton = new javax.swing.JButton();
         textF = new javax.swing.JTextField();
@@ -79,7 +77,7 @@ public class WakePanel extends javax.swing.JPanel {
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        */
+        tableWakeupCallTime.setModel(model);
         tableWakeupCallTime.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableWakeupCallTimeMouseClicked(evt);
@@ -152,7 +150,8 @@ public class WakePanel extends javax.swing.JPanel {
     private void tableWakeupCallTimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableWakeupCallTimeMouseClicked
         int row = tableWakeupCallTime.getSelectedRow();
         if (row >= 0){
-           textF.setText(tableWakeupCallTime.getModel().getValueAt(row, 1)+" "+tableWakeupCallTime.getModel().getValueAt(row, 2));       }
+           textF.setText(tableWakeupCallTime.getModel().getValueAt(row, 1)+" "+tableWakeupCallTime.getModel().getValueAt(row, 2));       
+        }
     }//GEN-LAST:event_tableWakeupCallTimeMouseClicked
 
 

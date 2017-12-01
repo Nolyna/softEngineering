@@ -468,6 +468,8 @@ public class hsmDatabase {
         initdepartment.insertDepartment("HouseKeeping");
         initdepartment.insertDepartment("Reception");
         initemployee.madeManager(1, 1);
+        initemployee.assignDepartment(2, 6); // receptionnist
+        initemployee.assignDepartment(3, 2); // employee
         
         initroomtype.roomNewType("King Suite",150,1);
         initroomtype.roomNewType("Double King Suite",130,2);
