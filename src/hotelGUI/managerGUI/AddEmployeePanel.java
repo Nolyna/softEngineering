@@ -337,7 +337,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         emp.setemail(e);
         emp.getEmployeeByEmail();
         assignDepartment(emp.getid(),did);
-        if(checkbox.isSelected()){
+        if(checkbox.isSelected() || did == 1){
             ec.madeManager(emp.getid(), did);
         }
          JOptionPane.showMessageDialog(null, "Employee added sucessfully");

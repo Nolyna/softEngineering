@@ -61,7 +61,7 @@ public class hsmDatabase {
             +"PayStatus text  DEFAULT NULL,"
             +"reserveStatus text NOT NULL,"
             +"idClient int(11) NOT NULL,"
-            +"TotalPrice int(11)  DEFAULT NULL,"
+            +"TotalPrice double  DEFAULT NULL,"
             +"nbrGuest int(11) NOT NULL,"
            /* +"KEY idAmenity (idAmenity),"
             +"KEY idClient (idClient),"
@@ -144,10 +144,8 @@ public class hsmDatabase {
         // SQL statement for creating table department
         String sql9 ="CREATE TABLE IF NOT EXISTS department ("
             +"idDepartment INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"nameDepartment text NOT NULL,"
-            +"idManager int(11) DEFAULT NULL"
+            +"nameDepartment text NOT NULL"
             /*+" UNIQUE KEY idManager_2 (idManager),"
-            +" KEY idManager (idManager),"
             +" KEY idDepartment (idDepartment,idManager)"*/
             +") ; ";
 
@@ -254,15 +252,12 @@ public class hsmDatabase {
             +") ; ";
 
         
-                /*/ SQL statement for creating a new table manager	
+            //SQL statement for creating a new table manager	
         String sql17 = "CREATE TABLE IF NOT EXISTS manager ("
             +"idEmployee int(11) NOT NULL,"
             +"idDepartment int(11) NOT NULL,"
-            +"idManager INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +"KEY idDepartment (idDepartment),"
-            +"KEY idEmployee (idEmployee),"
             +"CONSTRAINT manager_ibfk_1 FOREIGN KEY (idDepartment) REFERENCES department (idDepartment) ON DELETE CASCADE ON UPDATE CASCADE "
-           +") ; ";*/
+           +") ; ";
 
        	
                 // SQL statement for creating a new table  menu
@@ -271,24 +266,15 @@ public class hsmDatabase {
             +"nameMenu text NOT NULL"
             +") ; ";
 
-        
-                // SQL statement for creating a new table menuhas	
-        String sql19 ="CREATE TABLE IF NOT EXISTS menuhas ( "
-            +"idMenuItem int(11) NOT NULL,"
-            +"idMenu int(11) NOT NULL,"
-            /*+"KEY idMenuItem (idMenuItem,idMenu),"
-            +"KEY idMenu (idMenu),"*/
-            +"CONSTRAINT menuhas_ibfk_1 FOREIGN KEY (idMenu) REFERENCES menu (idMenu) ON DELETE CASCADE ON UPDATE CASCADE, "
-            +"CONSTRAINT menuhas_ibfk_2 FOREIGN KEY (idMenuItem) REFERENCES menu_items (idMenuItem) ON DELETE CASCADE ON UPDATE CASCADE "
-            +") ; ";
 
         //menu_items	
         String sql20 ="CREATE TABLE IF NOT EXISTS menu_items ( "
             +"idMenuItem INTEGER PRIMARY KEY AUTOINCREMENT,"
+            +"idMenu int(11) NOT NULL,"
             +"nameItem varchar(20) NOT NULL,"
-            +"price int(11) NOT NULL,"
-            +"qte int(11) NOT NULL"
-            //+"KEY nameItem (nameItem)"
+            +"price double NOT NULL,"
+            +"qte int(11) NOT NULL,"
+            +"CONSTRAINT menuhas_ibfk_1 FOREIGN KEY (idMenu) REFERENCES menu (idMenu) ON DELETE CASCADE ON UPDATE CASCADE"
             +") ; ";
 
         	
@@ -369,7 +355,7 @@ public class hsmDatabase {
         String sql25 = "CREATE TABLE IF NOT EXISTS room_type ( "
             +" idRoomType INTEGER PRIMARY KEY AUTOINCREMENT,"
             +" nameType varchar(15) NOT NULL,"
-            +" pricePerNight int(11) NOT NULL,"
+            +" pricePerNight double NOT NULL,"
             +" beds int(11) NOT NULL"
             +") ; ";
 
@@ -445,7 +431,7 @@ public class hsmDatabase {
             test(sql5);test(sql6);test(sql2);
             test(sql9);test(sql10);test(sql11);test(sql12);
             test(sql13);test(sql14);test(sql15);test(sql16);
-            /*test(sql17);*/test(sql18);test(sql19);test(sql20);
+            test(sql17);test(sql18);test(sql20);
             test(sql21);test(sql22);test(sql23);
             test(sql26);test(sql28);test(sql31);
             test(sql29);test(sql30);test(sql27);
@@ -479,6 +465,7 @@ public class hsmDatabase {
         initdepartment.insertDepartment("Maintenance");
         initdepartment.insertDepartment("Kitchen");
         initdepartment.insertDepartment("Delivery");
+        initdepartment.insertDepartment("HouseKeeping");
         initdepartment.insertDepartment("Reception");
         initemployee.madeManager(1, 1);
         
@@ -494,6 +481,7 @@ public class hsmDatabase {
         initroom.newroom("Queen one bed room", "1nd floor", 3);
         initroom.newroom("Queen one room", "1nd floor", 3);
         
+        ////////////////// amenities
         String br = "The AllSuites Ballroom is 7,600 square feet with a large 18â€™ ceiling. "
                 + "The ballroom is beautifully appointed with crystal chandeliers and a creamy color palette that is sure "
                 + "to compliment your chosen color scheme or preferred dÃ©cor. The ballroom can comfortably accommodate up "
@@ -512,6 +500,14 @@ public class hsmDatabase {
         initamenity.insert("Pool", pl,"Mon-Sun: 9:00am to 6:00pm", 150, 200);
         initamenity.insert("Game room", gr, "Mon-fri: 9:00am to 8:00am, Sat-Sun: 9:00am to 12:00am", 200, 200);
         initamenity.insert("Conference room", cr, "Mon-fri: 6:00pm to 12:00am", 750, 500);
+        
+        ////////////////// Menu
+        String m1 = "INSERT INTO menu(nameMenu) VALUES('Entry')";
+        String m2 = "INSERT INTO menu(nameMenu) VALUES('Side')";
+        String m3 = "INSERT INTO menu(nameMenu) VALUES('Dessert')";
+        String m4 = "INSERT INTO menu(nameMenu) VALUES('Drink')";
+        
+        test(m1);test(m2);test(m3);test(m4);
     }
     
 }

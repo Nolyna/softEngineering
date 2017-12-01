@@ -5,6 +5,7 @@
  */
 package hotelGUI;
 
+import HSMmodel.employee;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,15 +30,7 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
     }
-     public boolean receptionLogin(JTextField email, JPasswordField psd  ){
-        String re = "reception@gmail.com", rp = "receptiontest";
-        boolean found = false;
-        if(re.equals(email.getText()) && rp.equals(new String(psd.getPassword()))){
-            found = true;
-        }
-        return found;
-     }
-     
+          
     public boolean clientLogin(JTextField email, JPasswordField psd  ){
         boolean found = false;
         String sql = "SELECT idClient FROM client where email = ? AND password = ?";
@@ -65,7 +58,7 @@ public class LoginPage extends javax.swing.JFrame {
     public int employeeLogin(JTextField email, JPasswordField psd  ){
         int found = 0;
         String sql1 = "SELECT idEmployee FROM employee where email = ? AND password = ?";
-        String sql2 = "SELECT idManager FROM department where idManager = ?";
+        String sql2 = "SELECT * FROM manager where idEmployee = ?";
         
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql1)) {
@@ -198,15 +191,12 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                             
 
-    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
+    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         if(passwordField.getPassword().length == 0 || emailfield.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter email and/or password");
         }else{
-            if(receptionLogin(emailfield,passwordField)){
-                this.dispose();
-                new ReceptionistPage(emailfield.getText()).setVisible(true);
-            }else if(clientLogin(emailfield,passwordField)){
+            if(clientLogin(emailfield,passwordField)){
                 this.dispose();
                 new ClientPage(emailfield.getText()).setVisible(true);
             }else{
@@ -217,8 +207,16 @@ public class LoginPage extends javax.swing.JFrame {
                         new ManagerPage(emailfield.getText()).setVisible(true);
                         break;
                     case 1:
+                        employee emp = new employee();
+                        emp.setemail(emailfield.getText());
+                        emp.getEmployeeByEmail();
+                        int rep = emp.getEmployeeDepartmentId();
                         this.dispose();
-                        new EmployeePage(emailfield.getText()).setVisible(true);
+                        if( rep == 6){
+                            new ReceptionistPage(emailfield.getText()).setVisible(true);
+                        }else{
+                            new EmployeePage(emailfield.getText()).setVisible(true);
+                        }
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Please try again! Email or password invalid");

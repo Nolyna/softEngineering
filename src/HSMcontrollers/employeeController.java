@@ -119,7 +119,11 @@ public class employeeController {
             System.out.println(e.getMessage());
         }
     }
-        
+    
+    /**
+     * sign up for employee clock-in
+     * @param id employee id
+     */
     public void clockin(int id) {
         String sql = "INSERT INTO in_out(idEmployee,checkin,dates) VALUES(?,?,?)";
         
@@ -134,6 +138,10 @@ public class employeeController {
         }
     }
     
+    /**
+     * sign up for clock-out
+     * @param id employee id
+     */
     public void clockout(int id) {
         String sql = "UPDATE in_out SET checkout = ?"
                 + "WHERE idEmployee = ? AND dates <= ?";
@@ -148,7 +156,10 @@ public class employeeController {
             System.out.println(e.getMessage());
         }
     }
-    
+    /**
+     * sign up for Beginning of break
+     * @param id employee id
+     */
     public void breakin(int id) {
         String sql = "UPDATE in_out SET breakin = ?"
                 + "WHERE idEmployee = ? AND dates <= ?";
@@ -165,6 +176,10 @@ public class employeeController {
         System.out.println( "date br" +new java.sql.Date(todayDate().getTime()));
     }
     
+    /**
+     * sign up for end of break
+     * @param id employee id
+     */
     public void breakkout(int id) {
         
         String sql = "UPDATE in_out SET breakout= ?"
@@ -182,14 +197,54 @@ public class employeeController {
         System.out.println( "date br" +new java.sql.Date(todayDate().getTime()));
     }
     
+    /**
+     * assign an employee as department manager
+     * @param employee employee id
+     * @param dept  department id
+     */
     public void madeManager(int employee, int dept){
-        String sql = "UPDATE department SET idManager = ? "
-                + " WHERE idDepartment = ?";
-        
+        String sql = "INSERT INTO manager(idEmployee,idDepartment) VALUES(?,?)";        
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, employee);
             pstmt.setInt(2, dept);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /**
+     * remove manager benefit to employee
+     * @param employee employee id
+     * @param dept department id
+     */
+    public void removeManager(int employee, int dept){
+        String sql = "DELETE FROM manager "
+                + " WHERE idDepartment = ? and idEmployee = ?";
+        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, dept);
+            pstmt.setInt(2, employee);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /**
+     * Assign department to employee
+     * @param eid employee id
+     * @param did department id
+     */
+    public void assignDepartment(int eid, int did){
+        String sql = "INSERT INTO workfor(idemployee, idDepartment)"
+                + "VALUES(?,?)";
+        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1,  eid);
+            pstmt.setInt(2,  did);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

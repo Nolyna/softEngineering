@@ -89,5 +89,25 @@ public class employee extends person{
         }        
     }
     
+    public int getEmployeeDepartmentId(){
+        int did = 0;
+        String sql = "SELECT idDepartment FROM workfor where idEmployee = ? ";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, this.id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   did = rs.getInt("idDepartment");
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("getEmployeeDepartmentId: "+e.getMessage()); }            
+            pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("getEmployeeDepartmentId db"+e.getMessage());
+        }  
+        return did;
+    }
+    
     
 }

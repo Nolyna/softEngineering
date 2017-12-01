@@ -34,6 +34,7 @@ public class ReceptionistPage extends javax.swing.JFrame {
          initComponents();
          emp.setemail(text);
          emp.getEmployeeByEmail();
+         this.setTitle(" Hello "+ emp.getfullname());
          init_panel();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

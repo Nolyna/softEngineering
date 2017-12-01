@@ -28,6 +28,7 @@ class ManagerPage extends javax.swing.JFrame {
     public ManagerPage( String email) {
         emp.setemail(email);
         emp.getEmployeeByEmail();
+        this.setTitle(" Hello "+ emp.getfullname());
         initComponents();
         
         clockView =  new ClockPanel(emp.getid());
