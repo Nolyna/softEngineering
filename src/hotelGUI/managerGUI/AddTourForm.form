@@ -227,7 +227,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="New Amenity"/>
+        <Property name="text" type="java.lang.String" value="New Tour"/>
       </Properties>
     </Component>
   </SubComponents>

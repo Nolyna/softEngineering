@@ -1,10 +1,18 @@
 package HSMmodel;
 
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author soumbou
  */
-public class employee extends person{   
+public class employee extends person{ 
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    private int id;
     String bdate, ssn;
     String gender;
     
@@ -17,6 +25,10 @@ public class employee extends person{
         this.lastname = lname;
     }    
     
+    public void setid(int id){
+        this.id =id;
+    }
+    
     public void setBirthday( String date){
         this.bdate = date;
     }
@@ -27,6 +39,10 @@ public class employee extends person{
     
     public void setGender( String gender){
         this.gender = gender;
+    }
+    
+    public int getid(){
+        return this.id;
     }
     
     /* get Employee date of birth
@@ -45,6 +61,52 @@ public class employee extends person{
     */
     public String getGender(){
         return this.gender;
+    }
+    
+    public void getEmployeeByEmail(){
+        String sql = "SELECT * FROM employee where email = ? ";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, this.email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   this.id = rs.getInt("idEmployee");
+                   this.firstname = rs.getString("firstName");
+                   this.lastname = rs.getString("lastName");
+                   this.phone= rs.getString("phone");
+                   this.password = rs.getString("password");
+                   this.ssn = rs.getString("ssn");
+                   this.bdate = rs.getString("bdate");
+                   this.gender = rs.getString("gender");
+                   this.adress = rs.getString("adress");
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("getEmployeeByEmail: "+e.getMessage()); }            
+            pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("getEmployeeByEmail"+e.getMessage());
+        }        
+    }
+    
+    public int getEmployeeDepartmentId(){
+        int did = 0;
+        String sql = "SELECT idDepartment FROM workfor where idEmployee = ? ";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, this.id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   did = rs.getInt("idDepartment");
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("getEmployeeDepartmentId: "+e.getMessage()); }            
+            pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("getEmployeeDepartmentId db"+e.getMessage());
+        }  
+        return did;
     }
     
     

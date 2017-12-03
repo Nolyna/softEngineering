@@ -1,7 +1,8 @@
 package hotelGUI;
 
-import HSMcontrollers.clientController;
 import HSMmodel.Client;
+import HSMcontrollers.clientController;
+import hotelGUI.clientGUI.*;
 import hotelGUI.clientGUI.AmenityPanel;
 import hotelGUI.clientGUI.EventPanel;
 import hotelGUI.clientGUI.MaintenancePanel;

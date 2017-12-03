@@ -3,6 +3,7 @@ package hotelGUI;
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
 import hotelGUI.managerGUI.*;
+import hotelGUI.managerGUI.EventPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -19,12 +20,15 @@ class ManagerPage extends javax.swing.JFrame {
     final EventPanel eventView;
     final AmenityPanel amenityView;
     final AddEmployeePanel addEmployeeView;
+    final TourPanel tourView;
+    
    // final employeePanel employeeView;
     /**
      * Creates new form ManagerPage2
      */
-    public ManagerPage() {
+    public ManagerPage(String ss) {
         initComponents();
+        tourView = new TourPanel();
         clockView =  new ClockPanel();
         roomView = new RoomPanel();
         hoursView = new HoursPanel();
@@ -62,6 +66,9 @@ class ManagerPage extends javax.swing.JFrame {
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(eventView,c);
         eventView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0; 
+        dynamicPanel.add(tourView,c);
     }
 
     /**
@@ -133,6 +140,11 @@ class ManagerPage extends javax.swing.JFrame {
         activityMenu.add(eventMenu);
 
         tourMenu.setText("Tours");
+        tourMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tourMenuActionPerformed(evt);
+            }
+        });
         activityMenu.add(tourMenu);
 
         jMenu3.add(activityMenu);
@@ -322,6 +334,21 @@ class ManagerPage extends javax.swing.JFrame {
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_viewEmployeeMenuActionPerformed
 
+    private void tourMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tourMenuActionPerformed
+        // TODO add your handling code here:
+        
+        //employeeView.setVisible(true);
+        amenityView.setVisible(false);
+        eventView.setVisible(false);
+        hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        addEmployeeView.setVisible(false);
+        tourView.setVisible(true);
+        
+    }//GEN-LAST:event_tourMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -346,7 +373,7 @@ class ManagerPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagerPage().setVisible(true);
+                new ManagerPage("").setVisible(true);
             }
         });
     }

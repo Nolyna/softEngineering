@@ -4,16 +4,27 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/EventPanel.java</file>
-            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/dbConnexion/hsmDatabase.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/employeePanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/eventListPanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/setupGUI/installation.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/clientGUI/AmenityPanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/ReceptionistPage.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/TourPanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/setupGUI/hotelsetup.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/AddTourForm.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/tourRegistrationPanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/clientGUI/AmenityReserveForm.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/AddEmployeePanel.java</file>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/HSMmodel/events.java</file>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/AmenityPanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/HSMmodel/employee.java</file>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/welcomePage.java</file>
-            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/ClientPage.java</file>
-            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/clientGUI/AmenityPanel.java</file>
-            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/clientGUI/TourPanel.java</file>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/LoginPage.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/managerGUI/AddAmenityForm.java</file>
             <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/hotelGUI/clientGUI/EventPanel.java</file>
+            <file>file:/C:/Users/Ronald/git/softEngineering2/softEngineering/src/HSMcontrollers/clientController.java</file>
         </group>
     </open-files>
 </project-private>
