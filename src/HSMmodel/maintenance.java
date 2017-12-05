@@ -7,12 +7,22 @@ package HSMmodel;
 
 /**
  *
- * cameron wright
+ * cameron wright, jermaine anderson
  */
 public class maintenance {
-   private String name, time, room;
+   private String name, time, room,type, issue, status;
+   private int roomNumber;
+
+   
+           
     
-    public maintenance(){}
+    public maintenance(int RoomNumber, String Type, String Issue, String Status){
+        this.roomNumber = RoomNumber;
+        this.type = Type;
+        this.issue =Issue;
+        this.status =Status;
+    
+    }
     
     
     public void setName(String n){
@@ -36,9 +46,22 @@ public class maintenance {
         return this.room;
     }
             
-    
+   public int getRoomNumber(){
+       return roomNumber;
+   }
 
-  
+    public String getType(){
+       return type;
+   }
+    
+    public String getIssue(){
+       return issue;
+   }
+    
+    public String getStatus(){
+       return status;
+   }
+    
   
 
 }

@@ -163,7 +163,7 @@ public class AddRoomPanel extends javax.swing.JPanel {
                         .addComponent(addButton)
                         .addGap(18, 18, 18)
                         .addComponent(resetButton)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +190,7 @@ public class AddRoomPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(resetButton))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

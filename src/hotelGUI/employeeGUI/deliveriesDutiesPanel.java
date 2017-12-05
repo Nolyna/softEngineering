@@ -5,18 +5,71 @@
  */
 package hotelGUI.employeeGUI;
 
+import HSMmodel.delivery;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Noria Soumbou
+ * @author Noria Soumbou, jermaine anderson
  */
 public class deliveriesDutiesPanel extends javax.swing.JPanel {
+    
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
 
     /**
      * Creates new form deliveriesDutiesPanel
      */
     public deliveriesDutiesPanel() {
         initComponents();
+
     }
+    
+//Grab data from database
+    public ArrayList<delivery> deliveryList(){
+        ArrayList<delivery> deliveryList = new ArrayList<delivery>();
+        
+        String sql = "SELECT * FROM delivery";
+            Connection conn = db.connect();
+                    try {
+                        Statement stmt = conn.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        delivery delivery;
+                            while (rs.next()) {
+                                if(rs.getString("status").equalsIgnoreCase("Delivered")|rs.getString("status").equalsIgnoreCase("Not Delivered")){
+                                delivery = new delivery(rs.getInt("idRoom"),rs.getString("type_delivery"),rs.getString("desc_delivery"),rs.getString("status"));
+                                deliveryList.add(delivery);
+                                }
+                            }
+                    } catch (SQLException e ) {
+                        System.out.println(e.getMessage()); 
+                      } 
+
+        return deliveryList;
+    }
+    
+    //Show Data in JTable
+    public void show_delivery(){
+        ArrayList<delivery> list = deliveryList();
+        DefaultTableModel model = (DefaultTableModel)tableDuties_delivery.getModel();
+        Object [] row = new Object[4];
+
+            for(int i =0; i<list.size(); i++){
+                row [0] = list.get(i).getRoomNumber();
+                row [1] = list.get(i).getDes();
+                row [2] = list.get(i).getDes1();
+                row [3] = list.get(i).getStatus();
+                
+                model.addRow(row);
+            }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,39 +82,37 @@ public class deliveriesDutiesPanel extends javax.swing.JPanel {
 
         jPanel11 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        tableDuties = new javax.swing.JTable();
+        tableDuties_delivery = new javax.swing.JTable();
         txtChangeStatus = new javax.swing.JLabel();
-        txtRoomNumber3 = new javax.swing.JLabel();
-        fieldRoomNumber3 = new javax.swing.JTextField();
         buttonDelivered = new javax.swing.JButton();
 
-        tableDuties.setModel(new javax.swing.table.DefaultTableModel(
+        tableDuties_delivery.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Room Number", "Assigned Employee", "Food Status"
+                "Room Number", "Meal ", "Allergies", "Delivery Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane8.setViewportView(tableDuties);
+        jScrollPane8.setViewportView(tableDuties_delivery);
 
         txtChangeStatus.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         txtChangeStatus.setText("Change Status:");
 
-        txtRoomNumber3.setText("Room Number");
-
         buttonDelivered.setText("Delivered");
+        buttonDelivered.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeliveredActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -72,11 +123,8 @@ public class deliveriesDutiesPanel extends javax.swing.JPanel {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1275, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(txtChangeStatus)
-                        .addGap(39, 39, 39)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldRoomNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRoomNumber3)
+                            .addComponent(txtChangeStatus)
                             .addComponent(buttonDelivered))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -85,14 +133,10 @@ public class deliveriesDutiesPanel extends javax.swing.JPanel {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtChangeStatus)
-                    .addComponent(txtRoomNumber3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldRoomNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtChangeStatus)
+                .addGap(18, 18, 18)
                 .addComponent(buttonDelivered)
-                .addGap(24, 24, 24)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -104,9 +148,9 @@ public class deliveriesDutiesPanel extends javax.swing.JPanel {
             .addGap(0, 1295, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 4, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 4, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,14 +163,39 @@ public class deliveriesDutiesPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonDeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeliveredActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)tableDuties_delivery.getModel();
+        int viewIndex = tableDuties_delivery.getSelectedRow();
+        int roomnumbervalue = (int )tableDuties_delivery.getModel().getValueAt(viewIndex, 0);
+        String statusvalue = "Delivered";
+
+        
+         String sql1 = "UPDATE delivery SET status = ?"+" WHERE idRoom= ?";
+
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)){
+            pstmt.setString(1, statusvalue);
+            pstmt.setInt(2, roomnumbervalue);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        //Resfresh
+        model.setRowCount(0);
+        show_delivery();   
+    
+    }//GEN-LAST:event_buttonDeliveredActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDelivered;
-    private javax.swing.JTextField fieldRoomNumber3;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable tableDuties;
+    private javax.swing.JTable tableDuties_delivery;
     private javax.swing.JLabel txtChangeStatus;
-    private javax.swing.JLabel txtRoomNumber3;
     // End of variables declaration//GEN-END:variables
 }

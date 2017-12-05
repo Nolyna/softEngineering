@@ -25,6 +25,26 @@ public class roomController {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
+    public void getRoomById(int id){
+        String sql = "SELECT * FROM rooms where idRoom = ? ";
+       try (Connection conn = db.connect();
+               PreparedStatement pstmt = conn.prepareStatement(sql)) {
+           pstmt.setInt(1, id);
+           try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   this.model.setRoomID(rs.getInt("idRoom"));
+                   this.model.setDescription(rs.getString("description"));
+                   this.model.setLocation(rs.getString("location"));
+                   this.model.setTypeID(rs.getInt("idRoomType"));
+                }
+                rs.close();
+           }catch(SQLException e){ System.out.println("roo by id : "+e.getMessage()); }            
+           pstmt.close();
+           //conn.close();
+       } catch (SQLException e) {
+           System.out.println("room by id  db"+e.getMessage());
+       }   
+    }
      
     
     /**
@@ -141,6 +161,22 @@ public class roomController {
     }
     
     /**
+     * need to have data room fetch in controller
+     * @return 
+     */
+    public String getRoomLocation(){
+        return this.model.getLocation();
+    }
+    /**
+     * need to have data room fetch in controller
+     * @return 
+     */
+    public String getRoomDEscription(){
+        return this.model.getDescription();
+    }
+    
+    
+    /**
      * update Room details in database
      * @param desc description of the room
      * @param locate Location of the room
@@ -216,6 +252,51 @@ public class roomController {
             }catch(SQLException e){ System.out.println("roomReservationStatus: "+e.getMessage()); }  
         } catch (SQLException e) {
             System.out.println("roomReservationStatus: "+e.getMessage());
+        }
+        return status;
+    }
+    
+    /**
+     * 
+     * @param id room type id
+     * @return name of type of room
+     */
+    public String GetRoomName(int id){
+        String status = "", sql = "SELECT nameType  FROM room_type where idRoomType = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    status = (rs.getString(1));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("roomName: "+e.getMessage()); }  
+        } catch (SQLException e) {
+            System.out.println("roomName: "+e.getMessage());
+        }
+        return status;
+    }
+    
+    /**
+     * 
+     * @param id room type
+     * @return room price
+     */
+    public Double GetRoomPriceByType(int id){
+        Double status = 0.0;
+        String sql = "SELECT pricePerNight  FROM room_type where idRoomType = ?"; 
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    status = (rs.getDouble(1));       
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("roomName: "+e.getMessage()); }  
+        } catch (SQLException e) {
+            System.out.println("roomName: "+e.getMessage());
         }
         return status;
     }

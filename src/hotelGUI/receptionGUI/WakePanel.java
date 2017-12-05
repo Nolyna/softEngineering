@@ -34,11 +34,10 @@ public class WakePanel extends javax.swing.JPanel {
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                while(rs.next()) {
                   String roomdata = rc.GetRoom(rs.getInt("idRoom"));
                   model.addRow(new Object[]{ rs.getInt("idWake"), roomdata,rs.getString("client"),
-                      rs.getString("date"),rs.getString("time"),rs.getString("more")});
-                  System.out.println("event: "+ rs.getString("title"));
+                      rs.getDate("date").toString(),rs.getString("time"),rs.getString("more")});
                 }
                 rs.close();
             }catch(SQLException e){ System.out.println("all wake: "+e.getMessage()); }            
@@ -74,6 +73,7 @@ public class WakePanel extends javax.swing.JPanel {
         callButton = new javax.swing.JButton();
         textF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtSearch2 = new javax.swing.JLabel();
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -94,6 +94,9 @@ public class WakePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Room:");
 
+        txtSearch2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        txtSearch2.setText("Wake up requests");
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -105,17 +108,22 @@ public class WakePanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(textF, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(callButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSearch2)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(textF, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(callButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(txtSearch2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(callButton)
                     .addComponent(textF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,7 +143,7 @@ public class WakePanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
+            .addGap(0, 492, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -162,6 +170,7 @@ public class WakePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tableWakeupCallTime;
     private javax.swing.JTextField textF;
+    private javax.swing.JLabel txtSearch2;
     // End of variables declaration//GEN-END:variables
 
     private void deleteWake(int id) {       

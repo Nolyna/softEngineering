@@ -7,8 +7,31 @@ package HSMmodel;
 
 /**
  *
- * @author soumb
+ * @author Jermaine Anderson
  */
 public class cleanup {
+   private String status;
+   private int roomNumber;
+
+   
+           
     
+    public cleanup(int RoomNumber, String Status){
+        this.roomNumber = RoomNumber;
+        this.status =Status;
+    
+    }
+            
+   public int getRoomNumber(){
+       return roomNumber;
+   }
+
+
+    public String getStatus(){
+       return status;
+   }
+    
+  
+
 }
+

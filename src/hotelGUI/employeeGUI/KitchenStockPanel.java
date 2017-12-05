@@ -5,18 +5,73 @@
  */
 package hotelGUI.employeeGUI;
 
+import HSMmodel.kitchen;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Noria Soumbou
+ * @author Noria Soumbou, jermaine anderson
  */
 public class KitchenStockPanel extends javax.swing.JPanel {
+    
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    
 
     /**
      * Creates new form KitchenStockPanel
      */
     public KitchenStockPanel() {
         initComponents();
+        show_kitchen();
+        
     }
+    
+      //Grab data from database
+    public ArrayList<kitchen> kitchenList(){
+        ArrayList<kitchen> kitchenList = new ArrayList<kitchen>();
+        
+        String sql = "SELECT * FROM kitchen";
+            Connection conn = db.connect();
+                    try {
+                        Statement stmt = conn.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        kitchen kitchen;
+                            while (rs.next()) {
+                                kitchen = new kitchen(rs.getString("room_name"),rs.getInt("quantity"));
+                                kitchenList.add(kitchen);
+                            }
+                    } catch (SQLException e ) {
+                        System.out.println(e.getMessage()); 
+                      } 
+
+        return kitchenList;
+    }
+    
+    //Show Data in JTable
+    public void show_kitchen(){
+        ArrayList<kitchen> list = kitchenList();
+        DefaultTableModel model = (DefaultTableModel)tableStock.getModel();
+        Object [] row = new Object[2];
+
+            for(int i =0; i<list.size(); i++){
+                row [0] = list.get(i).getFoodName();
+                row [1] = list.get(i).getQuantity();
+                
+                model.addRow(row);
+            }
+    }
+    
+   
+
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,15 +84,12 @@ public class KitchenStockPanel extends javax.swing.JPanel {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         tableStock = new javax.swing.JTable();
+        jButton_add = new javax.swing.JButton();
+        jButton_delete = new javax.swing.JButton();
 
         tableStock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Food", "Quantity"
@@ -53,26 +105,110 @@ public class KitchenStockPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tableStock);
 
+        jButton_add.setText("ADD");
+        jButton_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_addActionPerformed(evt);
+            }
+        });
+
+        jButton_delete.setText("DELETE");
+        jButton_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_add)
+                    .addComponent(jButton_delete))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton_add)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_delete))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_addActionPerformed
+        // TODO add your handling code here:
+       String foodname = JOptionPane.showInputDialog("Food Name:");
+       int quantity = Integer.parseInt(JOptionPane.showInputDialog("Quantity Number:"));
+
+       String sql = "INSERT INTO kitchen(food_name, quantity) VALUES(?,?)";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, foodname);
+            pstmt.setInt(2, quantity);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        JOptionPane.showMessageDialog(null, "Request submit");
+    }//GEN-LAST:event_jButton_addActionPerformed
+
+    private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
+        // TODO add your handling code here:
+        
+        ArrayList<kitchen> list = kitchenList();
+        DefaultTableModel model = (DefaultTableModel)tableStock.getModel();
+        Object [] row = new Object[1];
+
+            for(int i =0; i<list.size(); i++){
+                row [0] = list.get(i).getFoodName();
+            }
+            
+            String x = String.valueOf(row [0]); 
+        
+        int index = tableStock.getSelectedRow();
+    if(index != -1) {
+        int delete = Integer.parseInt(JOptionPane.showInputDialog("How many do you want to delete?"));
+        String num = (tableStock.getModel().getValueAt(index, 1).toString());
+        int value = Integer.parseInt(num);
+        int result = value - delete;
+        
+        String sql1 = "UPDATE maintenance SET idcount = ?"+" WHERE food_name = ?";
+
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)){
+            pstmt.setInt(1, result);
+            pstmt.setString(2, x);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        //Resfresh
+        model.setRowCount(0);
+        show_kitchen();
+        
+        tableStock.getModel().setValueAt(result, index, 1);
+    } else JOptionPane.showMessageDialog(null, "Please selete a row from the table first");
+    }//GEN-LAST:event_jButton_deleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_add;
+    private javax.swing.JButton jButton_delete;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tableStock;
     // End of variables declaration//GEN-END:variables

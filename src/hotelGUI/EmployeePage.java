@@ -45,7 +45,7 @@ public class EmployeePage extends javax.swing.JFrame {
         
         clockView =  new ClockPanel(emp.getid());
         profileView = new ProfilePanel();
-        hoursView = new HoursPanel();
+        hoursView = new HoursPanel(emp.getid());
         menuView = new kitchenFoodPanel();
         maintenanceDuties = new MaintenanceDutiesPanel();
         deliveriesDuties = new deliveriesDutiesPanel();

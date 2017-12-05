@@ -93,6 +93,7 @@ public class ClockPanel extends javax.swing.JPanel {
         buttonClockOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         fieldBreakEnd = new javax.swing.JTextField();
+        txtSearch2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -149,6 +150,9 @@ public class ClockPanel extends javax.swing.JPanel {
         fieldBreakEnd.setEditable(false);
         fieldBreakEnd.setFocusable(false);
 
+        txtSearch2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        txtSearch2.setText("Clock ...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,13 +194,16 @@ public class ClockPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch2))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtSearch2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(fieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,7 +225,7 @@ public class ClockPanel extends javax.swing.JPanel {
                     .addComponent(fieldClockOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtClockOut)
                     .addComponent(fieldBreakEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -271,5 +278,6 @@ public class ClockPanel extends javax.swing.JPanel {
     private javax.swing.JLabel txtBreakS;
     private javax.swing.JLabel txtClockIn;
     private javax.swing.JLabel txtClockOut;
+    private javax.swing.JLabel txtSearch2;
     // End of variables declaration//GEN-END:variables
 }

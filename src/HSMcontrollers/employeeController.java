@@ -4,6 +4,7 @@ import HSMmodel.employee;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -250,6 +251,8 @@ public class employeeController {
             System.out.println(e.getMessage());
         }
     }
+    
+    
     
     public Date todayDate (){
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

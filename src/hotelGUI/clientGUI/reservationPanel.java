@@ -6,11 +6,17 @@
 package hotelGUI.clientGUI;
 
 import HSMcontrollers.roomController;
+import HSMmodel.Food;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class reservationPanel extends javax.swing.JPanel {
     final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    ArrayList  orderid = new ArrayList();
     private int cid;
     
     /**
@@ -27,9 +34,17 @@ public class reservationPanel extends javax.swing.JPanel {
     public reservationPanel(int CID) {
         initComponents();
         cid = CID;
-        reservation();
+        reservation(); // room
+        
+        
+        ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+        ses.scheduleAtFixedRate(() -> {
+            fillorder(); //food
+        }, 0, 1, TimeUnit.MINUTES);
     }
     
+    
+
     private void reservation(){
         roomController rc = new roomController();
         String sql = "SELECT * FROM room_reserve WHERE idClient = ?";
@@ -49,7 +64,32 @@ public class reservationPanel extends javax.swing.JPanel {
             }catch(SQLException e){ System.out.println(e.getMessage()); }   
         } catch (SQLException e) { System.out.println(e.getMessage());  }
     }
-
+    /******************************* FOOD TAB **************************************************/
+   // @Schedule(hour = "*")
+    private void fillorder(){
+        int i = 1;
+        String rst;
+        orderList.removeAll();
+        orderid.clear();        
+        String sql = "Select * from foodorder where idClient = ? ";
+        DefaultListModel model = new DefaultListModel ();
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) { 
+             pstmt.setInt(1, cid);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while(rs.next()) {
+                    rst = "Order "+i +" - "+rs.getString("status");
+                    model.addElement (rst );
+                    orderid.add(rs.getInt("idOrder"));
+                    i++;
+                }
+            }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
+            
+        } catch (SQLException e) {
+            System.out.println(" error "+e.getMessage());
+        }          
+        orderList.setModel(model);  
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +107,13 @@ public class reservationPanel extends javax.swing.JPanel {
         evtab = new javax.swing.JPanel();
         tourtab = new javax.swing.JPanel();
         foodtab = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        orderList = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        itemList = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         maintab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -94,7 +141,7 @@ public class reservationPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
         roomtabLayout.setVerticalGroup(
             roomtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +152,7 @@ public class reservationPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         TabPane.addTab("Room", roomtab);
@@ -114,11 +161,11 @@ public class reservationPanel extends javax.swing.JPanel {
         evtab.setLayout(evtabLayout);
         evtabLayout.setHorizontalGroup(
             evtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
         evtabLayout.setVerticalGroup(
             evtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         TabPane.addTab("Event", evtab);
@@ -127,24 +174,81 @@ public class reservationPanel extends javax.swing.JPanel {
         tourtab.setLayout(tourtabLayout);
         tourtabLayout.setHorizontalGroup(
             tourtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
         tourtabLayout.setVerticalGroup(
             tourtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         TabPane.addTab("Tours", tourtab);
+
+        foodtab.setBackground(new java.awt.Color(255, 255, 255));
+
+        orderList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        orderList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(orderList);
+
+        itemList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        itemList.setEnabled(false);
+        jScrollPane2.setViewportView(itemList);
+
+        jLabel4.setFont(new java.awt.Font("Bodoni MT", 3, 24)); // NOI18N
+        jLabel4.setText("My orders ");
+
+        jLabel5.setText("Orders");
+
+        jLabel6.setText("Items in your order");
 
         javax.swing.GroupLayout foodtabLayout = new javax.swing.GroupLayout(foodtab);
         foodtab.setLayout(foodtabLayout);
         foodtabLayout.setHorizontalGroup(
             foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGroup(foodtabLayout.createSequentialGroup()
+                .addGroup(foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(foodtabLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addGroup(foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(foodtabLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59))
         );
         foodtabLayout.setVerticalGroup(
             foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, foodtabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(foodtabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(foodtabLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(foodtabLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54))
         );
 
         TabPane.addTab("Food", foodtab);
@@ -153,11 +257,11 @@ public class reservationPanel extends javax.swing.JPanel {
         maintab.setLayout(maintabLayout);
         maintabLayout.setHorizontalGroup(
             maintabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
         maintabLayout.setVerticalGroup(
             maintabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         TabPane.addTab("Maitenance", maintab);
@@ -168,11 +272,11 @@ public class reservationPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         TabPane.addTab("Wake", jPanel1);
@@ -181,30 +285,48 @@ public class reservationPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(TabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+            .addComponent(TabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(TabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+            .addComponent(TabPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void orderListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderListMouseClicked
+        Food fd = new Food();
+        int x = orderList.getSelectedIndex();
+        DefaultListModel model = new DefaultListModel ();
+        itemList.removeAll();          
+        
+        if(x >= 0){
+            int[] ids = fd.getItemIdInOrder(Integer.valueOf(orderid.get(x).toString()));
+            for(int j=0; j<ids.length; j++){
+                model.addElement (fd.getItemNameById(ids[j]));
+            }
+        }else{
+            model.addElement ("Select order");
+        }
+        itemList.setModel(model); 
+    }//GEN-LAST:event_orderListMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabPane;
     private javax.swing.JPanel evtab;
     private javax.swing.JPanel foodtab;
+    private javax.swing.JList<String> itemList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel maintab;
+    private javax.swing.JList<String> orderList;
     private javax.swing.JPanel roomtab;
     private javax.swing.JPanel tourtab;
     // End of variables declaration//GEN-END:variables

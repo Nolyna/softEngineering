@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,12 +21,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="1281" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="831" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                   <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -41,6 +46,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel13">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -48,37 +58,17 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtSearch2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtSearch2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFirstName2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buttonSearch2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="fieldFirstName2" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
-                                      <Component id="txtFirstName2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="fieldLastName2" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
-                                      <Component id="txtLastName2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtTypeofTransportation" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="comboboxTypeofTransportation" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                          <Component id="checkboxPaid1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="316" pref="526" max="32767" attributes="0"/>
+                          <Component id="fieldFirstName2" min="-2" pref="221" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="buttonSearch2" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane5" alignment="0" min="-2" pref="751" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -86,24 +76,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="txtSearch2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtFirstName2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLastName2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txtTypeofTransportation" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtSearch2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtFirstName2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fieldFirstName2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fieldLastName2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="comboboxTypeofTransportation" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="checkboxPaid1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSearch2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="buttonSearch2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="jScrollPane5" pref="486" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -116,31 +96,22 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Grande" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Search:"/>
+            <Property name="text" type="java.lang.String" value="Transport request"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtFirstName2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="First Name"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="txtLastName2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Last Name"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="checkboxPaid1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Paid"/>
+            <Property name="text" type="java.lang.String" value="Client:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="fieldFirstName2">
-        </Component>
-        <Component class="javax.swing.JTextField" name="fieldLastName2">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="buttonSearch2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Search"/>
+            <Property name="text" type="java.lang.String" value="Requested"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane5">
@@ -152,7 +123,7 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tableTransportation">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="*/">
                   <Table columnCount="5" rowCount="4">
                     <Column editable="true" title="First Name" type="java.lang.String"/>
                     <Column editable="true" title="Last Name" type="java.lang.String"/>
@@ -165,25 +136,13 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="DefaultTableModel model = new DefaultTableModel();&#xa;    model.addColumn(&quot;ID&quot;);&#xa;model.addColumn(&quot;Type transport&quot;);&#xa;    model.addColumn(&quot;Client&quot;);&#xa;    model.addColumn(&quot;Date&quot;);&#xa;    model.addColumn(&quot;Time&quot;);&#xa;    model.addColumn(&quot;Details&quot;);&#xa;    model.addColumn(&quot;Status&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tableTransportation.setModel(model);&#xa;&#xa;/*"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="txtTypeofTransportation">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Type of Transportation"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="comboboxTypeofTransportation">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Taxi"/>
-                <StringItem index="1" value="Train"/>
-                <StringItem index="2" value=" "/>
-              </StringArray>
-            </Property>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

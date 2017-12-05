@@ -9,7 +9,10 @@ import HSMmodel.employee;
 import hotelGUI.employeeGUI.ClockPanel;
 import hotelGUI.employeeGUI.HoursPanel;
 import hotelGUI.employeeGUI.ProfilePanel;
+import hotelGUI.receptionGUI.AmenityPanel;
+import hotelGUI.receptionGUI.EventPanel;
 import hotelGUI.receptionGUI.RoomPanel;
+import hotelGUI.receptionGUI.TransportPanel;
 import hotelGUI.receptionGUI.WakePanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,7 +29,9 @@ public class ReceptionistPage extends javax.swing.JFrame {
     ProfilePanel  profileView;
     HoursPanel  hoursView;
     WakePanel wakeView;
-    
+    TransportPanel transView;
+    AmenityPanel AmenityView;
+    EventPanel eventView;
     
     
 
@@ -43,9 +48,13 @@ public class ReceptionistPage extends javax.swing.JFrame {
         roomView =  new RoomPanel();
         clockView =  new ClockPanel(emp.getid());
         profileView = new ProfilePanel();
-        hoursView = new HoursPanel();
+        hoursView = new HoursPanel(emp.getid());
         wakeView = new WakePanel();
+        transView = new TransportPanel();
+        AmenityView = new AmenityPanel();
+        eventView = new EventPanel();
         contentPanel.setLayout(layout);
+        
         
         contentPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
@@ -53,6 +62,18 @@ public class ReceptionistPage extends javax.swing.JFrame {
         c.gridx = 0; c.gridy = 0;        
         contentPanel.add(roomView,c);
         roomView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        contentPanel.add( eventView,c);
+        eventView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        contentPanel.add(AmenityView,c);
+        AmenityView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        contentPanel.add(transView,c);
+        transView.setVisible(false);
         
         c.gridx = 0; c.gridy = 0;        
         contentPanel.add(profileView,c);
@@ -83,18 +104,18 @@ public class ReceptionistPage extends javax.swing.JFrame {
         contentPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        roommenu = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        wakemenu = new javax.swing.JMenuItem();
+        transmenu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         clockMenu = new javax.swing.JMenuItem();
         hoursMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        amenitymenu = new javax.swing.JMenuItem();
+        eventmenu = new javax.swing.JMenuItem();
+        tourmenu = new javax.swing.JMenuItem();
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,8 +136,13 @@ public class ReceptionistPage extends javax.swing.JFrame {
 
         jMenu1.setText("Rooms ");
 
-        jMenuItem9.setText("Rooms");
-        jMenu1.add(jMenuItem9);
+        roommenu.setText("Rooms");
+        roommenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roommenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(roommenu);
 
         jMenuItem6.setText("Reservation");
         jMenu1.add(jMenuItem6);
@@ -125,11 +151,21 @@ public class ReceptionistPage extends javax.swing.JFrame {
 
         jMenu2.setText("Clients");
 
-        jMenuItem7.setText("Wake-up");
-        jMenu2.add(jMenuItem7);
+        wakemenu.setText("Wake-up");
+        wakemenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wakemenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(wakemenu);
 
-        jMenuItem8.setText("Transportation");
-        jMenu2.add(jMenuItem8);
+        transmenu.setText("Transportation");
+        transmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transmenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(transmenu);
 
         jMenuBar1.add(jMenu2);
 
@@ -160,14 +196,24 @@ public class ReceptionistPage extends javax.swing.JFrame {
 
         jMenu4.setText("Activities");
 
-        jMenuItem3.setText("Amenities");
-        jMenu4.add(jMenuItem3);
+        amenitymenu.setText("Amenities");
+        amenitymenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amenitymenuActionPerformed(evt);
+            }
+        });
+        jMenu4.add(amenitymenu);
 
-        jMenuItem4.setText("Events");
-        jMenu4.add(jMenuItem4);
+        eventmenu.setText("Events");
+        eventmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventmenuActionPerformed(evt);
+            }
+        });
+        jMenu4.add(eventmenu);
 
-        jMenuItem5.setText("Tours");
-        jMenu4.add(jMenuItem5);
+        tourmenu.setText("Tours");
+        jMenu4.add(tourmenu);
 
         jMenuBar1.add(jMenu4);
 
@@ -200,6 +246,9 @@ public class ReceptionistPage extends javax.swing.JFrame {
         hoursView.setVisible(false);
         roomView.setVisible(false);
         wakeView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
+         eventView.setVisible(false);
     }//GEN-LAST:event_clockMenuActionPerformed
 
     private void roomMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomMenuActionPerformed
@@ -207,6 +256,9 @@ public class ReceptionistPage extends javax.swing.JFrame {
         hoursView.setVisible(false);
         roomView.setVisible(true);
         wakeView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
+         eventView.setVisible(false);
     }//GEN-LAST:event_roomMenuActionPerformed
 
     private void reservationMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationMenuActionPerformed
@@ -214,6 +266,9 @@ public class ReceptionistPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         hoursView.setVisible(false);
         wakeView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
+         eventView.setVisible(false);
     }//GEN-LAST:event_reservationMenuActionPerformed
 
     private void wakeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wakeMenuActionPerformed
@@ -221,13 +276,19 @@ public class ReceptionistPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         hoursView.setVisible(false);
         roomView.setVisible(false);
+        transView.setVisible(false);
+        eventView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_wakeMenuActionPerformed
 
     private void transportMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transportMenuActionPerformed
+        transView.setVisible(true);
         roomView.setVisible(false);
         wakeView.setVisible(false);
+        eventView.setVisible(false);
         clockView.setVisible(false);
         hoursView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_transportMenuActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -235,20 +296,28 @@ public class ReceptionistPage extends javax.swing.JFrame {
         wakeView.setVisible(false);
         clockView.setVisible(false);
         hoursView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         roomView.setVisible(false);
         wakeView.setVisible(false);
         clockView.setVisible(false);
+        eventView.setVisible(false);
         hoursView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         roomView.setVisible(false);
         wakeView.setVisible(false);
+        eventView.setVisible(false);
         clockView.setVisible(false);
         hoursView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -256,6 +325,9 @@ public class ReceptionistPage extends javax.swing.JFrame {
         wakeView.setVisible(false);
         clockView.setVisible(false);
         hoursView.setVisible(false);
+        eventView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -267,13 +339,66 @@ public class ReceptionistPage extends javax.swing.JFrame {
         hoursView.setVisible(true);
         roomView.setVisible(false);
         wakeView.setVisible(false);
+        eventView.setVisible(false);
         clockView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         this.dispose();
         new welcomePage().setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void amenitymenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amenitymenuActionPerformed
+         AmenityView.setVisible(true);
+         hoursView.setVisible(false);
+        roomView.setVisible(false);
+        wakeView.setVisible(false);
+        eventView.setVisible(false);
+        clockView.setVisible(false);
+        transView.setVisible(false);
+    }//GEN-LAST:event_amenitymenuActionPerformed
+
+    private void wakemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wakemenuActionPerformed
+        wakeView.setVisible(true);
+        clockView.setVisible(false);
+        hoursView.setVisible(false);
+        roomView.setVisible(false);
+        eventView.setVisible(false);
+        transView.setVisible(false);
+        AmenityView.setVisible(false);
+    }//GEN-LAST:event_wakemenuActionPerformed
+
+    private void eventmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventmenuActionPerformed
+        eventView.setVisible(true);
+        wakeView.setVisible(false);
+        clockView.setVisible(false);
+        hoursView.setVisible(false);
+        roomView.setVisible(false);
+        transView.setVisible(false);
+        AmenityView.setVisible(false);
+    }//GEN-LAST:event_eventmenuActionPerformed
+
+    private void transmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transmenuActionPerformed
+        transView.setVisible(true);
+        eventView.setVisible(false);
+        wakeView.setVisible(false);
+        clockView.setVisible(false);
+        hoursView.setVisible(false);
+        roomView.setVisible(false);        
+        AmenityView.setVisible(false);
+    }//GEN-LAST:event_transmenuActionPerformed
+
+    private void roommenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roommenuActionPerformed
+        clockView.setVisible(false);
+        hoursView.setVisible(false);
+        roomView.setVisible(true);
+        wakeView.setVisible(false);
+        transView.setVisible(false);
+         AmenityView.setVisible(false);
+         eventView.setVisible(false);
+    }//GEN-LAST:event_roommenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,29 +428,27 @@ public class ReceptionistPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReceptionistPage("").setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ReceptionistPage("").setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem amenitymenu;
     private javax.swing.JMenuItem clockMenu;
     private javax.swing.JPanel contentPanel;
+    private javax.swing.JMenuItem eventmenu;
     private javax.swing.JMenuItem hoursMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu logout;
+    private javax.swing.JMenuItem roommenu;
+    private javax.swing.JMenuItem tourmenu;
+    private javax.swing.JMenuItem transmenu;
+    private javax.swing.JMenuItem wakemenu;
     // End of variables declaration//GEN-END:variables
 }

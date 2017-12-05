@@ -56,7 +56,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
           
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                while(rs.next()) {
                     departmentid.add(rs.getInt("idDepartment"));
                     Departmentlist.addItem(rs.getString("nameDepartment"));
                 }
@@ -324,7 +324,8 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         String fn = firstNameText.getText();
         String ln = lastNameText.getText();
         String e = emailText.getText();
-        String pw = randomPassword();
+        //String pw = randomPassword();
+        String pw = firstNameText.getText().toLowerCase()+lastNameText.getText().toLowerCase();
         String a = adressText.getText();
         String pt = phoneText.getText();
         String sn = ssnText.getText();

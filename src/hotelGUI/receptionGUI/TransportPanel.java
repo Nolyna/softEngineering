@@ -5,19 +5,65 @@
  */
 package hotelGUI.receptionGUI;
 
+import HSMcontrollers.clientController;
+import HSMcontrollers.roomController;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class TransportPanel extends javax.swing.JPanel {
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
 
     /**
      * Creates new form TransportPanel
      */
     public TransportPanel() {
         initComponents();
+        
+        ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+        ses.scheduleAtFixedRate(() -> {
+            fillTable(); //food
+        }, 0, 1, TimeUnit.MINUTES);
     }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel)tableTransportation.getModel();
+        clientController cc = new clientController();
+        roomController rc = new roomController();
 
+        String sql = "SELECT * FROM transportation";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while(rs.next()) {
+                    cc.getClientById(rs.getInt("idClient"));
+                    rc.getRoomById(rs.getInt("idRoom"));
+                    String client = cc.fullName()+" in room"+ rc.getRoomLocation();;
+                    model.addRow(new Object[]{ rs.getInt("idTrans"), "Taxi",client, rs.getDate("date").toString(),rs.getString("time"),
+                        rs.getString("details"),rs.getString("status")});
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("all event: "+e.getMessage()); }            
+            pstmt.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println("all event db"+e.getMessage());
+        }
+        //System.out.println(eventTable.getValueAt(1, 1));
+        tableTransportation.removeColumn(tableTransportation.getColumnModel().getColumn(0)); // hide id
+        tableTransportation.setDefaultEditor(Object.class, null);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,27 +76,35 @@ public class TransportPanel extends javax.swing.JPanel {
         jPanel13 = new javax.swing.JPanel();
         txtSearch2 = new javax.swing.JLabel();
         txtFirstName2 = new javax.swing.JLabel();
-        txtLastName2 = new javax.swing.JLabel();
-        checkboxPaid1 = new javax.swing.JCheckBox();
         fieldFirstName2 = new javax.swing.JTextField();
-        fieldLastName2 = new javax.swing.JTextField();
         buttonSearch2 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Type transport");
+        model.addColumn("Client");
+        model.addColumn("Date");
+        model.addColumn("Time");
+        model.addColumn("Details");
+        model.addColumn("Status");
         tableTransportation = new javax.swing.JTable();
-        txtTypeofTransportation = new javax.swing.JLabel();
-        comboboxTypeofTransportation = new javax.swing.JComboBox();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
         txtSearch2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        txtSearch2.setText("Search:");
+        txtSearch2.setText("Transport request");
 
-        txtFirstName2.setText("First Name");
+        txtFirstName2.setText("Client:");
 
-        txtLastName2.setText("Last Name");
+        fieldFirstName2.setEditable(false);
 
-        checkboxPaid1.setText("Paid");
+        buttonSearch2.setText("Requested");
 
-        buttonSearch2.setText("Search");
+        tableTransportation.setModel(model);
 
+        /*
         tableTransportation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -70,11 +124,8 @@ public class TransportPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        */
         jScrollPane5.setViewportView(tableTransportation);
-
-        txtTypeofTransportation.setText("Type of Transportation");
-
-        comboboxTypeofTransportation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Taxi", "Train", " " }));
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -83,49 +134,27 @@ public class TransportPanel extends javax.swing.JPanel {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
+                    .addComponent(txtSearch2)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(txtSearch2)
+                        .addComponent(txtFirstName2)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSearch2)
-                            .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldFirstName2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFirstName2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldLastName2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLastName2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTypeofTransportation)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(comboboxTypeofTransportation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(77, 77, 77)
-                                        .addComponent(checkboxPaid1)))))
-                        .addGap(316, 526, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(fieldFirstName2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonSearch2))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtSearch2)
-                        .addComponent(txtFirstName2)
-                        .addComponent(txtLastName2))
-                    .addComponent(txtTypeofTransportation, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch2)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFirstName2)
                     .addComponent(fieldFirstName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldLastName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboboxTypeofTransportation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkboxPaid1))
-                .addGap(24, 24, 24)
-                .addComponent(buttonSearch2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(buttonSearch2))
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -134,12 +163,12 @@ public class TransportPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1281, Short.MAX_VALUE)
+            .addGap(0, 831, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 30, Short.MAX_VALUE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 30, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,16 +184,11 @@ public class TransportPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSearch2;
-    private javax.swing.JCheckBox checkboxPaid1;
-    private javax.swing.JComboBox comboboxTypeofTransportation;
     private javax.swing.JTextField fieldFirstName2;
-    private javax.swing.JTextField fieldLastName2;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable tableTransportation;
     private javax.swing.JLabel txtFirstName2;
-    private javax.swing.JLabel txtLastName2;
     private javax.swing.JLabel txtSearch2;
-    private javax.swing.JLabel txtTypeofTransportation;
     // End of variables declaration//GEN-END:variables
 }

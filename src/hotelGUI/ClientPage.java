@@ -63,13 +63,13 @@ public class ClientPage extends javax.swing.JFrame {
     
     private void init_panel(){
         MaintenanceView =  new MaintenancePanel(client.getid(), roomId);
-        transportView = new TransportPanel();
+        transportView = new TransportPanel(client.getid(), roomId);
         wakeView = new WakePanel(client.getName(), roomId);
         amenityView = new AmenityPanel(client.getid());
         tourView = new TourPanel();
         eventView = new EventPanel(client.getid());
         contentPanel.setLayout(layout);
-        foodview = new foodPanel();
+        foodview = new foodPanel(client.getid());
         reserveView = new reservationPanel(client.getid());
         GridBagConstraints c = new GridBagConstraints();
         

@@ -18,9 +18,9 @@ public class TransportPanel extends javax.swing.JPanel {
     /**
      * Creates new form TransportPanel
      */
-    public TransportPanel() {
+    public TransportPanel(int cid, int rid) {
         initComponents();
-        taxiView =  new TaxiFormPanel();
+        taxiView =  new TaxiFormPanel(cid,rid);
         rentalView = new RentalPanel();
         publicView = new PublicTransPanel();
         contentPanel.setLayout(layout);

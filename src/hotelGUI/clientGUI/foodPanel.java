@@ -5,17 +5,37 @@
  */
 package hotelGUI.clientGUI;
 
+import HSMmodel.Food;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Noria Soumbou
  */
 public class foodPanel extends javax.swing.JPanel {
 
+    int eid;
+    ArrayList  entryid = new ArrayList(),entryprice = new ArrayList();
+    ArrayList  dessertid = new ArrayList(),dessertprice = new ArrayList();
+    ArrayList  drinkid = new ArrayList(),drinkprice = new ArrayList();
+    ArrayList  sideid = new ArrayList(),sideprice = new ArrayList();
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    
     /**
      * Creates new form foodPanel
      */
-    public foodPanel() {
+    public foodPanel( int EID) {
         initComponents();
+        eid = EID;
+        updatelists();
     }
 
     /**
@@ -27,19 +47,395 @@ public class foodPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        entryList = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        drinkList = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dessertList = new javax.swing.JList<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        sideList = new javax.swing.JList<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        eText = new javax.swing.JTextField();
+        estimateButton = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        entryList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        entryList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entryListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(entryList);
+
+        drinkList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                drinkListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(drinkList);
+
+        dessertList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        dessertList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dessertListMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(dessertList);
+
+        jLabel5.setText("Entrees");
+
+        jLabel6.setText("Side");
+
+        jLabel7.setText("Beverage");
+
+        sideList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sideListMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(sideList);
+
+        jLabel8.setText("Dessert");
+
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 3, 24)); // NOI18N
+        jLabel1.setText("Hungry ? Order here.");
+
+        eText.setEditable(false);
+
+        estimateButton.setText("Estimate");
+        estimateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estimateButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(250, 250, 250))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel5))
+                            .addComponent(estimateButton))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel8)
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel7))
+                            .addComponent(eText, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(eText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estimateButton))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        submitButton.setText("Submit Order");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void entryListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entryListMouseClicked
+
+    }//GEN-LAST:event_entryListMouseClicked
+
+    private void drinkListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drinkListMouseClicked
+       
+    }//GEN-LAST:event_drinkListMouseClicked
+
+    private void dessertListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dessertListMouseClicked
+
+    }//GEN-LAST:event_dessertListMouseClicked
+
+    private void sideListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sideListMouseClicked
+
+    }//GEN-LAST:event_sideListMouseClicked
+
+    private void estimateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estimateButtonActionPerformed
+        eText.setText(String.valueOf(estimate()));
+    }//GEN-LAST:event_estimateButtonActionPerformed
+    
+    
+    private void submit(JList x, ArrayList arr){
+        Food fd = new Food();
+        int mid;
+        if (!x.isSelectionEmpty()){
+            int[] selectedIx = x.getSelectedIndices();
+            for(int i = 0; i< selectedIx.length; i++){
+                mid = Integer.valueOf(arr.get(selectedIx[i]).toString()); 
+                fd.addProductToOrder(mid, fd.getOrderId(eid));
+                updateQte(mid);
+            }
+        }
+    }
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        double est = estimate(); int mid;
+        Food fd = new Food();
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "confirm your order of $"+est,"Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){ 
+            fd.newOrder(eid);
+            submit(entryList, entryid);
+            submit(sideList, sideid);
+            submit(dessertList, dessertid);
+            submit(drinkList, drinkid);
+            JOptionPane.showMessageDialog(null," Order submitted");
+            updatelists();
+        }else{JOptionPane.showMessageDialog(null,"Cancelled");}     
+        
+    }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void updatelists() {
+        fillEntryList();
+        fillDessertList();
+        fillDrinkList();
+        fillSideList();
+    }
+    
+     private void fillEntryList(){
+        entryList.removeAll();
+        entryid.clear();
+        
+        String sql = "Select * from menu_items where idMenu = 1 AND NOT qte = 0 ";
+        DefaultListModel model = new DefaultListModel ();
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {          
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while(rs.next()) {
+                    String elt = rs.getString("nameItem") +" - $"+rs.getInt("price");
+                    model.addElement (elt);
+                    entryid.add(rs.getInt("idMenuItem"));
+                    entryprice.add(rs.getDouble("price"));
+                }
+            }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
+            
+        } catch (SQLException e) {
+            System.out.println(" error "+e.getMessage());
+        }          
+        entryList.setModel(model);        
+    }
+    
+    private void fillSideList(){
+        sideList.removeAll();
+        sideid.clear();
+        
+        String sql = "Select * from menu_items where idMenu = 2 AND NOT qte = 0 ";
+        DefaultListModel model = new DefaultListModel ();
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {          
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while(rs.next()) {
+                    String elt = rs.getString("nameItem") +" - $"+rs.getInt("price");
+                    model.addElement (elt);
+                    sideid.add(rs.getInt("idMenuItem"));
+                    sideprice.add(rs.getDouble("price"));
+                }
+            }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
+            
+        } catch (SQLException e) {
+            System.out.println(" error "+e.getMessage());
+        }          
+       sideList.setModel(model);        
+    }
+    
+    private void fillDessertList(){
+        dessertList.removeAll();
+        dessertid.clear();
+        
+        String sql = "Select * from menu_items where idMenu = 3 AND NOT qte = 0 ";
+        DefaultListModel model = new DefaultListModel ();
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {          
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while(rs.next()) {
+                   String elt = rs.getString("nameItem") +" - $"+rs.getInt("price");
+                    model.addElement (elt);
+                    dessertid.add(rs.getInt("idMenuItem"));
+                    dessertprice.add(rs.getDouble("price"));
+                }
+            }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
+            
+        } catch (SQLException e) {
+            System.out.println(" error "+e.getMessage());
+        }          
+       dessertList.setModel(model);        
+    }
+    
+    private void fillDrinkList(){
+        drinkList.removeAll();
+        drinkid.clear();
+        
+        String sql = "Select * from menu_items where idMenu = 4 AND NOT qte = 0";
+        DefaultListModel model = new DefaultListModel ();
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {          
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while(rs.next()) {
+                    String elt = rs.getString("nameItem") +" - $"+rs.getInt("price");
+                    model.addElement (elt);
+                    drinkid.add(rs.getInt("idMenuItem"));
+                    drinkprice.add(rs.getDouble("price"));
+                }
+            }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
+            
+        } catch (SQLException e) {
+            System.out.println(" error "+e.getMessage());
+        }          
+       drinkList.setModel(model);        
+    }
+    
+    private void updateQte(int id){
+        String sql = "UPDATE menu_items "
+                 + "SET qte = qte - 1"
+                 + "WHERE idMenu =?";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private double estimate(){
+        double est = 0.0;
+        if (!entryList.isSelectionEmpty()){
+            int[] selectedIx = entryList.getSelectedIndices();
+            for(int i = 0; i< selectedIx.length; i++)
+                est = est + Double.valueOf(entryprice.get(selectedIx[i]).toString()); 
+        }
+        if (!sideList.isSelectionEmpty()){
+            int[] selectedIx = sideList.getSelectedIndices();
+            for(int i = 0; i< selectedIx.length; i++)
+                est = est + Double.valueOf(sideprice.get(selectedIx[i]).toString()); 
+        }
+        if (!dessertList.isSelectionEmpty()){
+            int[] selectedIx = dessertList.getSelectedIndices();
+            for(int i = 0; i< selectedIx.length; i++)
+                est = est + Double.valueOf(dessertprice.get(selectedIx[i]).toString()); 
+        }
+        if (!drinkList.isSelectionEmpty()){
+            int[] selectedIx = drinkList.getSelectedIndices();
+            for(int i = 0; i< selectedIx.length; i++)
+                est = est + Double.valueOf(drinkprice.get(selectedIx[i]).toString()); 
+        }
+        return est;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> dessertList;
+    private javax.swing.JList<String> drinkList;
+    private javax.swing.JTextField eText;
+    private javax.swing.JList<String> entryList;
+    private javax.swing.JButton estimateButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList<String> sideList;
+    private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,17 +36,17 @@ public class AmenityPanel extends javax.swing.JPanel {
         descText3.setText(amPool.getDescription());
         maxText3.setText(String.valueOf(amPool.getMaxOccupancy()));
         reserveText3.setText(String.valueOf(amPool.getFee()));
-        hoursText3.setText(amPool.getDescription());
+        hoursText3.setText(amPool.getHours());
         //game
         descText2.setText(amGame.getDescription());
         maxText2.setText(String.valueOf(amGame.getMaxOccupancy()));
         reserveText2.setText(String.valueOf(amGame.getFee()));
-        hoursText2.setText(amGame.getDescription());
+        hoursText2.setText(amGame.getHours());
         //conference
         descText1.setText(amConference.getDescription());
         maxText1.setText(String.valueOf(amConference.getMaxOccupancy()));
         reserveText1.setText(String.valueOf(amConference.getFee()));
-        hoursText1.setText(amConference.getDescription());
+        hoursText1.setText(amConference.getHours());
     }
     
 

@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package hotelGUI.managerGUI;
+
+import HSMcontrollers.roomController;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,33 +27,43 @@ public class freeRoomPanel extends javax.swing.JPanel {
      */
     public freeRoomPanel() {
         initComponents();
-        fillTable();
+        ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+        ses.scheduleAtFixedRate(() -> {
+            fillTable();
+        }, 0, 1, TimeUnit.MINUTES);
+        
     }
     
     /**
      * Fill the table of free rooms
      */
-    private void fillTable(){
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    private void fillTable() {
+        roomController rc = new roomController();
+        roomTable.removeAll();
+        DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
         String sql = "SELECT * FROM rooms ";
         try (Connection conn = db.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
-                    if(isFree(rs.getInt(1))){
-                        model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), 4});
+                while (rs.next()) {
+                    if (isFree(rs.getInt("idRoom"))) {
+                        model.addRow(new Object[]{rs.getInt("idRoom"),rc.GetRoomName(rs.getInt("idRoomType")), 
+                            rs.getString("location"), rs.getString("description"), rc.GetRoomPriceByType(rs.getInt("idRoomType"))});
                     }
                 }
                 rs.close();
-            }catch(SQLException e){ System.out.println("Result: "+e.getMessage()); }            
+            } catch (SQLException e) {
+                System.out.println("Result: " + e.getMessage());
+            }
             pstmt.close();
-           // conn.close();
+            // conn.close();
         } catch (SQLException e) {
-            System.out.println("select "+e.getMessage());
-        }  
+            System.out.println("select " + e.getMessage());
+        }
         //hide id column - retrieve id table.getModel().getValueAt(table.getSelectedRow(),4);
-        jTable1.removeColumn(jTable1.getColumnModel().getColumn(0));
-    
+        roomTable.removeColumn(roomTable.getColumnModel().getColumn(0));
+
     }
+
     
     /**
      * check if room is not reserved or occupied
@@ -73,7 +88,8 @@ public class freeRoomPanel extends javax.swing.JPanel {
         }   
         return free;    
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,43 +100,54 @@ public class freeRoomPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Type");
+        model.addColumn("Location");
+        model.addColumn("Description");
+        model.addColumn("Price/night");
+        roomTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        roomTable.setModel(model);
+        /*
+        roomTable.setAutoCreateRowSorter(true);
+        roomTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        */
+        jScrollPane1.setViewportView(roomTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable roomTable;
     // End of variables declaration//GEN-END:variables
 }

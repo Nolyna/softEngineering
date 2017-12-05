@@ -5,6 +5,18 @@
  */
 package hotelGUI.managerGUI;
 
+import HSMcontrollers.eventController;
+import HSMcontrollers.eventController;
+import HSMmodel.events;
+import hotelGUI.managerGUI.TourPanel;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import dbConnexion.SQLiteJDBConnection;
+
 /**
  *
  * @author Noria Soumbou
@@ -12,10 +24,15 @@ package hotelGUI.managerGUI;
 public class AddTourForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddTourForm
+     * Creates new form AddtourForm
      */
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    
     public AddTourForm() {
         initComponents();
+        Calendar today = Calendar.getInstance();
+       // dateText.setDate(today.getTime());
+        
     }
 
     /**
@@ -45,10 +62,11 @@ public class AddTourForm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        startTimeBox = new javax.swing.JComboBox<>();
-        startTimeBox1 = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        beginText = new javax.swing.JComboBox<>();
+        endText = new javax.swing.JComboBox<>();
         cancelButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        dateText = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,9 +104,9 @@ public class AddTourForm extends javax.swing.JFrame {
 
         jLabel8.setText("Max participants:");
 
-        startTimeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
+        beginText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
 
-        startTimeBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
+        endText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +114,8 @@ public class AddTourForm extends javax.swing.JFrame {
                 cancelButtonActionPerformed(evt);
             }
         });
+
+        jScrollPane4.setViewportView(dateText);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -111,11 +131,11 @@ public class AddTourForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(menuPanelLayout.createSequentialGroup()
-                                .addComponent(startTimeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(beginText, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(startTimeBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(endText, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16))
                             .addComponent(jScrollPane6)))
                     .addGroup(menuPanelLayout.createSequentialGroup()
@@ -125,9 +145,7 @@ public class AddTourForm extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
-                            .addGroup(menuPanelLayout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane4)))
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,21 +174,21 @@ public class AddTourForm extends javax.swing.JFrame {
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(startTimeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(startTimeBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(beginText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(endText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -228,15 +246,56 @@ public class AddTourForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    
+    
+    
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:tour_addButtonActionPerformed
 
+        //tourController inittour = new tourController();
+        //inittour.insert("" + nameText.getText(), "" + descText.getText(), "" + dateText.getDateFormatString() , beginText.getSelectedIndex() ,endText.getSelectedIndex() , "" + priceText.getText()  );
+        String title = "" + nameText.getText();
+        String description = "" + descText.getText();
+        String date = "" + dateText.getContentType();
+        String Shours = beginText.getSelectedItem().toString();
+        String Ehours = endText.getSelectedItem().toString();
+        String fee = "" + priceText.getText();
         
-    }//GEN-LAST:event_addButtonActionPerformed
+        String sql = "INSERT INTO tour(title,description,date,timeBegin,timeEnd, fee) VALUES(?,?,?,?,?,?)";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title);
+            pstmt.setString(2, description);
+            pstmt.setString(3, date);
+            pstmt.setString(4, Shours);
+            pstmt.setString(5, Ehours);
+            pstmt.setString(6, fee);
+            pstmt.executeUpdate();
+           
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+        
+        
+        JOptionPane.showMessageDialog(null, " tour added");
+        
+        
+        
+        setVisible(false); 
+        dispose();
+    }//GEN-LAST:tour_addButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:tour_cancelButtonActionPerformed
+        setVisible(false); 
+        dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:tour_cancelButtonActionPerformed
+
+    private void beginTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:tour_beginTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
+    }//GEN-LAST:tour_beginTextActionPerformed
+    
+ 
+    
     /**
      * @param args the command line arguments
      */
@@ -265,18 +324,18 @@ public class AddTourForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddTourForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AddTourForm().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JComboBox<String> beginText;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JTextPane dateText;
     private javax.swing.JTextPane descText;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> endText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,13 +346,12 @@ public class AddTourForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JTextPane nameText;
     private javax.swing.JTextPane priceText;
-    private javax.swing.JComboBox<String> startTimeBox;
-    private javax.swing.JComboBox<String> startTimeBox1;
     // End of variables declaration//GEN-END:variables
 }

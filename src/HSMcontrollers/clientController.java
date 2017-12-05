@@ -47,6 +47,10 @@ public class clientController {
         }
     }
     
+    public String fullName(){
+        return this.model.getName();
+    }
+    
     public void getClientByEmail(String email){
         String sql = "SELECT * FROM client where email = ? ";
         try (Connection conn = db.connect();

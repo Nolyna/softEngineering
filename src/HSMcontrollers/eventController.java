@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author Noria Soumbou
@@ -73,6 +74,27 @@ public class eventController {
         }
     }
     
+    
+
+    public eventController() {
+    }
+    public void insert( String title, String description, String date, int Shours, int Ehours, String fee){
+        String sql = "INSERT INTO event(title,description,date,timeBegin,timeEnd, fee) VALUES(?,?,?,?,?,?)";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title );
+            pstmt.setString(2, description);
+            pstmt.setString(3, date);
+            pstmt.setInt(4, Shours);
+            pstmt.setInt(5, Ehours);
+            pstmt.setString(6, fee);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+    }
+        
      /*public int getEvent(int id ){
         String sql = "SELECT * FROM event where idEvent = ?";
         try (Connection conn = db.connect();
@@ -93,14 +115,4 @@ public class eventController {
     }*/
 }
 
-
-/*
- +"idEvent int(11) NOT NULL DEFAULT '0',"
-            +"Title varchar(50) NOT NULL,"
-            +"Description text NOT NULL,"
-            +"date date NOT NULL,"
-            +"timeBegin time NOT NULL,"
-            +"timeEnd time NOT NULL,"
-            +"fee int(11) NOT NULL"
-            //+"KEY Title (Title,date)"
-*/
+    

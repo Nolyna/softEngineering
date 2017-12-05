@@ -211,6 +211,7 @@ public class hsmDatabase {
             +"idInvoice INTEGER PRIMARY KEY AUTOINCREMENT,"
             +"idClient int(11) NOT NULL,"
             +"idReservation int(11) NOT NULL,"
+            +"bill double NOT NULL,"
             /*+"KEY idClient (idClient,idReservation),"
             +"KEY idReservation (idReservation),"*/
             +"CONSTRAINT invoice_ibfk_1 FOREIGN KEY (idClient) REFERENCES client (idClient) ON DELETE CASCADE ON UPDATE CASCADE, "
@@ -368,8 +369,8 @@ public class hsmDatabase {
             +" date text NOT NULL,"
             +" timeEnd text NOT NULL,"
             +" timeBegin text NOT NULL,"
-            +" max int(11) NOT NULL,"
-            +" fee int(11) NOT NULL"
+            +" max int(11) Default NULL,"
+            +" fee int(11) Default NULL"
             /*+" date date NOT NULL,"
             +" timeEnd time NOT NULL,"
             +" timeBegin time NOT NULL,"*/
@@ -391,18 +392,12 @@ public class hsmDatabase {
                 // SQL statement for creating a new table  transportation
         String sql29 =" CREATE TABLE IF NOT EXISTS transportation ("
             +" idTrans INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +" date text NOT NULL,"
-            +" timeLeave text NOT NULL,"
-            +" timeBack text NOT NULL,"
-            /*+" date date NOT NULL,"
-            +" timeLeave time NOT NULL,"
-            +" timeBack time NOT NULL,"*/
-            +" nbrGuest int(11) NOT NULL,"
-            +" Status int(11) NOT NULL,"
+            +" date date NOT NULL,"
+            +" time text NOT NULL,"
+            +" details text NOT NULL,"
+            +" Status text NOT NULL,"
             +" idClient int(11) NOT NULL,"
             +" idRoom int(11) DEFAULT NULL,"
-           // +" KEY idClient (idClient,idRoom),"
-           // +" KEY idRoom (idRoom),"
             +" CONSTRAINT transportation_ibfk_1 FOREIGN KEY (idClient) REFERENCES client (idClient) ON DELETE CASCADE ON UPDATE CASCADE, "
             +" CONSTRAINT transportation_ibfk_2 FOREIGN KEY (idRoom) REFERENCES rooms (idRoom) ON DELETE CASCADE ON UPDATE CASCADE "
             +") ; ";
@@ -498,7 +493,7 @@ public class hsmDatabase {
                 + "tables, training tables and chairs. Whether you are holding a deposition, a real estate closing, meeting "
                 + "your next big client or making a presentation to your team, our conference rooms and training rooms will "
                 + "meet your business needs.";
-        initamenity.insert("Balroom", br, "Mon-fri: 6:00pm to 12:00am, Sat-Sun: 6:00pm to 3:00am", 1500, 500);
+        initamenity.insert("Ballroom", br, "Mon-fri: 6:00pm to 12:00am, Sat-Sun: 6:00pm to 3:00am", 1500, 500);
         initamenity.insert("Pool", pl,"Mon-Sun: 9:00am to 6:00pm", 150, 200);
         initamenity.insert("Game room", gr, "Mon-fri: 9:00am to 8:00am, Sat-Sun: 9:00am to 12:00am", 200, 200);
         initamenity.insert("Conference room", cr, "Mon-fri: 6:00pm to 12:00am", 750, 500);

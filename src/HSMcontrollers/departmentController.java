@@ -3,6 +3,7 @@ package HSMcontrollers;
 import dbConnexion.SQLiteJDBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -46,18 +47,25 @@ public class departmentController {
             System.out.println(e.getMessage());
         }
     }
-    public void updateManageDepartment(int idept, int idman){
-         String sql = "UPDATE department set idManager = ?"
-                 +" WHERE idDepartment = ? ";
- 
+    
+    
+    public String getDepartmentName(int did){
+        String gg = "";
+        String sql = "select nameDepartment from department where idDepartment = ?";
+        
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, idman);
-            pstmt.setInt(2, idept);
-            pstmt.executeUpdate();
+            pstmt.setInt(1,  did);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                   gg = rs.getString("nameDepartment");
+                }
+                rs.close();
+            }catch(SQLException e){ System.out.println("getDepartmentName: "+e.getMessage()); }    
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return gg;
     }
     
     /**

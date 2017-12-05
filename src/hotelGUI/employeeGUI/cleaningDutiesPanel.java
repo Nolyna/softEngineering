@@ -5,17 +5,68 @@
  */
 package hotelGUI.employeeGUI;
 
+import HSMmodel.cleanup;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Noria Soumbou
+ * @author Noria Soumbou, Jermaine Anderson
  */
 public class cleaningDutiesPanel extends javax.swing.JPanel {
+    
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
 
     /**
      * Creates new form cleaningDutiesPanel
      */
     public cleaningDutiesPanel() {
         initComponents();
+        show_cleanup();
+        
+    }
+    
+    //Grab data from database
+    public ArrayList<cleanup> cleanUpList(){
+        ArrayList<cleanup> cleanUpList = new ArrayList<cleanup>();
+        
+        String sql = "SELECT * FROM maintenance";
+            Connection conn = db.connect();
+                    try {
+                        Statement stmt = conn.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        cleanup cleanup;
+                            while (rs.next()) {
+                                    if(rs.getString("status").equalsIgnoreCase("Clean")|rs.getString("status").equalsIgnoreCase("Not Clean")){
+                                cleanup = new cleanup(rs.getInt("idRoom"),rs.getString("status"));
+                                cleanUpList.add(cleanup);
+                                    }
+                            }
+                    } catch (SQLException e ) {
+                        System.out.println(e.getMessage()); 
+                      } 
+
+        return cleanUpList;
+    }
+
+    //Show Data in JTable
+    public void show_cleanup(){
+        ArrayList<cleanup> list = cleanUpList();
+        DefaultTableModel model = (DefaultTableModel)dutiesTable.getModel();
+        Object [] row = new Object[2];
+
+            for(int i =0; i<list.size(); i++){
+                row [0] = list.get(i).getRoomNumber();
+                row [1] = list.get(i).getStatus();
+                
+                model.addRow(row);
+            }
     }
 
     /**
@@ -28,32 +79,38 @@ public class cleaningDutiesPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel11 = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        tableDuties = new javax.swing.JTable();
         txtChangeStatus = new javax.swing.JLabel();
-        txtRoomNumber3 = new javax.swing.JLabel();
-        fieldRoomNumber3 = new javax.swing.JTextField();
         buttonCleaned = new javax.swing.JButton();
-
-        tableDuties.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Room Number", "Assigned Employee", "Clean Status"
-            }
-        ));
-        jScrollPane8.setViewportView(tableDuties);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dutiesTable = new javax.swing.JTable();
 
         txtChangeStatus.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         txtChangeStatus.setText("Change Status:");
 
-        txtRoomNumber3.setText("Room Number");
-
         buttonCleaned.setText("Cleaned");
+        buttonCleaned.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCleanedActionPerformed(evt);
+            }
+        });
+
+        dutiesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Room Number", "Room Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(dutiesTable);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -62,15 +119,12 @@ public class cleaningDutiesPanel extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1279, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(txtChangeStatus)
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldRoomNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRoomNumber3)
-                            .addComponent(buttonCleaned))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCleaned)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1279, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -79,14 +133,10 @@ public class cleaningDutiesPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtChangeStatus)
-                    .addComponent(txtRoomNumber3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldRoomNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonCleaned)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(buttonCleaned))
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -96,13 +146,13 @@ public class cleaningDutiesPanel extends javax.swing.JPanel {
             .addGap(0, 1299, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 4, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 4, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGap(0, 656, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -111,14 +161,42 @@ public class cleaningDutiesPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonCleanedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCleanedActionPerformed
+        DefaultTableModel model = (DefaultTableModel)dutiesTable.getModel();
+        int viewIndex = dutiesTable.getSelectedRow();
+        int roomnumbervalue = (int )dutiesTable.getModel().getValueAt(viewIndex, 0);
+        String statusvalue = "Clean";
+
+        
+         String sql1 = "UPDATE maintenance SET status = ?"+" WHERE idRoom= ?";
+
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)){
+            System.out.println(statusvalue);
+            pstmt.setString(1, statusvalue);
+            pstmt.setInt(2, roomnumbervalue);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        //Resfresh
+        model.setRowCount(0);
+        show_cleanup();
+    }//GEN-LAST:event_buttonCleanedActionPerformed
+   
+    
+ 
+    
+   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCleaned;
-    private javax.swing.JTextField fieldRoomNumber3;
+    private javax.swing.JTable dutiesTable;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable tableDuties;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel txtChangeStatus;
-    private javax.swing.JLabel txtRoomNumber3;
     // End of variables declaration//GEN-END:variables
 }

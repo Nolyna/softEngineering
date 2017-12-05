@@ -5,8 +5,10 @@
  */
 package hotelGUI.managerGUI;
 
-import HSMcontrollers.eventController;
-import HSMmodel.events;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -19,10 +21,13 @@ public class AddEventForm extends javax.swing.JFrame {
     /**
      * Creates new form AddEventForm
      */
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    
     public AddEventForm() {
         initComponents();
         Calendar today = Calendar.getInstance();
-        dateText.setDate(today.getTime());
+       // dateText.setDate(today.getTime());
+        
     }
 
     /**
@@ -54,7 +59,8 @@ public class AddEventForm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         beginText = new javax.swing.JComboBox<>();
         endText = new javax.swing.JComboBox<>();
-        dateText = new com.toedter.calendar.JDateChooser();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dateText = new javax.swing.JTextPane();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,6 +87,11 @@ public class AddEventForm extends javax.swing.JFrame {
         });
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Name:");
 
@@ -104,8 +115,15 @@ public class AddEventForm extends javax.swing.JFrame {
         jLabel7.setText("New Event");
 
         beginText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
+        beginText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beginTextActionPerformed(evt);
+            }
+        });
 
         endText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM (Noon)", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM" }));
+
+        jScrollPane3.setViewportView(dateText);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -129,12 +147,6 @@ public class AddEventForm extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane6)))
                     .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane2))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,35 +156,37 @@ public class AddEventForm extends javax.swing.JFrame {
                                 .addComponent(addButton)
                                 .addGap(18, 18, 18)
                                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)))))
+                                .addGap(30, 30, 30))))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
+                        .addGap(34, 34, 34)
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3)
+                            .addComponent(jScrollPane2))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                        .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98))))
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(54, 54, 54)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addComponent(jLabel4)
                         .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -237,19 +251,57 @@ public class AddEventForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 
-        events ev = new events( 0,nameText.getText(),  descText.getText(),  dateText.getDateFormatString(),  beginText.getItemAt(beginText.getSelectedIndex()),  endText.getItemAt(endText.getSelectedIndex()), Integer.parseInt(priceText.getText()) );
-        eventController evc = new eventController(ev);
-        evc.create();
+        //eventController initEvent = new eventController();
+        //initEvent.insert("" + nameText.getText(), "" + descText.getText(), "" + dateText.getDateFormatString() , beginText.getSelectedIndex() ,endText.getSelectedIndex() , "" + priceText.getText()  );
+        String title =  nameText.getText();
+        String description =  descText.getText();
+        String date =  dateText.getText();
+        String Shours = beginText.getSelectedItem().toString();
+        String Ehours = endText.getSelectedItem().toString();
+        String fee =  priceText.getText();
+        
+        String sql = "INSERT INTO event(title,description,date,timeBegin,timeEnd, fee) VALUES(?,?,?,?,?,?)";        
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title);
+            pstmt.setString(2, description);
+            pstmt.setString(3, date);
+            pstmt.setString(4, Shours);
+            pstmt.setString(5, Ehours);
+            pstmt.setString(6, fee);
+            pstmt.executeUpdate();
+           
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+        
+        
         JOptionPane.showMessageDialog(null, " Event added");
         emptyForm();
+        
+        
+        setVisible(false); 
+        dispose();
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        setVisible(false); 
+        this.dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void beginTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_beginTextActionPerformed
     
     private void emptyForm(){
         Calendar today = Calendar.getInstance();
         nameText.setText("");
-        dateText.setDate(today.getTime());
         beginText.setSelectedIndex(1); 
         endText.setSelectedIndex(1);
         priceText.setText("");
@@ -293,7 +345,7 @@ public class AddEventForm extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JComboBox<String> beginText;
     private javax.swing.JButton cancelButton;
-    private com.toedter.calendar.JDateChooser dateText;
+    private javax.swing.JTextPane dateText;
     private javax.swing.JTextPane descText;
     private javax.swing.JComboBox<String> endText;
     private javax.swing.JLabel jLabel1;
@@ -306,6 +358,7 @@ public class AddEventForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel menuPanel;

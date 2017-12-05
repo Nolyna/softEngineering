@@ -7,8 +7,37 @@ package HSMmodel;
 
 /**
  *
- * @author soumb
+ * @author Jermaine Anderson
  */
 public class delivery {
+   private String status, des, des1;
+   private int roomNumber;
+           
     
+    public delivery(int RoomNumber, String Status, String Des, String Des1){
+        this.roomNumber = RoomNumber;
+        this.status =Status;
+        this.des = Des;
+        this.des1 = Des1;
+    
+    }
+ 
+            
+   public int getRoomNumber(){
+       return roomNumber;
+   }
+
+
+    public String getStatus(){
+       return status;
+   }
+    
+  public String getDes(){
+       return des;
+   }
+  
+  public String getDes1(){
+       return des1;
+   }
+
 }

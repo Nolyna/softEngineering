@@ -10,11 +10,12 @@ import java.sql.SQLException;
  *
  * @author soumbou
  */
-public class employee extends person{ 
+public class employee extends person{   
+    
     final private SQLiteJDBConnection db = new SQLiteJDBConnection();
-    private int id;
     String bdate, ssn;
     String gender;
+    int id;
     
     /**
      * Constructor for employee
@@ -24,10 +25,6 @@ public class employee extends person{
         this.firstname = fname;
         this.lastname = lname;
     }    
-    
-    public void setid(int id){
-        this.id =id;
-    }
     
     public void setBirthday( String date){
         this.bdate = date;
@@ -41,10 +38,6 @@ public class employee extends person{
         this.gender = gender;
     }
     
-    public int getid(){
-        return this.id;
-    }
-    
     /* get Employee date of birth
      * @return Employee date of birth
     */
@@ -54,6 +47,14 @@ public class employee extends person{
     
     public String getSSN(){
         return this.ssn;
+    }
+    
+    public int getid(){
+        return this.id;
+    }
+    
+    public void setid(int id){
+        this.id =id;
     }
     
     /* get Employee gender
@@ -90,23 +91,23 @@ public class employee extends person{
     }
     
     public int getEmployeeDepartmentId(){
-        int did = 0;
-        String sql = "SELECT idDepartment FROM workfor where idEmployee = ? ";
+    int x = 0;
+        String sql = "SELECT * FROM workfor where idEmployee = ? ";
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, this.id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()) {
-                   did = rs.getInt("idDepartment");
+                   x = rs.getInt("idDepartment");
                 }
                 rs.close();
-            }catch(SQLException e){ System.out.println("getEmployeeDepartmentId: "+e.getMessage()); }            
+            }catch(SQLException e){ System.out.println("getEmployeeByEmail: "+e.getMessage()); }            
             pstmt.close();
             //conn.close();
         } catch (SQLException e) {
-            System.out.println("getEmployeeDepartmentId db"+e.getMessage());
-        }  
-        return did;
+            System.out.println("getEmployeeByEmail"+e.getMessage());
+        }        
+        return x;
     }
     
     

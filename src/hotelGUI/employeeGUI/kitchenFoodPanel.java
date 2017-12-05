@@ -37,6 +37,7 @@ public class kitchenFoodPanel extends javax.swing.JPanel {
    
     
     private void fillMenuBox(){
+        menuBox.removeAllItems();
         String sql = "Select * from menu ";
         
         try (Connection conn = db.connect();
@@ -64,11 +65,11 @@ public class kitchenFoodPanel extends javax.swing.JPanel {
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {          
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                while(rs.next()) {
                     model.addElement ( rs.getString("nameItem"));
                     entryid.add(rs.getInt("idMenuItem"));
                     entryqte.add(rs.getInt("qte"));
-                    entryprice.add(rs.getInt("price"));
+                    entryprice.add(rs.getDouble("price"));
                 }
             }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
             
@@ -89,11 +90,11 @@ public class kitchenFoodPanel extends javax.swing.JPanel {
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {          
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                while(rs.next()) {
                     model.addElement ( rs.getString("nameItem"));
                     sideid.add(rs.getInt("idMenuItem"));
                     sideqte.add(rs.getInt("qte"));
-                    sideprice.add(rs.getInt("price"));
+                    sideprice.add(rs.getDouble("price"));
                 }
             }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
             
@@ -114,11 +115,11 @@ public class kitchenFoodPanel extends javax.swing.JPanel {
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {          
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                while(rs.next()) {
                     model.addElement ( rs.getString("nameItem"));
                     dessertid.add(rs.getInt("idMenuItem"));
                     dessertqte.add(rs.getInt("qte"));
-                    dessertprice.add(rs.getInt("price"));
+                    dessertprice.add(rs.getDouble("price"));
                 }
             }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
             
@@ -139,11 +140,11 @@ public class kitchenFoodPanel extends javax.swing.JPanel {
         try (Connection conn = db.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {          
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                while(rs.next()) {
                     model.addElement ( rs.getString("nameItem"));
                     drinkid.add(rs.getInt("idMenuItem"));
                     drinkqte.add(rs.getInt("qte"));
-                    drinkprice.add(rs.getInt("price"));
+                    drinkprice.add(rs.getDouble("price"));
                 }
             }catch (SQLException e) { System.out.println(" error "+e.getMessage());}  
             

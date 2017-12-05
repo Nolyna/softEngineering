@@ -4,20 +4,61 @@
  * and open the template in the editor.
  */
 package hotelGUI.managerGUI;
+
+import HSMcontrollers.clientController;
+import HSMcontrollers.roomController;
+import HSMmodel.RoomType;
+import HSMmodel.room;
 import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Noria Soumbou
  */
 public class occupiedRoomPanel extends javax.swing.JPanel {
+
     final private SQLiteJDBConnection db = new SQLiteJDBConnection();
-    
+
     /**
      * Creates new form occupiedRoomPanel
      */
     public occupiedRoomPanel() {
         initComponents();
+        fill();
+    }
+    
+    private void fill(){
+        clientController cc = new clientController();
+        roomController rc = new roomController();
+        String url = "jdbc:sqlite:hotelmanagement.db";
+        DefaultTableModel b = new DefaultTableModel(new String[]{"idResevation", "idRoom", "idClient", "dateReservation", "dateIn", "dateOut", "status"}, 0);
+        roomTable.setModel(b);
+        String sql = "SELECT * FROM room_reserve";
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            Statement a = conn.createStatement();
+            ResultSet rs = a.executeQuery(sql);
+            while (rs.next()) {
+                cc.getClientById(rs.getInt("idClient"));
+                rc.getRoomById(rs.getInt("idRoom"));
+                String d = rs.getString("idResevation");
+                String e = rc.getRoomLocation();
+                String f = cc.fullName();
+                String g = rs.getString("dateReservation");
+                String h = rs.getString("dateIn");
+                String i = rs.getString("dateOut");
+                String j = rs.getString("status");
+                b.addRow(new Object[]{d, e, f, g, h, i, j});
+            }
+        } catch (SQLException e) {
+        }
     }
 
     /**
@@ -29,21 +70,89 @@ public class occupiedRoomPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Type");
+        model.addColumn("Description");
+        model.addColumn("Location");
+        model.addColumn("Bed");
+        model.addColumn("Price/night");
+        model.addColumn("Status");
+        roomTable = new javax.swing.JTable();
+
         setBackground(new java.awt.Color(255, 255, 255));
+
+        roomTable.setModel(model);
+        /*
+        roomTable.setAutoCreateRowSorter(true);
+        roomTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        */
+        jScrollPane1.setViewportView(roomTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable roomTable;
     // End of variables declaration//GEN-END:variables
+
+    private void fillTable() {
+        RoomType rmTpe = new RoomType();
+        room rm = new room();
+        DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
+        String locate, desc, type;
+        int id, bed, price;
+
+        String sql1 = "SELECT * FROM rooms";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    rmTpe.setTypeID(rs.getInt("idRoomType"));
+                    rmTpe.getRoomType();
+                    rm.setRoom(rs.getInt("idRoom"), rs.getString("description"), rs.getString("location"), rs.getInt("idRoomType"));
+                    roomController rc = new roomController(rm);
+
+                    model.addRow(new Object[]{rm.getroomID(), rmTpe.getType(), rm.getDescription(),
+                        rm.getLocation(), rmTpe.getBeds(), rmTpe.getprice(), rc.roomReservationStatus()});
+                }
+                rs.close();
+            } catch (SQLException e) {
+                System.out.println("all room: " + e.getMessage());
+            }
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("all room db" + e.getMessage());
+        }
+        roomTable.removeColumn(roomTable.getColumnModel().getColumn(0)); // hide id
+        roomTable.setDefaultEditor(Object.class, null);
+    }
 }

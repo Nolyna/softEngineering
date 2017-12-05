@@ -20,8 +20,11 @@ class ManagerPage extends javax.swing.JFrame {
     final HoursPanel  hoursView;
     final EventPanel eventView;
     final AmenityPanel amenityView;
+    final TourPanel tourView;
+    final AddTourForm tourFormView;
     final AddEmployeePanel addEmployeeView;
-   // final employeePanel employeeView;
+    final employeePanel employeeView;
+    final work workview;
     /**
      * Creates new form ManagerPage2
      */
@@ -33,11 +36,14 @@ class ManagerPage extends javax.swing.JFrame {
         
         clockView =  new ClockPanel(emp.getid());
         roomView = new RoomPanel();
-        hoursView = new HoursPanel();
+        hoursView = new HoursPanel(emp.getid());
         eventView = new EventPanel();
+        tourView = new TourPanel();
+        tourFormView = new AddTourForm();
         amenityView = new AmenityPanel();
         addEmployeeView = new AddEmployeePanel();
-        //employeeView = new employeePanel();
+        employeeView = new employeePanel();
+        workview = new work();
         dynamicPanel.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
         
@@ -46,12 +52,16 @@ class ManagerPage extends javax.swing.JFrame {
         roomView.setVisible(false);
         
         c.gridx = 0; c.gridy = 0;        
+        dynamicPanel.add(workview,c);
+        workview.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(addEmployeeView,c);
         addEmployeeView.setVisible(false);
         
-       /* c.gridx = 0; c.gridy = 0;        
+        c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(employeeView,c);
-        employeeView.setVisible(false);*/
+        employeeView.setVisible(false);
         
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(amenityView,c);
@@ -68,6 +78,10 @@ class ManagerPage extends javax.swing.JFrame {
         c.gridx = 0; c.gridy = 0;        
         dynamicPanel.add(eventView,c);
         eventView.setVisible(false);
+        
+        c.gridx = 0; c.gridy = 0;        
+        dynamicPanel.add(tourView,c);
+        tourView.setVisible(false);
     }
 
     /**
@@ -107,6 +121,8 @@ class ManagerPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        dynamicPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout dynamicPanelLayout = new javax.swing.GroupLayout(dynamicPanel);
         dynamicPanel.setLayout(dynamicPanelLayout);
         dynamicPanelLayout.setHorizontalGroup(
@@ -139,6 +155,11 @@ class ManagerPage extends javax.swing.JFrame {
         activityMenu.add(eventMenu);
 
         tourMenu.setText("Tours");
+        tourMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tourMenuActionPerformed(evt);
+            }
+        });
         activityMenu.add(tourMenu);
 
         jMenu3.add(activityMenu);
@@ -152,6 +173,11 @@ class ManagerPage extends javax.swing.JFrame {
         jMenu3.add(roomMenu);
 
         settingMenu.setText("Settings");
+        settingMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingMenuActionPerformed(evt);
+            }
+        });
         jMenu3.add(settingMenu);
 
         jMenuBar2.add(jMenu3);
@@ -235,10 +261,11 @@ class ManagerPage extends javax.swing.JFrame {
         amenityView.setVisible(true);
         eventView.setVisible(false);
         hoursView.setVisible(false);
+        workview.setVisible(false);
         clockView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
-        //employeeView.setVisible(false);
+        employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_amenityMenuActionPerformed
 
@@ -257,10 +284,12 @@ class ManagerPage extends javax.swing.JFrame {
         roomView.setVisible(false);
         hoursView.setVisible(false);
         eventView.setVisible(false);
+        tourView.setVisible(false);
+        workview.setVisible(false);
         amenityView.setVisible(false);
-        //employeeView.setVisible(false);
+        employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
-        clockView.revalidate();
+        this.revalidate();
     }//GEN-LAST:event_clockMenuActionPerformed
 
     private void roomMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomMenuActionPerformed
@@ -271,7 +300,9 @@ class ManagerPage extends javax.swing.JFrame {
         hoursView.setVisible(false);
         eventView.setVisible(false);
         amenityView.setVisible(false);
-        //employeeView.setVisible(false);
+        workview.setVisible(false);
+        employeeView.setVisible(false);
+        tourView.setVisible(false);
         addEmployeeView.setVisible(false);
         this.validate();
     }//GEN-LAST:event_roomMenuActionPerformed
@@ -280,11 +311,13 @@ class ManagerPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         hoursView.setVisible(true);
         clockView.setVisible(false);
+        tourView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
+        workview.setVisible(false);
         eventView.setVisible(false);
         amenityView.setVisible(false);
-        //employeeView.setVisible(false);
+        employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_hoursMenuActionPerformed
 
@@ -301,8 +334,10 @@ class ManagerPage extends javax.swing.JFrame {
         clockView.setVisible(false);
         roomView.setVisible(false);
         clockView.setVisible(false);
+        tourView.setVisible(false);
         amenityView.setVisible(false);
-        //employeeView.setVisible(false);
+        workview.setVisible(false);
+        employeeView.setVisible(false);
         addEmployeeView.setVisible(false);
     }//GEN-LAST:event_eventMenuActionPerformed
 
@@ -313,12 +348,29 @@ class ManagerPage extends javax.swing.JFrame {
         hoursView.setVisible(false);
         clockView.setVisible(false);
         roomView.setVisible(false);
+        tourView.setVisible(false);
         clockView.setVisible(false);
-        //employeeView.setVisible(false);
+        employeeView.setVisible(false);
+       workview.setVisible(false);
     }//GEN-LAST:event_addEmployeeMenuActionPerformed
 
     private void viewEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeMenuActionPerformed
-        //employeeView.setVisible(true);
+        employeeView.setVisible(true);
+        amenityView.setVisible(false);
+        eventView.setVisible(false);
+        hoursView.setVisible(false);
+        tourView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        addEmployeeView.setVisible(false);
+        workview.setVisible(false);
+    }//GEN-LAST:event_viewEmployeeMenuActionPerformed
+
+    private void settingMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingMenuActionPerformed
+        workview.setVisible(true);
+        employeeView.setVisible(false);
+        tourView.setVisible(false);
         amenityView.setVisible(false);
         eventView.setVisible(false);
         hoursView.setVisible(false);
@@ -326,7 +378,20 @@ class ManagerPage extends javax.swing.JFrame {
         roomView.setVisible(false);
         clockView.setVisible(false);
         addEmployeeView.setVisible(false);
-    }//GEN-LAST:event_viewEmployeeMenuActionPerformed
+    }//GEN-LAST:event_settingMenuActionPerformed
+
+    private void tourMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tourMenuActionPerformed
+        tourView.setVisible(true);
+        workview.setVisible(false);
+        employeeView.setVisible(false);
+        amenityView.setVisible(false);
+        eventView.setVisible(false);
+        hoursView.setVisible(false);
+        clockView.setVisible(false);
+        roomView.setVisible(false);
+        clockView.setVisible(false);
+        addEmployeeView.setVisible(false);
+    }//GEN-LAST:event_tourMenuActionPerformed
 
     /**
      * @param args the command line arguments

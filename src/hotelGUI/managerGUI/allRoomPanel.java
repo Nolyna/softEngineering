@@ -4,7 +4,16 @@
  * and open the template in the editor.
  */
 package hotelGUI.managerGUI;
+
+import HSMcontrollers.roomController;
 import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,28 +23,41 @@ import javax.swing.table.DefaultTableModel;
 public class allRoomPanel extends javax.swing.JPanel {
 
     final private SQLiteJDBConnection db = new SQLiteJDBConnection();
-        
+
     /**
      * Creates new form allRoomPanel
      */
     public allRoomPanel() {
         initComponents();
-        fillTable();
+        /*ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+        ses.scheduleAtFixedRate(() -> {*/
+            fillTable();
+        //}, 0, 1, TimeUnit.MINUTES);
     }
-    
-    private void fillTable(){
-     DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
-     model.addRow(new Object[]{"Room 1", "Column 2", "Column 3", 4});
-      
-     /* String[] column = new String [] {"id", "room", "location", "ltype", "bed", "price", "status", "null"};
-       Object [][] data = new Object [][] {
-                { 1, "wow", "w", "w",  new Integer(3),  new Double(3.0), "w", "w"},
-                { 2, "wreck", "wr", "wr",  new Integer(3),  new Double(3.0), "wr", "wr"},
-                { 3, "fries", "f", "f",  new Integer(3),  new Double(3.0), "f", "f"}
-            };
-        //roomTable.setValueAt("test", 2, 2);
-        DefaultTableModel tmodel = new DefaultTableModel(data,column);
-        roomTable.setModel(tmodel);*/
+
+    private void fillTable() {
+        roomController rc = new roomController();
+        DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
+        //model.setRowCount(0);
+        String sql = "SELECT * FROM rooms ";
+        try (Connection conn = db.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                        model.addRow(new Object[]{rs.getInt("idRoom"),rc.GetRoomName(rs.getInt("idRoomType")), 
+                            rs.getString("location"), rs.getString("description"), rc.GetRoomPriceByType(rs.getInt("idRoomType")),
+                            rc.roomReservationStatus(rs.getInt("idRoom")) });
+                }
+                rs.close();
+            } catch (SQLException e) {
+                System.out.println("Result: " + e.getMessage());
+            }
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("select " + e.getMessage());
+        }
+        //hide id column - retrieve id table.getModel().getValueAt(table.getSelectedRow(),4);
+        roomTable.removeColumn(roomTable.getColumnModel().getColumn(0));
+
     }
 
     /**
@@ -48,36 +70,49 @@ public class allRoomPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Type");
+        model.addColumn("Location");
+        model.addColumn("Description");
+        model.addColumn("Price/night");
+        model.addColumn("Status");
         roomTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        roomTable.setModel(model);
+        /*
+        roomTable.setAutoCreateRowSorter(true);
         roomTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        roomTable.setPreferredSize(new java.awt.Dimension(300, 64));
+        */
         jScrollPane1.setViewportView(roomTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -86,6 +121,5 @@ public class allRoomPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable roomTable;
     // End of variables declaration//GEN-END:variables
-
 
 }

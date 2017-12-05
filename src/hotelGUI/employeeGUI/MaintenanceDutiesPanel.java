@@ -5,19 +5,93 @@
  */
 package hotelGUI.employeeGUI;
 
+import HSMcontrollers.employeeController;
+import HSMmodel.maintenance;
+import dbConnexion.SQLiteJDBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Noria Soumbou
+ * @author Noria Soumbou, jermaine anderson
  */
 public class MaintenanceDutiesPanel extends javax.swing.JPanel {
+    
+    final private SQLiteJDBConnection db = new SQLiteJDBConnection();
+    final private employeeController clocktime = new employeeController();
 
     /**
      * Creates new form MaintenanceDutiesPanel
      */
     public MaintenanceDutiesPanel() {
         initComponents();
+        show_maintenance();
+    }
+    
+    //Grab data from database
+    public ArrayList<maintenance> maintenanceList(){
+        ArrayList<maintenance> maintenanceList = new ArrayList<maintenance>();
+        
+        String sql = "SELECT * FROM maintenance";
+            Connection conn = db.connect();
+                    try {
+                        Statement stmt = conn.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        maintenance maintenance;
+                            while (rs.next()) {
+                                if(rs.getString("status").equalsIgnoreCase("Fixed")|rs.getString("status").equalsIgnoreCase("Not Fixed")){
+                                maintenance = new maintenance(rs.getInt("idRoom"),rs.getString("type"),rs.getString("description"),rs.getString("status"));
+                                maintenanceList.add(maintenance);
+                                }
+                            }
+                    } catch (SQLException e ) {
+                        System.out.println(e.getMessage()); 
+                      } 
+
+        return maintenanceList;
+    }
+    
+    //Show Data in JTable
+    public void show_maintenance(){
+        ArrayList<maintenance> list = maintenanceList();
+        DefaultTableModel model = (DefaultTableModel)tableDuties.getModel();
+        Object [] row = new Object[4];
+
+            for(int i =0; i<list.size(); i++){
+                row [0] = list.get(i).getRoomNumber();
+                row [1] = list.get(i).getType();
+                row [2] = list.get(i).getIssue();
+                row [3] = list.get(i).getStatus();
+                
+                model.addRow(row);
+            }
+    }
+    
+    public void deleteFromTable(){
+    // TODO add your handling code here:
+         DefaultTableModel model = (DefaultTableModel)tableDuties.getModel();
+        int viewIndex = tableDuties.getSelectedRow();
+        int roomnumbervalue = (int )tableDuties.getModel().getValueAt(viewIndex, 0);
+        String sql1 = "DELETE FROM maintenance WHERE idRoom= ? ";
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)){
+            pstmt.setInt(1, roomnumbervalue);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+        //Resfresh
+        model.setRowCount(0);
+        show_maintenance();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,19 +105,14 @@ public class MaintenanceDutiesPanel extends javax.swing.JPanel {
         jScrollPane8 = new javax.swing.JScrollPane();
         tableDuties = new javax.swing.JTable();
         txtChangeStatus = new javax.swing.JLabel();
-        txtRoomNumber3 = new javax.swing.JLabel();
-        fieldRoomNumber3 = new javax.swing.JTextField();
         buttonFixed = new javax.swing.JButton();
 
         tableDuties.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Room Number", "Assigned Employee", "Issue", "Fixed Status"
+                "Room Number", "Type", "Issue", "Fixed Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -59,9 +128,12 @@ public class MaintenanceDutiesPanel extends javax.swing.JPanel {
         txtChangeStatus.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         txtChangeStatus.setText("Change Status:");
 
-        txtRoomNumber3.setText("Room Number");
-
         buttonFixed.setText("Fixed");
+        buttonFixed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFixedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -72,11 +144,8 @@ public class MaintenanceDutiesPanel extends javax.swing.JPanel {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1275, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(txtChangeStatus)
-                        .addGap(29, 29, 29)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldRoomNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRoomNumber3)
+                            .addComponent(txtChangeStatus)
                             .addComponent(buttonFixed))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -85,14 +154,10 @@ public class MaintenanceDutiesPanel extends javax.swing.JPanel {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtChangeStatus)
-                    .addComponent(txtRoomNumber3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldRoomNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtChangeStatus)
+                .addGap(18, 18, 18)
                 .addComponent(buttonFixed)
-                .addGap(24, 24, 24)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -104,9 +169,9 @@ public class MaintenanceDutiesPanel extends javax.swing.JPanel {
             .addGap(0, 1295, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 4, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 4, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,14 +184,38 @@ public class MaintenanceDutiesPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonFixedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFixedActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)tableDuties.getModel();
+        int viewIndex = tableDuties.getSelectedRow();
+        int roomnumbervalue = (int )tableDuties.getModel().getValueAt(viewIndex, 0);
+        String statusvalue = "Fixed";
+
+        
+         String sql1 = "UPDATE maintenance SET status = ?"+" WHERE idRoom= ?";
+
+        try (Connection conn = db.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql1)){
+            pstmt.setString(1, statusvalue);
+            pstmt.setInt(2, roomnumbervalue);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        //Resfresh
+        model.setRowCount(0);
+        show_maintenance();   
+
+    }//GEN-LAST:event_buttonFixedActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFixed;
-    private javax.swing.JTextField fieldRoomNumber3;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable tableDuties;
     private javax.swing.JLabel txtChangeStatus;
-    private javax.swing.JLabel txtRoomNumber3;
     // End of variables declaration//GEN-END:variables
 }
